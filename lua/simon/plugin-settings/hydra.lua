@@ -1,0 +1,39 @@
+-- local Hydra = require('hydra')
+-- local cmd = require('hydra.keymap-util').cmd
+--
+-- local hint = [[
+-- AAAAAAAAAAAAAAAAAAAAA
+-- ]]
+--
+-- Hydra({
+--    name = 'view-files',
+--    hint = hint,
+--    config = {
+--       color = 'teal',
+--       invoke_on_body = true,
+--       hint = {
+--          position = 'middle-right',
+--          border = 'rounded',
+--       },
+--    },
+--    mode = 'n',
+--    body = '<Leader>f',
+--    heads = {
+--       { 'f', cmd 'Telescope find_files' },
+--       { 'q', cmd 'q!' },
+--       { 'g', cmd 'Telescope live_grep' },
+--    }
+-- })
+-- Hydra({
+--    name = 'Side scroll',
+--    mode = 'n',
+--    body = 'z',
+--    heads = {
+--       { 'h', '5zh', { desc = '←/→' } },
+--       { 'l', '5zl', { desc = '←/→' } },
+--       { 'H', 'zH', { desc = 'half screen ←/→' }},
+--       { 'L', 'zL', { desc = 'half screen ←/→' } },
+--       { 'j', '5j', { desc = '←/→' } },
+--       { 'k', '5k', { desc = '←/→' } },
+--    }
+-- })

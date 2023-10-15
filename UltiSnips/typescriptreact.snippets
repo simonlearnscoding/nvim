@@ -1,0 +1,16 @@
+# Filetype: typescript, typescriptreact
+snippet rfct "React Functional Component type" b
+interface ${1:Props} {
+  ${2:propName}: ${3:propType};
+}
+
+const ${4:ComponentName}: FunctionComponent<${1:Props}> = (${1:props}) => {
+  return (
+    <div>
+      $0
+    </div>
+  );
+};
+
+export default ${4:ComponentName};
+endsnippet
