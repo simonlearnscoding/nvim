@@ -1,4 +1,4 @@
--- Install lazy package manager
+-- Install lazy packassge manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -14,17 +14,36 @@ vim.opt.rtp:prepend(lazypath)
 -- lua with packer.nvim
 require('lazy').setup {
   'lervag/vimtex',
+  {
+    'chentoast/marks.nvim',
+    config = function()
+      require('marks').setup {
+        default_mappings = true,   -- whether to map keybinds or not. default true
+        builtin_marks = { '.' },   -- which builtin marks to show. default {}
+        cyclic = true,             -- whether movements cycle back to the beginning/end of buffer. default true
+        force_write_shada = false, -- whether the shada file is updated after modifying uppercase marks. default false
+        bookmark_0 = {             -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own sign/virttext
+          sign = '⚑',
+          virt_text = 'hello world',
+        },
+        mappings = {},
+      }
+    end,
+  },
   'mrjones2014/smart-splits.nvim',
   -- Git related plugins
   'tpope/vim-fugitive',
-  'SirVer/ultisnips',
-  'quangnguyen30192/cmp-nvim-ultisnips',
   'windwp/nvim-ts-autotag',
+  -- 'anuvj'
   'tpope/vim-rhubarb',
+  {
+    'anuvyklack/keymap-amend.nvim',
+  },
   -- icons
   'nvim-tree/nvim-web-devicons',
   { 'folke/trouble.nvim',     dependencies = { 'nvim-tree/nvim-web-devicons' }, opts = {} },
 
+  -- color picker
   {
     'uga-rosa/ccc.nvim',
     opts = {},
@@ -37,7 +56,6 @@ require('lazy').setup {
   },
   'windwp/nvim-autopairs',
   'ron89/thesaurus_query.vim',
-  'phaazon/hop.nvim',
   'hrsh7th/cmp-nvim-lsp',
   {
     'ggandor/leap.nvim',
@@ -45,21 +63,8 @@ require('lazy').setup {
       require('leap').add_default_mappings()
     end,
   },
-  'tzachar/highlight-undo.nvim',
   { 'kosayoda/nvim-lightbulb' },
   'simrat39/symbols-outline.nvim',
-  -- {
-  --   'ggandor/flit.nvim',
-  --   dependencies = { 'ggandor/leap.nvim', 'tpope/vim-repeat' },
-  --   config = function()
-  --     require('flit').setup {
-  --       keys = { f = 'f', F = 'F', t = 't', T = 'T' },
-  --       labeled_modes = 'v',
-  --       multiline = true,
-  --       opts = {},
-  --     }
-  --   end,
-  -- },
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -76,23 +81,6 @@ require('lazy').setup {
     },
   },
 
-  {
-    'kevinhwang91/nvim-ufo',
-    dependencies = {
-      'kevinhwang91/promise-async',
-    },
-  },
-  -- autocomplete
-  -- {
-  --   "rebelot/heirline.nvim",
-  --   -- You can optionally lazy-load heirline on UiEnter
-  --   -- to make sure all required plugins and colorschemes are loaded before setup
-  --   -- event = "UiEnter",
-  --   config = function()
-  --     require("heirline").setup({})
-  --   end
-  -- },
-  -- auto pairs
   'akinsho/bufferline.nvim',
   {
     'echasnovski/mini.pairs',
@@ -118,19 +106,6 @@ require('lazy').setup {
     version = '2.*',
     config = function()
       require('window-picker').setup()
-    end,
-  },
-  {
-    'kylechui/nvim-surround',
-    version = '*', -- Use for stability; omit to use `main` branch for the latest features
-    event = 'VeryLazy',
-    config = function()
-      require('nvim-surround').setup {
-        -- Configuration here, or leave empty to use defaults
-        -- TODO: I should probably set some better keymaps for this
-        vim.api.nvim_set_keymap('v', '<leader>s', ':lua require("nvim-surround").surround()<CR>',
-          { noremap = true, silent = true }),
-      }
     end,
   },
   -- Debugging
@@ -205,42 +180,25 @@ require('lazy').setup {
       'williamboman/mason-lspconfig.nvim',
       'onsails/lspkind.nvim',
       'kkharji/lspsaga.nvim',
-      {
-        'weilbith/nvim-code-action-menu',
-        cmd = 'CodeActionMenu',
-      },
+      -- {
+      --   'weilbith/nvim-code-action-menu',
+      --   cmd = 'CodeActionMenu',
+      -- },
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
+      -- TODO: what does this do??
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
   },
   --
-  -- { 'kkharji/lspsaga.nvim' },  -- nightly
+  --
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',       opts = {} },
-  -- {
-  --   -- Adds git releated signs to the gutter, as well as utilities for managing changes
-  --   'lewis6991/gitsigns.nvim',
-  --   opts = {
-  --     -- See `:help gitsigns.txt`
-  --     signs = {
-  --       add = { text = '+' },
-  --       change = { text = '~' },
-  --       delete = { text = '' },
-  --       topdelete = { text = '' },
-  --       changedelete = { text = '' },
-  --     },
-  --     on_attach = function(bufnr)
-  --       vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-  --       vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-  --       vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
-  --     end,
-  --   },
-  -- },
 
+  -- COLOR THEMES --
   {
     'rose-pine/neovim',
     name = 'rose-pine',
@@ -251,6 +209,8 @@ require('lazy').setup {
     name = 'onedark',
   },
   { 'bluz71/vim-nightfly-colors', name = 'nightfly' },
+
+  -- STATUSLINE
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',

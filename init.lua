@@ -15,12 +15,11 @@ require 'simon.core.colorscheme'
 require 'simon.plugin-settings.hydra'
 require 'simon.plugin-settings.autocomplete'
 require 'simon.plugin-settings.LSP.mason'
-require 'simon.plugin-settings.LSP.lspsaga'
 require 'simon.plugin-settings.LSP.lspconfig'
 require 'simon.plugin-settings.treesitter'
 require 'simon.plugin-settings.bufferline'
 require 'simon.plugin-settings.formatting'
-
+-- Define the cursorhold autocommand
 -- NEOVIDE SETTINGS
 if vim.g.neovide then
   -- vim.g.neovide_transparency = 0.95

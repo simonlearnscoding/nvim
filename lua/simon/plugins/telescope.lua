@@ -9,6 +9,9 @@ return {
       module = 'telescope._extensions.luasnip', -- if you wish to lazy-load
     },
     'nvim-telescope/telescope-media-files.nvim',
+
+    'ThePrimeagen/harpoon',
+    -- 'rmagatti/session-lens',
     'nvim-telescope/telescope-project.nvim',
     'jvgrootveld/telescope-zoxide',
     'nvim-telescope/telescope-file-browser.nvim',
@@ -28,9 +31,13 @@ return {
     local actions = require 'telescope.actions'
     local telescope = require 'telescope'
     telescope.load_extension 'luasnip'
+    -- telescope.load_extension 'session-lens'
     telescope.load_extension 'bibtex'
+
+    telescope.load_extension 'ui-select'
     telescope.load_extension 'zoxide'
     telescope.load_extension 'fzf'
+    require('telescope').load_extension 'harpoon'
     local get_icon = require('simon.utils').get_icon
 
     local mappings = {

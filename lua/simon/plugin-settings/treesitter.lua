@@ -45,6 +45,7 @@ require('nvim-treesitter.configs').setup {
     },
   },
   textobjects = {
+
     select = {
       enable = true,
       lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim

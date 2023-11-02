@@ -18,6 +18,20 @@ local sections = {
   r = { desc = ' Refactor' },
 }
 
+-- [[ LSP ]]
+vim.api.nvim_set_keymap('n', '<Leader>gI', ':lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
+--
+--
+--
+-- REFACTORING
+maps.n['<leader>rr'] = { ':IncRename ', desc = 'smart rename' }
+maps.n['<leader>lr'] = { ':IncRename ', desc = 'smart rename' }
+maps.v['<leader>re'] = { ':Refactor extract<CR>', desc = 'Refactor Extract' }
+maps.v['<leader>rf'] = { ':Refactor extract_to_file<CR>', desc = 'Refactor Extract' }
+maps.v['<leader>rv'] = { ':Refactor extract_variable<CR>', desc = 'Refactor Extract' }
+
 maps.n['<leader>w'] = sections.w
 maps.n['<leader>wa'] = { '<cmd>Telekasten insert_link<cr>', desc = 'Insert note' }
 maps.v['<C-n>'] = { '<cmd>Telekasten insert_link<cr>', desc = 'Insert note' }
@@ -26,7 +40,6 @@ maps.n['<leader>fw'] = { '<cmd>Telekasten find_notes<cr>', desc = 'Find Notes' }
 
 maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 maps.n['<leader>r'] = sections.r
-maps.n['<leader>rr'] = sections.r
 maps.n['<leader>p'] = sections.p
 keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 if not vim.g.icons_enabled then
@@ -54,26 +67,24 @@ maps.n['<leader>q'] = { '<cmd>update<cr><cmd>q<cr>', desc = 'Save and Quit if po
 maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 maps.n['<leader>n'] = { '<cmd>enew<cr>', desc = 'New File' }
 maps.n['<leader>c'] = { '<cmd>w | Bdelete<cr>', desc = 'Save and delete buffer' }
+maps.n['<leader>C'] = { '<cmd>w | Bdelete<cr>', desc = 'Save and delete buffer' }
 maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 -- maps.n["<C-q>"] = { "<cmd>q!<cr>", desc = "Force quit" }
 
 maps.n['<leader>dd'] = { ':Trouble workspace_diagnostics<cr>', desc = 'Workspace diagnostic' }
-maps.n['<leader>dn'] = { ':LspSaga diagnostic_jump_next<cr>', desc = 'next diagnostic' }
-maps.n['<leader>dp'] = { ':LspSaga diagnostic_jump_prev<cr>', desc = 'previous diagnostic' }
--- maps.n['<leader>C'] = {
---  function()
---    require('simon.utils.buffer').close()
---  end,
---  desc = 'close buffer',
---}
--- I dont like this implementation because its laggy sometimes but I might put it back in
--- maps.n["L"] = { function() require("simon.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
--- maps.n["[b"] = { function() require("simon.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer", }
-
 -- {{ BUFFERS }}
 maps.n['<leader>b'] = sections.b
-maps.n['S-H'] = { '<cmd>bprevious<cr>', desc = 'Previous Buffer' }
-maps.n['S-L'] = { '<cmd>bnext<cr>', desc = 'Next Buffer' }
+
+maps.n['<leader>bp'] = { '<cmd>:BufferLinePick<cr>', desc = 'pick buffer' }
+maps.n['<leader>bc'] = { '<cmd>:BufferLinePickClose<cr>', desc = 'pick buffer' }
+maps.n['<leader>bl'] = { '<cmd>:BufferLineCloseRight<cr>', desc = 'close every buffer to the right' }
+maps.n['<leader>bh'] = { '<cmd>:BufferLineCloseLeft<cr>', desc = 'close every buffer to the left' }
+
+maps.n['<leader>ba'] = { '<cmd>:BufferLineCloseOthers<cr>', desc = 'close every buffer except for the current one' }
+
+-- This doesn't work idk why
+maps.n['<S-h>'] = { '<cmd>bprevious<cr>', desc = 'Previous Buffer' }
+maps.n['<S-l>'] = { '<cmd>bnext<cr>', desc = 'Next Buffer' }
 
 maps.n['[b'] = { '<cmd>bprevious<cr>', desc = 'Previous Buffer' }
 maps.n[']b'] = { '<cmd>bnext<cr>', desc = 'Next Buffer' }
@@ -95,7 +106,7 @@ maps.n['[t'] = {
 
 maps.n['|'] = { '<cmd>vsplit<cr>', desc = 'Vertical Split' }
 maps.n['\\'] = { '<cmd>split<cr>', desc = 'Horizontal Split' }
-maps.n['<leader>m'] = { '<cmd>ZenMode<cr>', desc = 'Zen Mode' }
+maps.n['<leader>M'] = { '<cmd>ZenMode<cr>', desc = 'Zen Mode' }
 -- Move Lines
 --
 maps.n['<A-j>'] = { '<cmd>m .+1<cr>==', desc = 'Move down' }
@@ -104,9 +115,6 @@ maps.i['<A-j>'] = { '<esc><cmd>m .+1<cr>==gi', desc = 'Move down' }
 maps.i['<A-k>'] = { '<esc><cmd>m .-2<cr>==gi', desc = 'Move up' }
 maps.v['<A-j>'] = { ":m '>+1<cr>gv=gv", desc = 'Move down' }
 maps.v['<A-k>'] = { ":m '<-2<cr>gv=gv", desc = 'Move up' }
--- maps.v['<leader>re'] = { ':Refactor extract<CR>', desc = 'Refactor Extract' }
--- maps.v['<leader>rf'] = { ':Refactor extract_to_file<CR>', desc = 'Refactor Extract' }
--- maps.v['<leader>rv'] = { ':Refactor extract_variable<CR>', desc = 'Refactor Extract' }
 -- Insert mode mapping
 maps.i['<C-v>'] = { '<C-o>p', desc = 'Paste' }
 
