@@ -1,4 +1,7 @@
-snippet tfc 'typescript functional component'
+snippet const 'const snippet'
+	const $1 = $2: $3
+	
+snippet tfcp 'typescript functional component with props'
 	type $1props = {
   	$2: $3;
 	};
@@ -8,7 +11,29 @@ snippet tfc 'typescript functional component'
       	$5
     	</div>
   	);
-	};
+	}
+	
+snippet useFetch 'useFetch snippet'
+  const { isLoading, data, error } = useFetch( "$1" )
+snippet useState 'useState snippet'
+	const [$1, set$2] = useState($3);
+
+
+
+snippet interface 
+	interface $1 {
+			$2: $3;
+		}
+snippet tfc 'typescript functional component no props'
+	export function $1()  {
+		$2
+  	return (
+    	<div className="$4">
+      	$5
+    	</div>
+  	);
+	}
+	
 snippet cl "console.log"
 	console.log($1)
 

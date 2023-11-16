@@ -5,6 +5,7 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
   },
+  event = 'VeryLazy',
   config = function()
     require('refactoring').setup {}
     vim.keymap.set({ 'n', 'v' }, '<leader>rx', '<Cmd>:Refactor extract<cr>')

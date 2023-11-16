@@ -5,7 +5,6 @@ local keymap = vim.keymap
 local maps = { i = {}, n = {}, v = {}, t = {} }
 local sections = {
   f = { desc = '󰍉 Find' },
-  p = { desc = '󰏖 Packages' },
   l = { desc = ' LSP' },
   u = { desc = ' UI' },
   b = { desc = '󰓩 Buffers' },
@@ -67,7 +66,7 @@ maps.n['<leader>q'] = { '<cmd>update<cr><cmd>q<cr>', desc = 'Save and Quit if po
 maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 maps.n['<leader>n'] = { '<cmd>enew<cr>', desc = 'New File' }
 maps.n['<leader>c'] = { '<cmd>w | Bdelete<cr>', desc = 'Save and delete buffer' }
-maps.n['<leader>C'] = { '<cmd>w | Bdelete<cr>', desc = 'Save and delete buffer' }
+-- maps.n['<leader>C'] = { '<cmd>w | Bdelete<cr>', desc = 'Save and delete buffer' }
 maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 -- maps.n["<C-q>"] = { "<cmd>q!<cr>", desc = "Force quit" }
 
@@ -163,7 +162,7 @@ end
 maps.n['<leader>f'] = sections.f
 -- maps.v["<leader>s"] = {"S", desc = "Surround Selection" }
 maps.n['<leader>ft'] = { '<cmd>TodoTelescope<CR>', desc = 'TODO' }
-maps.n['<leader>fd'] = { '<cmd>TodoTelescope<CR>', desc = 'TODO' }
+maps.n['<leader>fd'] = { "<cmd>lua require('telescope.builtin').diagnostics()<CR>" }
 
 maps.n['<leader>/'] = { '<cmd>Telescope current_buffer_fuzzy_find <CR>', desc = 'find in buffer' }
 maps.n['<leader>fb'] = {
@@ -333,22 +332,6 @@ maps.n['<M-l>'] = { '<Right>', noremap = false, desc = 'Right' }
 maps.n['<leader>.'] = { '<cmd>cd %:p:h<cr>', desc = 'Set CWD' }
 
 -- NeoTree
-if is_available 'neo-tree.nvim' then
-  maps.n['<leader>e'] = { '<cmd>Neotree toggle<cr>', desc = 'Toggle Explorer' }
-
-  -- This is to focus on the Neotree but I commented it out for now because I
-  -- prefer having leader o to open the objects for now
-  -- maps.n["<leader>o"] = {
-  --   function()
-  --     if vim.bo.filetype == "neo-tree" then
-  --       vim.cmd.wincmd "p"
-  --     else
-  --       vim.cmd.Neotree "focus"
-  --     end
-  --   end,
-  --   desc = "Toggle Explorer Focus",
-  -- }
-end
 if is_available 'Comment.nvim' then
   -- maps.n["<leader>/"] = {
   --   function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
@@ -431,7 +414,7 @@ if is_available 'gitsigns.nvim' then
 end
 -- [[ SNIPS ]]
 maps.n['<leader><leader>s'] = {
-  '<cmd>source ~/.config/nvim/lua/simon/plugin-settings/snippets.lua<cr>',
+  '<cmd>source ~/.config/nvim/lua/simon/snippets<cr>',
   desc = 'reload snippets',
 }
 -- the utils.buffer stuff is too much of a pain in the ass for now so Ill leave it commented out
@@ -448,12 +431,6 @@ maps.n['<leader><leader>s'] = {
 --   function() require("astronvim.utils.status").heirline.buffer_picker( function(bufnr) require("astronvim.utils.buffer").close(bufnr) end) end,
 --   desc = "Delete buffer from tabline",
 -- }
-maps.n['<leader>pu'] = {
-  function()
-    require('lazy').update()
-  end,
-  desc = 'Plugins Update',
-}
 
 -- set_mappings(maps, base_opts)
 utils.set_mappings(maps)
