@@ -33,41 +33,88 @@ return {
 				vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
 				vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
 
-				vim.keymap.set("n", "gr", function() require('telescope.builtin').lsp_references() end, opts)
-				vim.keymap.set("n", "fr", function() require('telescope.builtin').lsp_references() end, opts)
-				vim.keymap.set("n", "<leader>gr", function() require('telescope.builtin').lsp_references() end, opts)
+				-- vim.keymap.set("n", "gr", function() require('telescope.builtin').lsp_references() end,
+				-- opts)
+				-- vim.keymap.set("n", "fr", function() require('telescope.builtin').lsp_references() end,
+				-- 	opts)
+				vim.keymap.set("n", "<leader>fr",
+					function() require('telescope.builtin').lsp_references() end, opts)
 				vim.keymap.set("n", "<leader>lwl", ":LspZeroWorkspaceList<CR>", opts)
 				vim.keymap.set("n", "<leader>lwr", ":LspZeroWorkspaceRemove<CR>", opts)
 				vim.keymap.set("n", "<leader>lwa", ":LspZeroWorkspaceAdd<CR>", opts)
 				vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
 				-- vim.keymap.set("n", "<leader>df", function() vim.diagnostic.open_float() end)
+				--
+				--
+
+				local function goto_definition_split()
+					-- Split the window horizontally and then jump to the definition
+					vim.cmd('vsplit')
+					vim.lsp.buf.definition()
+				end
+				vim.keymap.set('n', 'gs', goto_definition_split, { silent = true })
+				vim.keymap.set('n', '<leader>gs', goto_definition_split, { silent = true })
 			end)
 
 			local diagnostics_visible = true
-			function ToggleDiagnostics()
-				diagnostics_visible = not diagnostics_visible
-				vim.diagnostic.config({
-					virtual_text = diagnostics_visible,
-				})
-			end
+			-- function ToggleDiagnostics()
+			-- 	diagnostics_visible = not diagnostics_visible
+			-- 	vim.diagnostic.config({
+			-- 		virtual_text = diagnostics_visible,
+			-- 	})
+			-- end
 
-			vim.keymap.set("n", "<leader>td", "lua ToggleDiagnostics()<CR>")
+			-- vim.keymap.set("n", "<leader>td", "lua ToggleDiagnostics()<CR>")
 			lsp.format_on_save({
 				servers = {
 					['lua_ls'] = { 'lua' },
 					['typescript-tools'] = { 'typescriptreact' }
 				}
 			})
-			require('mason').setup()
+			require('mason').setup({
+				-- ensure_installed = { 'debugpy' },
+			})
+			--TODO: I wasnt able to add debugpy to the ensure installed list
 			require("mason-lspconfig").setup({
-				ensure_installed = { 'lua_ls', 'tailwindcss', 'eslint', 'texlab' }, --  'eslint' 'emmet_ls'  'tsserver'
+				ensure_installed = { 'lua_ls', 'tailwindcss', 'texlab', 'pylsp', }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
 				handlers = {
 					lsp.default_setup
 				}
 
 			})
-			-- require('lspconfig').ls_emmet.setup({
-			-- 	filetypes = { 'typescriptreact' }
+
+			require('lspconfig').pylsp.setup({
+				settings = {
+
+					pylsp = {
+						-- root_dir = function()
+						-- 	root_pattern('pyproject.toml', 'requirements.txt', '.git')
+						-- end,
+						plugins = {
+
+							-- formatter options
+							-- black = { enabled = true },
+							-- autopep8 = { enabled = false },
+							-- yapf = { enabled = false },
+							-- -- linter options
+							-- -- pylint = { enabled = true, executable = "pylint" },
+							-- pyflakes = { enabled = false },
+							pycodestyle = { enabled = true },
+							-- -- type checker
+							pylsp_mypy = { enabled = true },
+							-- -- auto-completion options
+							-- jedi_completion = { fuzzy = true },
+							-- -- import sorting
+							-- pyls_isort = { enabled = true },
+						}
+					},
+				}
+			})
+
+
+
+			-- require('lspconfig').mypy.setup({
+			-- 	filetypes = { 'python' },
 			-- })
 			-- require('lspconfig').tsserver.setup({
 			-- 	update_insert_text = false
@@ -77,6 +124,15 @@ return {
 				-- root_dir = {}
 			})
 
+			-- require('lspconfig').pylyzer.setup({
+			-- 	-- root_dir = function() vim.fn.getcwd() end,
+			-- 	settings = {
+			-- 		pylyzer = {
+			-- 			single_file_mode = false
+			-- 		}
+			-- 	}
+			-- 	filetypes = { 'python' },
+			-- })
 			require('lspconfig').texlab.setup({
 
 				-- filetypes = {}

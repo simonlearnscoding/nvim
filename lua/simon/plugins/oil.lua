@@ -54,7 +54,7 @@ return {
         ["\\"] = "actions.select_split",
       }
     })
-    vim.keymap.set("n", "<leader>to", require('oil').toggle_float)
+    -- vim.keymap.set("n", "<leader>to", require('oil').toggle_float)
     vim.keymap.set("n", "<leader>E", require('oil').toggle_float)
   end
 }

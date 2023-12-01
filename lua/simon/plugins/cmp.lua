@@ -34,12 +34,12 @@ return {
       },
       formatting = lsp_zero.cmp_format(),
       mapping = cmp.mapping.preset.insert({
-        ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
         ['<C-f>'] = cmp.mapping.confirm({ select = true }),
-
         -- Navigate between snippet placeholder
         ['<C-h>'] = cmp_action.luasnip_jump_backward(),
         ['<C-l>'] = cmp_action.luasnip_jump_forward(),

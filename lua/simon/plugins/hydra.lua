@@ -1,5 +1,3 @@
 return {
- 'anuvyklack/hydra.nvim' 
-
-
+  'anuvyklack/hydra.nvim',
 }

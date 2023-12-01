@@ -4,21 +4,21 @@ require 'simon.core.keymaps'
 
 -- local current_dir = vim.fn.getcwd()
 -- vim.api.nvim_set_current_dir(current_dir)
-vim.cmd 'colorscheme sonokai'
+-- vim.cmd 'colorscheme sonokai'
 -- vim.cmd 'colorscheme kanagawa'
 -- vim.cmd 'colorscheme rose-pine'
 -- vim.cmd 'colorscheme gruvbox'
 -- vim.cmd 'colorscheme catppuccin'
 -- vim.cmd 'colorscheme miramare'
 -- vim.cmd 'colorscheme nightfox'
--- vim.cmd 'colorscheme gruvbox-material'
+vim.cmd 'colorscheme gruvbox-material'
 -- vim.cmd 'colorscheme tokyonight'
 -- vim.cmd 'colorscheme everforest'
 
 if vim.g.neovide then
   -- vim.g.neovide_transparency = 0.95
   vim.g.neovide_input_macos_alt_is_meta = true
-  vim.o.guifont = 'JetBrains Mono:h12'
+  vim.o.guifont = 'JetBrains Mono:h11'
   vim.cmd [[set guifont=MonoLisa:10,Symbols\ Nerd\ Font:h10]]
 
   -- Insert mode mappings for Alt + H and Alt + K
@@ -28,7 +28,33 @@ if vim.g.neovide then
   vim.g.light_radius = 8
   vim.api.nvim_set_keymap('i', '<A-l>', '<Right>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', '<leader>Q', '<cmd>wqa<cr>', { noremap = true, silent = true })
+
+
+  vim.api.nvim_set_keymap('n', '<M-j>', ':m .+1<CR>==', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<M-k>', ':m .-2<CR>==', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', '<M-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', '<M-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+
+
+  vim.api.nvim_set_keymap('n', '<M-l>', '>>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<M-h>', '<<', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', '<M-l>', ">>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', '<M-h>', "<<", { noremap = true, silent = true })
+
   vim.g.neovide_transparency = 0.9
   vim.g.neovide_cursor_vfx_mode = "wireframe"
   -- vim.g.transparency = 0.80
 end
+
+-- vim.lsp.util.stylize_markdown = function(bufnr, contents, opts)
+--   contents = vim.lsp.util._normalize_markdown(contents, {
+--     width = vim.lsp.util._make_floating_popup_size(contents, opts),
+--   })
+--
+--   vim.bo[bufnr].filetype = "markdown"
+--   vim.treesitter.start(bufnr)
+--   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
+--
+--   return contents
+-- end

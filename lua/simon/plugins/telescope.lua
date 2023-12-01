@@ -1,20 +1,21 @@
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = {
-    { 'nvim-telescope/telescope-fzf-native.nvim', enabled = vim.fn.executable 'make' == 1, build = 'make' },
-    'nvim-telescope/telescope-hop.nvim',
-    -- "nvim-telescope/telescope-snippets.nvim",
     {
-      'benfowler/telescope-luasnip.nvim',
-      module = 'telescope._extensions.luasnip', -- if you wish to lazy-load
-    },
-    'nvim-telescope/telescope-media-files.nvim',
+
+      'nvim-telescope/telescope-fzf-native.nvim', enabled = vim.fn.executable 'make' == 1, build = 'make' },
+    'nvim-telescope/telescope-hop.nvim',
+    -- {
+    -- 'benfowler/telescope-luasnip.nvim',
+    -- module = 'telescope._extensions.luasnip', -- if you wish to lazy-load
+    -- },
+    -- 'nvim-telescope/telescope-media-files.nvim',
 
     'ThePrimeagen/harpoon',
     -- 'rmagatti/session-lens',
     'nvim-telescope/telescope-project.nvim',
     'jvgrootveld/telescope-zoxide',
-    'nvim-telescope/telescope-file-browser.nvim',
+    -- 'nvim-telescope/telescope-file-browser.nvim',
     'nvim-telescope/telescope-bibtex.nvim',
     'nvim-lua/plenary.nvim',
     {
@@ -30,7 +31,7 @@ return {
   opts = function()
     local actions = require 'telescope.actions'
     local telescope = require 'telescope'
-    telescope.load_extension 'luasnip'
+    -- telescope.load_extension 'luasnip'
     -- telescope.load_extension 'session-lens'
     telescope.load_extension 'bibtex'
 
@@ -47,8 +48,14 @@ return {
         ['<C-j>'] = actions.move_selection_next,
         ['<C-q>'] = actions.close,
         ['<C-k>'] = actions.move_selection_previous,
+        ['|'] = actions.file_vsplit,
+        ['\\'] = actions.file_split,
       },
       n = {
+
+        ['|'] = actions.file_vsplit,
+        ['\\'] = actions.file_split,
+        ['<C-l>'] = actions.file_vsplit,
         ['q'] = actions.close,
         ['<leader>q'] = actions.close,
       },
@@ -83,4 +90,7 @@ return {
       },
     }
   end,
+
+
+
 }

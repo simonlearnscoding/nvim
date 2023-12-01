@@ -17,12 +17,17 @@ local sections = {
   r = { desc = ' Refactor' },
 }
 
+vim.api.nvim_set_keymap('n', 'C-a', 'ggVG', { noremap = true, silent = true })
 -- [[ LSP ]]
 vim.api.nvim_set_keymap('n', '<Leader>gI', ':lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
 --
 --
+vim.api.nvim_set_keymap('n', '<Tab>', '>>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<Tab>', '>>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<S-Tab>', '<<', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<S-Tab>', '<<', { noremap = true, silent = true })
 --
 -- REFACTORING
 maps.n['<leader>rr'] = { ':IncRename ', desc = 'smart rename' }
@@ -40,6 +45,9 @@ maps.n['<leader>fw'] = { '<cmd>Telekasten find_notes<cr>', desc = 'Find Notes' }
 maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 maps.n['<leader>r'] = sections.r
 maps.n['<leader>p'] = sections.p
+
+
+-- TODO - what does this one do??
 keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 if not vim.g.icons_enabled then
   vim.tbl_map(function(opts)
@@ -81,7 +89,6 @@ maps.n['<leader>bh'] = { '<cmd>:BufferLineCloseLeft<cr>', desc = 'close every bu
 
 maps.n['<leader>ba'] = { '<cmd>:BufferLineCloseOthers<cr>', desc = 'close every buffer except for the current one' }
 
--- This doesn't work idk why
 maps.n['<S-h>'] = { '<cmd>bprevious<cr>', desc = 'Previous Buffer' }
 maps.n['<S-l>'] = { '<cmd>bnext<cr>', desc = 'Next Buffer' }
 
@@ -126,6 +133,7 @@ maps.v['<C-x>'] = { '"+x', desc = 'Cut' }
 --
 --
 
+-- TODO: Move this to nvim-ufo
 -- Improved Code Folding
 if is_available 'nvim-ufo' then
   maps.n['zR'] = {
@@ -165,12 +173,12 @@ maps.n['<leader>ft'] = { '<cmd>TodoTelescope<CR>', desc = 'TODO' }
 maps.n['<leader>fd'] = { "<cmd>lua require('telescope.builtin').diagnostics()<CR>" }
 
 maps.n['<leader>/'] = { '<cmd>Telescope current_buffer_fuzzy_find <CR>', desc = 'find in buffer' }
-maps.n['<leader>fb'] = {
-  function()
-    require('telescope.builtin').buffers()
-  end,
-  desc = 'Find buffers',
-}
+-- maps.n['<leader>fb'] = {
+--   function()
+--     require('telescope.builtin').buffers()
+--   end,
+--   desc = 'Find buffers',
+-- }
 maps.n['<leader><Tab>'] = {
   function()
     require('telescope.builtin').buffers()
@@ -187,12 +195,6 @@ maps.n['<leader>fo'] = {
 maps.n['<leader>fs'] = { '<cmd> Telescope luasnip<cr>', desc = 'Find Snippets' }
 maps.n['<leader>u'] = sections.p
 maps.n['<leader>g'] = sections.g
-maps.n['<leader>uc'] = {
-  function()
-    require('telescope.builtin').colorscheme { enable_preview = true }
-  end,
-  desc = 'Find themes',
-}
 maps.n['<leader>gc'] = {
   function()
     require('telescope.builtin').git_commits()
@@ -204,12 +206,6 @@ maps.n['<leader>fm'] = {
     require('telescope.builtin').marks()
   end,
   desc = 'Find marks',
-}
-maps.n['<leader>fb'] = {
-  function()
-    require('telescope.builtin').buffers()
-  end,
-  desc = 'Find buffers',
 }
 -- maps.n['<leader>fw'] = {
 --   function()

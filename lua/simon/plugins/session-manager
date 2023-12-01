@@ -13,16 +13,5 @@ return {
       vim.keymap.set({ 'n' }, '<leader>Sc', require('session_manager').load_current_dir_session),
 
     }
-    local function run_command_if_not_home()
-      local cwd = vim.fn.getcwd()
-      local home = vim.fn.expand('~') -- Expands to the user's home directory
-
-      if cwd ~= home then
-        -- Replace 'your_command_here' with the command you want to run
-        -- vim.cmd('your_command_here')
-        require('session_manager').load_current_dir_session()
-      end
-    end
-    run_command_if_not_home()
   end
 }
