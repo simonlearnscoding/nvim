@@ -8,6 +8,8 @@ return {
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
+    'chrisgrieser/cmp_yanky',
+    'gbprod/yanky.nvim',
 
     --     -- Adds LSP completion capabilities
     'hrsh7th/cmp-nvim-lsp',
@@ -27,10 +29,13 @@ return {
     local cmp_action = lsp_zero.cmp_action()
     cmp.setup({
       sources = {
+        { name = 'cmp_yanky' },
         { name = 'path' },
         { name = 'luasnip' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
+
+
       },
       formatting = lsp_zero.cmp_format(),
       mapping = cmp.mapping.preset.insert({

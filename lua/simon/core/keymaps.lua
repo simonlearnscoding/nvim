@@ -71,9 +71,8 @@ maps.n['k'] = { "v:count == 0 ? 'gk' : 'k'", expr = true, desc = 'Move cursor up
 maps.n['<leader>w'] = { '<cmd>w<cr>', desc = 'Save' }
 -- maps.n["<leader>q"] = { "<cmd>wq<cr>", desc = "Save and Quit" } -- cant use because buffertype not set
 maps.n['<leader>q'] = { '<cmd>update<cr><cmd>q<cr>', desc = 'Save and Quit if possible, else just Quit' }
-maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 maps.n['<leader>n'] = { '<cmd>enew<cr>', desc = 'New File' }
-maps.n['<leader>c'] = { '<cmd>w | Bdelete<cr>', desc = 'Save and delete buffer' }
+maps.n['<leader>c'] = { '<cmd>w! | Bdelete!<cr>', desc = 'Try to save and force delete buffer' }
 -- maps.n['<leader>C'] = { '<cmd>w | Bdelete<cr>', desc = 'Save and delete buffer' }
 maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 -- maps.n["<C-q>"] = { "<cmd>q!<cr>", desc = "Force quit" }

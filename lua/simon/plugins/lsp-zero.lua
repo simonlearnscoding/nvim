@@ -28,24 +28,18 @@ return {
 			lsp.on_attach(function(client, bufnr)
 				local opts = { buffer = bufnr, remap = false }
 
-				vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)      -- this one works pretty good
-				vim.keymap.set("n", "<leader>F", function() vim.lsp.buf.format() end, opts) -- this one works pretty good
-				vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-				vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+				vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)                          -- this one works pretty good
+				vim.keymap.set("n", "<leader>F", function() vim.lsp.buf.format() end, { desc = 'format file' }) -- this one works pretty good
+				vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, { desc = 'next error message' })
+				vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, { desc = 'previous error message' })
 
-				-- vim.keymap.set("n", "gr", function() require('telescope.builtin').lsp_references() end,
-				-- opts)
-				-- vim.keymap.set("n", "fr", function() require('telescope.builtin').lsp_references() end,
-				-- 	opts)
 				vim.keymap.set("n", "<leader>fr",
 					function() require('telescope.builtin').lsp_references() end, opts)
 				vim.keymap.set("n", "<leader>lwl", ":LspZeroWorkspaceList<CR>", opts)
 				vim.keymap.set("n", "<leader>lwr", ":LspZeroWorkspaceRemove<CR>", opts)
 				vim.keymap.set("n", "<leader>lwa", ":LspZeroWorkspaceAdd<CR>", opts)
 				vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-				-- vim.keymap.set("n", "<leader>df", function() vim.diagnostic.open_float() end)
-				--
-				--
+
 
 				local function goto_definition_split()
 					-- Split the window horizontally and then jump to the definition
@@ -93,19 +87,23 @@ return {
 						plugins = {
 
 							-- formatter options
-							-- black = { enabled = true },
+							black = { enabled = true },
 							-- autopep8 = { enabled = false },
 							-- yapf = { enabled = false },
 							-- -- linter options
 							-- -- pylint = { enabled = true, executable = "pylint" },
-							-- pyflakes = { enabled = false },
-							pycodestyle = { enabled = true },
+							pyflakes = { enabled = false },
+               pycodestyle = {
+                    enabled = true,
+                    ignore = {"E501"},  -- Option 1: Ignore E501
+                    maxLineLength = 120 -- Option 2: Set a longer maximum line length
+                },
 							-- -- type checker
-							pylsp_mypy = { enabled = true },
+							-- pylsp_mypy = { enabled = true },
 							-- -- auto-completion options
-							-- jedi_completion = { fuzzy = true },
+							jedi_completion = { fuzzy = true },
 							-- -- import sorting
-							-- pyls_isort = { enabled = true },
+							pyls_isort = { enabled = true },
 						}
 					},
 				}

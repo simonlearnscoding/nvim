@@ -15,6 +15,11 @@ vim.cmd 'colorscheme gruvbox-material'
 -- vim.cmd 'colorscheme tokyonight'
 -- vim.cmd 'colorscheme everforest'
 
+
+-- I have to set this last because something else sets
+-- it too and I dont know what it is
+vim.keymap.set("n", "<leader>/", ":CommentToggle<CR>")
+
 if vim.g.neovide then
   -- vim.g.neovide_transparency = 0.95
   vim.g.neovide_input_macos_alt_is_meta = true
@@ -35,26 +40,11 @@ if vim.g.neovide then
   vim.api.nvim_set_keymap('v', '<M-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
   vim.api.nvim_set_keymap('v', '<M-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
-
-
   vim.api.nvim_set_keymap('n', '<M-l>', '>>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', '<M-h>', '<<', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('v', '<M-l>', ">>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap('v', '<M-h>', "<<", { noremap = true, silent = true })
 
-  vim.g.neovide_transparency = 0.9
+  vim.g.neovide_transparency = 0.7
   vim.g.neovide_cursor_vfx_mode = "wireframe"
-  -- vim.g.transparency = 0.80
 end
-
--- vim.lsp.util.stylize_markdown = function(bufnr, contents, opts)
---   contents = vim.lsp.util._normalize_markdown(contents, {
---     width = vim.lsp.util._make_floating_popup_size(contents, opts),
---   })
---
---   vim.bo[bufnr].filetype = "markdown"
---   vim.treesitter.start(bufnr)
---   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
---
---   return contents
--- end

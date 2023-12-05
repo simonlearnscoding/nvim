@@ -1,8 +1,10 @@
+-- Treesitter
 return {
   -- { 'm-demare/hlargs.nvim',
   --
   --
   -- },
+
 
   {
     "nvim-treesitter/nvim-treesitter",
