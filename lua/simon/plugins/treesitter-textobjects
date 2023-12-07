@@ -1,26 +1,17 @@
 return ({
-  -- {
-  --   "symbols-outline.nvim",
-  --   config = function()
-  --     require("symbols-outline").setup({
-  --
-  --     })
-  --   end
-  --
-  -- },
 
+  {
+    'anuvyklack/hydra.nvim',
+  },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     after = "nvim-treesitter",
-    dependencies = "nvim-treesitter/nvim-treesitter"
-
-    ,
+    dependencies = "nvim-treesitter/nvim-treesitter",
 
     config = function()
       -- ignore the diagnostics
       require 'nvim-treesitter.configs'.setup {
         textobjects = {
-
           highlight = {
             enable = true,
             additional_vim_regex_highlighting = false,

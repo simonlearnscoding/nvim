@@ -1,10 +1,10 @@
-return 
+return
 {
   {
     'folke/zen-mode.nvim',
     opts = {
       window = {
-        width = 0.85, -- width will be 85% of the editor width
+        width = 0.6, -- width will be 85% of the editor width
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
         options = {
@@ -21,21 +21,24 @@ return
   },
 
 
-  
+
 
   -- Lua
   {
     'folke/twilight.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
     opts = {
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
       dimming = {
-        alpha = 0.45,    -- amount of dimming
+        alpha = 0.2,     -- amount of dimming
       },
-      context = 15,      -- amount of lines we will try to show around the current line
+      context = 8,       -- amount of lines we will try to show around the current line
       treesitter = true, -- use treesitter when available for the filetype
     },
   }
-  
-  }
+
+}

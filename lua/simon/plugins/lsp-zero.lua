@@ -28,10 +28,13 @@ return {
 			lsp.on_attach(function(client, bufnr)
 				local opts = { buffer = bufnr, remap = false }
 
-				vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)                          -- this one works pretty good
-				vim.keymap.set("n", "<leader>F", function() vim.lsp.buf.format() end, { desc = 'format file' }) -- this one works pretty good
-				vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, { desc = 'next error message' })
-				vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, { desc = 'previous error message' })
+				vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts) -- this one works pretty good
+				vim.keymap.set("n", "<leader>F", function() vim.lsp.buf.format() end,
+					{ desc = 'format file' })                                    -- this one works pretty good
+				vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end,
+					{ desc = 'next error message' })
+				vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end,
+					{ desc = 'previous error message' })
 
 				vim.keymap.set("n", "<leader>fr",
 					function() require('telescope.builtin').lsp_references() end, opts)
@@ -93,13 +96,13 @@ return {
 							-- -- linter options
 							-- -- pylint = { enabled = true, executable = "pylint" },
 							pyflakes = { enabled = false },
-               pycodestyle = {
-                    enabled = true,
-                    ignore = {"E501"},  -- Option 1: Ignore E501
-                    maxLineLength = 120 -- Option 2: Set a longer maximum line length
-                },
+							pycodestyle = {
+								enabled = true,
+								ignore = { "E501" }, -- Option 1: Ignore E501
+								maxLineLength = 120 -- Option 2: Set a longer maximum line length
+							},
 							-- -- type checker
-							-- pylsp_mypy = { enabled = true },
+							pylsp_mypy = { enabled = true },
 							-- -- auto-completion options
 							jedi_completion = { fuzzy = true },
 							-- -- import sorting

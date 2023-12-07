@@ -4,6 +4,6 @@ return {
   config = function()
     require("telescope").load_extension "vimwiki"
 
-    vim.keymap.set("n", "<leader>fv", "<cmd>:Telescope vimwiki<cr>", opts)
+    vim.keymap.set("n", "<leader>fv", "<cmd>:Telescope vimwiki<cr>", { desc = 'vimwiki' })
   end,
 }
