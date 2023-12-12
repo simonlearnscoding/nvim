@@ -2,16 +2,17 @@ require 'simon.core.options'
 require 'simon.plugins-setup'
 require 'simon.core.keymaps'
 
+
 -- local current_dir = vim.fn.getcwd()
 -- vim.api.nvim_set_current_dir(current_dir)
 -- vim.cmd 'colorscheme sonokai'
--- vim.cmd 'colorscheme kanagawa'
+vim.cmd 'colorscheme kanagawa'
 -- vim.cmd 'colorscheme rose-pine'
 -- vim.cmd 'colorscheme gruvbox'
 -- vim.cmd 'colorscheme catppuccin'
 -- vim.cmd 'colorscheme miramare'
 -- vim.cmd 'colorscheme nightfox'
-vim.cmd 'colorscheme gruvbox-material'
+-- vim.cmd 'colorscheme gruvbox-material'
 -- vim.cmd 'colorscheme tokyonight'
 -- vim.cmd 'colorscheme everforest'
 
@@ -45,6 +46,6 @@ if vim.g.neovide then
   vim.api.nvim_set_keymap('v', '<M-l>', ">>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap('v', '<M-h>', "<<", { noremap = true, silent = true })
 
-  vim.g.neovide_transparency = 0.7
+  vim.g.neovide_transparency = 0.95
   vim.g.neovide_cursor_vfx_mode = "wireframe"
 end

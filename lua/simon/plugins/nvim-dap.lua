@@ -1,4 +1,3 @@
--- For nvim-dap
 return {
   'mfussenegger/nvim-dap',
   config = function()
@@ -13,8 +12,15 @@ return {
       {
         type = 'python',
         request = 'launch',
-        name = 'My custom launch configuration',
+        name = 'launch main.py',
         program = '${workspaceFolder}/main.py',
+      },
+
+      {
+        type = "python",
+        request = "launch",
+        name = "Launch Current File",
+        program = "${file}",
       }
     }
   end
