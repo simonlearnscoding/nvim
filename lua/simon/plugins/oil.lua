@@ -13,8 +13,23 @@ return {
 
       -- Check if a valid window ID was returned
       if win_id and vim.api.nvim_win_is_valid(win_id) then
+        -- Get the current line number
+        local current_line = vim.fn.line('.')
+
         -- Set the current window to the one selected
         vim.api.nvim_set_current_win(win_id)
+
+        -- Print current line number
+        print('Current line number:', current_line)
+
+        -- Open Oil.nvim in a floating window
+        require('oil').toggle_float()
+
+        -- Go to the specified line in Oil.nvim buffer
+        vim.fn.execute('call cursor(' .. current_line .. ', 1)')
+
+        -- Open the file by pressing <CR>
+        require('oil').select()
       else
         print("Invalid window ID")
       end
@@ -55,6 +70,6 @@ return {
       }
     })
     -- vim.keymap.set("n", "<leader>to", require('oil').toggle_float)
-    vim.keymap.set("n", "<leader>E", require('oil').toggle_float)
+    vim.keymap.set("n", "<leader>e", require('oil').toggle_float)
   end
 }

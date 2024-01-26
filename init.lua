@@ -49,3 +49,30 @@ if vim.g.neovide then
   vim.g.neovide_transparency = 0.95
   vim.g.neovide_cursor_vfx_mode = "wireframe"
 end
+
+
+
+local auto_read_group = vim.api.nvim_create_augroup("AutoRead", { clear = true })
+vim.api.nvim_create_autocmd(
+  { "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" },
+  {
+    group = auto_read_group,
+    pattern = "*",
+    command = "checktime"
+  }
+)
+
+vim.opt.confirm = true
+vim.api.nvim_create_autocmd(
+  "FileChangedShellPost",
+  {
+    group = auto_read_group,
+    pattern = "*",
+    callback = function()
+      vim.cmd("echohl WarningMsg")
+      print("File changed on disk. Buffer reloaded.")
+      vim.cmd("echohl None")
+      vim.cmd("edit")
+    end
+  }
+)

@@ -73,7 +73,7 @@ return {
       })
       --TODO: I wasnt able to add debugpy to the ensure installed list
       require("mason-lspconfig").setup({
-        ensure_installed = { 'lua_ls', 'tailwindcss', 'texlab', 'pylsp', }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
+        ensure_installed = { 'lua_ls', 'tailwindcss', 'texlab', 'pylsp', 'pyright' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
         handlers = {
           lsp.default_setup
         }
@@ -102,7 +102,7 @@ return {
                 maxLineLength = 120  -- Option 2: Set a longer maximum line length
               },
               -- -- type checker
-              pylsp_mypy = { enabled = true },
+              -- pylsp_mypy = { enabled = true },
               -- -- auto-completion options
               jedi_completion = { fuzzy = true },
               -- -- import sorting

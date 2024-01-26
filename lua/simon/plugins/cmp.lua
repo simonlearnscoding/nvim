@@ -8,7 +8,6 @@ return {
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
-    'chrisgrieser/cmp_yanky',
     'gbprod/yanky.nvim',
 
     --     -- Adds LSP completion capabilities
@@ -20,6 +19,10 @@ return {
   config = function()
     -- Here is where you configure the autocompletion settings.
     require('luasnip.loaders.from_vscode').lazy_load()
+    require('luasnip.loaders.from_vscode').lazy_load {
+      paths = { "~/.config/nvim/snippets" }
+    }
+
     require('luasnip.loaders.from_snipmate').lazy_load()
     local lsp_zero = require('lsp-zero')
     lsp_zero.extend_cmp()
@@ -29,7 +32,6 @@ return {
     local cmp_action = lsp_zero.cmp_action()
     cmp.setup({
       sources = {
-        { name = 'cmp_yanky' },
         { name = 'path' },
         { name = 'luasnip' },
         { name = 'nvim_lsp' },

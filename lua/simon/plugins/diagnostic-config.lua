@@ -1,4 +1,4 @@
-local show_virtual_text = true -- Start with virtual text turned off
+local show_virtual_text = false -- Start with virtual text turned off
 
 function ToggleDiagnosticsDisplay()
   show_virtual_text = not show_virtual_text
