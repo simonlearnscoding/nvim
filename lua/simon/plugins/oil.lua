@@ -39,6 +39,9 @@ return {
     -- Bind the function to a key combination of your choice
     require("oil").setup({
       delete_to_trash = true,
+      skip_confirm_for_simple_edits = true,
+      show_hidden = true,
+      lsp_rename_autosave = true,
       preview = {
         max_width = 0.4
       },

@@ -20,6 +20,9 @@ return {
     config = function()
       require('nvim-treesitter.configs').setup {
 
+        matchup = {
+          enable = true
+        },
         ensure_installed = {
           "bash",
           "diff",
