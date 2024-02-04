@@ -8,6 +8,7 @@ return {
     require("nvim-dap-virtual-text").setup({
       commented = true,
     })
+    vim.keymap.set("n", "<leader>dv", "<cmd>DapVirtualTextToggle<cr>", { desc = 'toggle debug virtual text' })
   end
 
 }

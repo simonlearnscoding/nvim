@@ -178,12 +178,12 @@ maps.n['<leader>/'] = { '<cmd>Telescope current_buffer_fuzzy_find <CR>', desc = 
 --   end,
 --   desc = 'Find buffers',
 -- }
-maps.n['<leader><Tab>'] = {
-  function()
-    require('telescope.builtin').buffers()
-  end,
-  desc = 'Find buffers',
-}
+-- maps.n['<leader><Tab>'] = {
+--   function()
+--     require('telescope.builtin').buffers()
+--   end,
+--   desc = 'Find buffers',
+-- }
 -- Comment
 maps.n['<leader>fo'] = {
   function()

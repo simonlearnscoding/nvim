@@ -52,14 +52,14 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
   pattern = '*',
   callback = saveCurrentSessionInfo
 })
-local last_session_info = readLastSessionInfo()
-if last_session_info then
-end
+-- local last_session_info = readLastSessionInfo()
+-- if last_session_info then
+-- end
 
-local last_session_info = readLastSessionInfo()
+-- local last_session_info = readLastSessionInfo()
 
-last_session_info = extractLastTwoPathSegments(last_session_info.cwd)
-current_session_info = extractLastTwoPathSegments(current_dir)
+-- last_session_info = extractLastTwoPathSegments(last_session_info.cwd)
+-- current_session_info = extractLastTwoPathSegments(current_dir)
 
 
 theme = {
@@ -85,8 +85,8 @@ theme = {
     margin = 5,
     content = {
 
-      { "[L]ast       " .. last_session_info,    ":lua require('session_manager').load_last_session() <CR>",       "l" },
-      { "[C]urrent    " .. current_session_info, ":lua require('session_manager').load_current_dir_session()<CR>", "c" },
+      { "[L]ast       " .. "Last Session",       ":lua require('session_manager').load_last_session() <CR>",       "l" },
+      { "[C]urrent    " .. "Current Session",    ":lua require('session_manager').load_current_dir_session()<CR>", "c" },
       { "[S]essions                           ", ":lua require('session_manager').load_session()<CR>",             "s" },
       { "[P]rojects                           ", ":lua require('telescope').extensions.projects.projects() <CR>",  "p" },
       { "[O]ld Files",                           ":lua require('telescope.builtin').oldfiles()<CR>",               "o" },

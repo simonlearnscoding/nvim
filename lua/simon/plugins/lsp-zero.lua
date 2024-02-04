@@ -62,18 +62,18 @@ return {
       -- end
 
       -- vim.keymap.set("n", "<leader>td", "lua ToggleDiagnostics()<CR>")
-      lsp.format_on_save({
-        servers = {
-          ['lua_ls'] = { 'lua' },
-          ['typescript-tools'] = { 'typescriptreact' }
-        }
-      })
+      -- lsp.format_on_save({
+      --   servers = {
+      --     ['lua_ls'] = { 'lua' },
+      --     ['typescript-tools'] = { 'typescriptreact' }
+      --   }
+      -- })
       require('mason').setup({
         -- ensure_installed = { 'debugpy' },
       })
       --TODO: I wasnt able to add debugpy to the ensure installed list
       require("mason-lspconfig").setup({
-        ensure_installed = { 'lua_ls', 'tailwindcss', 'texlab', 'pylsp', 'pyright' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
+        ensure_installed = { 'lua_ls', 'graphql', 'emmet_ls', 'tailwindcss', 'texlab', 'pylsp', 'pyright' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
         handlers = {
           lsp.default_setup
         }

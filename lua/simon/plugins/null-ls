@@ -18,5 +18,9 @@ return {
         -- null_ls.builtins.completion.spell,
       },
     })
+    -- mason_null_ls = require("mason-null-ls")
+    -- mason_null_ls.setup({
+    --   ensure_installed = { "eslint_d", "prettier" },
+    -- })
   end,
 }

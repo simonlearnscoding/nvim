@@ -18,6 +18,7 @@ return {
     -- vim.keymap.set("n", "<leader>vt", "<cmd>VimwikiDiaryIndex <cr>")
     -- vim.keymap.set("n", "<leader>vy", "<cmd>VimwikiMakeYesterdayDiaryNote <cr>")
     vim.keymap.set("n", "<Backspace>", "<Plug>VimwikiGoBackLink ")
+    vim.keymap.set("n", "<leader>w<leader>", "<Plug>VimwikiGoBackLink ")
     vim.keymap.set("n", "<Tab>", "<Plug>VimwikiNextLink ")
     vim.keymap.set("n", "<S-Tab>", "<Plug>VimwikiPrevLink ")
     vim.keymap.set("n", "<leader>d", "<Plug>TaskWikiDone ")

@@ -5,10 +5,10 @@ return {
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
     'mfussenegger/nvim-dap-python',
-    {
-      'microsoft/vscode-js-debug',
-      build = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out',
-    },
+    -- {
+    --   'microsoft/vscode-js-debug',
+    --   build = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out',
+    -- },
     {
       'mxsdev/nvim-dap-vscode-js',
       run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out',

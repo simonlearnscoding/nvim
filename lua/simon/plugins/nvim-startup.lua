@@ -51,10 +51,8 @@ return {
 
       -- SETTING UP MY CUSTOM THEME
       require("startup").setup(
-
         my_custom_theme
-
-
       )
     end
-  } }
+  }
+}
