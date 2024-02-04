@@ -1,1 +1,1 @@
-{"cwd":"\/home\/simon\/.config\/nvim"}
+{"cwd":"\/home\/simon"}

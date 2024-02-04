@@ -25,6 +25,20 @@ return {
     vim.api.nvim_set_keymap('n', '<leader>2', '<cmd>tabn 2<CR>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('n', '<leader>3', '<cmd>tabn 3<CR>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('n', '<leader>4', '<cmd>tabn 4<CR>', { noremap = true, silent = true })
+
+    -- local config_group = vim.api.nvim_create_augroup('MyConfigGroup', {}) -- A global group for all your config autocommands
+    -- vim.api.nvim_create_autocmd({ 'User' }, {
+    --   pattern = "SessionLoadPost",
+    --   group = config_group,
+    --   callback = function()
+    --     -- Toggle Nvim Tree
+    --
+    --     -- Open 4 tabs
+    --     for i = 1, 3 do
+    --       vim.api.nvim_command('tabnew')
+    --     end
+    --   end,
+    -- })
   end
 
 }
