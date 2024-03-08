@@ -5,6 +5,13 @@ return {
     dependencies = { "mfussenegger/nvim-dap", 'folke/neodev.nvim', 'Weissle/persistent-breakpoints.nvim', },
     config = function()
       -- set up persistent breakpoints
+
+
+      -- Define custom signs for different breakpoint types
+      vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = '', linehl = '', numhl = '' })
+      vim.fn.sign_define('DapBreakpointCondition', { text = '🟠', texthl = '', linehl = '', numhl = '' })
+      vim.fn.sign_define('DapLogPoint', { text = '🔵', texthl = '', linehl = '', numhl = '' })
+      vim.fn.sign_define('DapStopped', { text = '➡️', texthl = '', linehl = 'debugPC', numhl = '' })
       require('persistent-breakpoints').setup {
         load_breakpoints_event = { "BufReadPost" }
       }
@@ -16,7 +23,7 @@ return {
       require("neodev").setup({
         library = { plugins = { "nvim-dap-ui" }, types = true },
       })
-      vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'red', linehl = '', numhl = '' })
+      -- vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'red', linehl = '', numhl = '' })
       dap.listeners.before.event_exited["dapui_config"] = function()
             -- dapui.close()
           end,
@@ -83,7 +90,7 @@ return {
           { '<M-j>',      dap.step_into,                                                                                                        { silent = true } },
           { '<M-k>',      dap.step_out,                                                                                                         { silent = true } },
           { 'C',          dap.run_to_cursor,                                                                                                    { silent = true } },
-          { '<CR>',       dap.continue,                                                                                                         { silent = true } },
+          { '<C-CR>',     dap.continue,                                                                                                         { silent = true } },
           { 'B',          "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>",                                             { silent = true } },
           { '?',          "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>",                                    { silent = true } },
           { 'X',          "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>",                                         { silent = true } },

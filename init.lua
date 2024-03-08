@@ -1,6 +1,7 @@
 require 'simon.core.options'
 require 'simon.plugins-setup'
 require 'simon.core.keymaps'
+require 'simon.core.telescope-mappings'
 
 
 -- local current_dir = vim.fn.getcwd()
@@ -46,7 +47,7 @@ if vim.g.neovide then
   vim.api.nvim_set_keymap('v', '<M-l>', ">>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap('v', '<M-h>', "<<", { noremap = true, silent = true })
 
-  vim.g.neovide_transparency = 0.95
+  vim.g.neovide_transparency = 0.97
   vim.g.neovide_cursor_vfx_mode = "wireframe"
 end
 
@@ -76,3 +77,12 @@ vim.api.nvim_create_autocmd(
     end
   }
 )
+
+
+-- LSP inlay hints // not working yet
+-- vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
+--   callback = function() vim.lsp.buf.inlay_hint(0, true) end,
+-- })
+-- vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+--   callback = function() vim.lsp.buf.inlay_hint(0, false) end,
+-- })

@@ -9,7 +9,7 @@ return {
         auto_trigger = true,
         enabled = true,
         keymap = {
-          accept = '<C-f>',
+          accept = '<C-s>',
           accept_word = false,
           accept_line = false,
           next = '<C-.>',
@@ -21,3 +21,5 @@ return {
     }
   end,
 }
+
+-- Path: .config/nvim/lua/simon/plugins/cmp.lua

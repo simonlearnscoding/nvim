@@ -57,7 +57,6 @@ return {
         ['\\'] = actions.file_split,
       },
       n = {
-
         ['|'] = actions.file_vsplit,
         ['\\'] = actions.file_split,
         ['<C-l>'] = actions.file_vsplit,

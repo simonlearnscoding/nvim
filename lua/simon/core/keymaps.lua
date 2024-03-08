@@ -4,7 +4,7 @@ local ui = require 'simon.utils.ui'
 local keymap = vim.keymap
 local maps = { i = {}, n = {}, v = {}, t = {} }
 local sections = {
-  f = { desc = '󰍉 Find' },
+  -- f = { desc = '󰍉 Find' },
   l = { desc = ' LSP' },
   u = { desc = ' UI' },
   b = { desc = '󰓩 Buffers' },
@@ -17,17 +17,23 @@ local sections = {
   r = { desc = ' Refactor' },
 }
 
-vim.api.nvim_set_keymap('n', 'C-a', 'ggVG', { noremap = true, silent = true })
+
+
+maps.n['<leader>w'] = sections.w
+maps.n['<leader>wa'] = { '<cmd>Telekasten insert_link<cr>', desc = 'Insert note' }
+maps.v['<C-n>'] = { '<cmd>Telekasten insert_link<cr>', desc = 'Insert note' }
+maps.n['<leader>wf'] = { '<cmd>Telekasten find_notes<cr>', desc = 'Find Notes' }
+
+maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 -- [[ LSP ]]
 vim.api.nvim_set_keymap('n', '<Leader>gI', ':lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
---
---
 vim.api.nvim_set_keymap('n', '<Tab>', '>>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<Tab>', '>>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<<', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<S-Tab>', '<<', { noremap = true, silent = true })
+
 --
 -- REFACTORING
 maps.n['<leader>rr'] = { ':IncRename ', desc = 'smart rename' }
@@ -35,14 +41,6 @@ maps.n['<leader>lr'] = { ':IncRename ', desc = 'smart rename' }
 maps.v['<leader>re'] = { ':Refactor extract<CR>', desc = 'Refactor Extract' }
 maps.v['<leader>rf'] = { ':Refactor extract_to_file<CR>', desc = 'Refactor Extract' }
 maps.v['<leader>rv'] = { ':Refactor extract_variable<CR>', desc = 'Refactor Extract' }
-
-maps.n['<leader>w'] = sections.w
-maps.n['<leader>wa'] = { '<cmd>Telekasten insert_link<cr>', desc = 'Insert note' }
-maps.v['<C-n>'] = { '<cmd>Telekasten insert_link<cr>', desc = 'Insert note' }
-maps.n['<leader>wf'] = { '<cmd>Telekasten find_notes<cr>', desc = 'Find Notes' }
-maps.n['<leader>fw'] = { '<cmd>Telekasten find_notes<cr>', desc = 'Find Notes' }
-
-maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 maps.n['<leader>r'] = sections.r
 maps.n['<leader>p'] = sections.p
 
@@ -128,9 +126,6 @@ maps.n['<C-c>'] = { '"+y', desc = 'Copy' }
 
 -- Visual mode mapping
 maps.v['<C-x>'] = { '"+x', desc = 'Cut' }
--- [[ TELESCOPE ]]
---
---
 
 -- TODO: Move this to nvim-ufo
 -- Improved Code Folding
@@ -166,99 +161,9 @@ if is_available 'nvim-ufo' then
     desc = 'Peek fold',
   }
 end
-maps.n['<leader>f'] = sections.f
--- maps.v["<leader>s"] = {"S", desc = "Surround Selection" }
-maps.n['<leader>ft'] = { '<cmd>TodoTelescope<CR>', desc = 'TODO' }
-maps.n['<leader>fd'] = { "<cmd>lua require('telescope.builtin').diagnostics()<CR>" }
 
-maps.n['<leader>/'] = { '<cmd>Telescope current_buffer_fuzzy_find <CR>', desc = 'find in buffer' }
--- maps.n['<leader>fb'] = {
---   function()
---     require('telescope.builtin').buffers()
---   end,
---   desc = 'Find buffers',
--- }
--- maps.n['<leader><Tab>'] = {
---   function()
---     require('telescope.builtin').buffers()
---   end,
---   desc = 'Find buffers',
--- }
--- Comment
-maps.n['<leader>fo'] = {
-  function()
-    require('telescope.builtin').oldfiles()
-  end,
-  desc = 'Find history',
-}
-maps.n['<leader>fs'] = { '<cmd> Telescope luasnip<cr>', desc = 'Find Snippets' }
 maps.n['<leader>u'] = sections.p
 maps.n['<leader>g'] = sections.g
-maps.n['<leader>gc'] = {
-  function()
-    require('telescope.builtin').git_commits()
-  end,
-  desc = 'Git commits',
-}
-maps.n['<leader>fm'] = {
-  function()
-    require('telescope.builtin').marks()
-  end,
-  desc = 'Find marks',
-}
--- maps.n['<leader>fw'] = {
---   function()
---     require('telescope.builtin').grep_string()
---   end,
---   desc = 'Find for word under cursor',
--- }
-maps.n['<leader>f<CR>'] = {
-  function()
-    require('telescope.builtin').resume()
-  end,
-  desc = 'Resume previous search',
-}
-maps.n['<leader>ff'] = {
-  function()
-    require('telescope.builtin').find_files()
-  end,
-  desc = 'Find files',
-}
-
-maps.n['<leader>fC'] = {
-  function()
-    local cwd = vim.fn.expand '~/react-components' -- use the home directory as the working directory
-    require('telescope.builtin').find_files {
-      cwd = cwd,
-      hidden = true,
-      no_ignore = true,
-    }
-  end,
-  desc = 'Find react components',
-}
-
-maps.n['<leader>fF'] = {
-  function()
-    local cwd = vim.fn.expand '~' -- use the home directory as the working directory
-    require('telescope.builtin').find_files {
-      cwd = cwd,
-      hidden = true,
-      no_ignore = true,
-    }
-  end,
-  desc = 'Find all files',
-}
-
-maps.n['<leader>fz'] = { '<cmd>Telescope zoxide list<cr>', desc = 'Zoxide' }
-maps.n['<leader>fB'] = { '<cmd>Telescope bibtex<cr>', desc = 'Find BibTeX' }
-maps.n['<leader>fM'] = { '<cmd>Telescope media_files<cr>', desc = 'Find media' }
-maps.n['<leader>fp'] = {
-  function()
-    require('telescope').extensions.projects.projects {}
-  end,
-  desc = 'Find projects',
-}
---
 -- Smart Splits
 if is_available 'smart-splits.nvim' then
   maps.n['<C-h>'] = {
@@ -337,6 +242,7 @@ if is_available 'Comment.nvim' then
     desc = 'Toggle comment line',
   }
 end
+
 -- GitSigns
 if is_available 'gitsigns.nvim' then
   maps.n['<leader>g'] = sections.g
@@ -412,20 +318,4 @@ maps.n['<leader><leader>s'] = {
   '<cmd>source ~/.config/nvim/lua/simon/snippets<cr>',
   desc = 'reload snippets',
 }
--- the utils.buffer stuff is too much of a pain in the ass for now so Ill leave it commented out
---
--- maps.n["<leader>bl"] = { function() require("simon.utils.buffer").move(vim.v.count > 0 and vim.v.count or 1) end, desc = "Move buffer tab right",
--- }
--- maps.n["<leader>bh"] = { function() require("simon.utils.buffer").move(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Move buffer tab left",
--- }
---
--- maps.n["<leader>bb"] = { function() require("simon.utils.status").heirline.buffer_picker(function(bufnr) vim.api.nvim_win_set_buf(0, bufnr) end) end, desc = "Select buffer from tabline",
--- }
---
--- maps.n["<leader>bd"] = {
---   function() require("astronvim.utils.status").heirline.buffer_picker( function(bufnr) require("astronvim.utils.buffer").close(bufnr) end) end,
---   desc = "Delete buffer from tabline",
--- }
-
--- set_mappings(maps, base_opts)
 utils.set_mappings(maps)

@@ -30,14 +30,13 @@ return {
     -- And you can configure cmp even more, if you want to.
     local cmp = require('cmp')
     local cmp_action = lsp_zero.cmp_action()
+    
     cmp.setup({
       sources = {
         { name = 'path' },
         { name = 'luasnip' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
-
-
       },
       formatting = lsp_zero.cmp_format(),
       mapping = cmp.mapping.preset.insert({
@@ -48,9 +47,9 @@ return {
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
         ['<C-f>'] = cmp.mapping.confirm({ select = true }),
         -- Navigate between snippet placeholder
+        
         ['<C-h>'] = cmp_action.luasnip_jump_backward(),
         ['<C-l>'] = cmp_action.luasnip_jump_forward(),
-        ['<C-Space>'] = cmp.mapping.complete(),
       }),
     })
   end
