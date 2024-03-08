@@ -30,7 +30,6 @@ return {
     -- And you can configure cmp even more, if you want to.
     local cmp = require('cmp')
     local cmp_action = lsp_zero.cmp_action()
-    
     cmp.setup({
       sources = {
         { name = 'path' },

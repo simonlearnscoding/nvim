@@ -21,11 +21,15 @@ return {
         lua = { "stylua" },
         python = { "isort", "black" },
       },
-      -- format_on_save = {
-      --   lsp_fallback = true,
-      --   async = false,
-      --   timeout_ms = 1000,
-      -- },
+
+--          ╭─────────────────────────────────────────────────────────╮
+--          │                Formatting on save or not                │
+--          ╰─────────────────────────────────────────────────────────╯
+      format_on_save = {
+        lsp_fallback = true,
+        async = false,
+        timeout_ms = 1000,
+      },
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>F", function()

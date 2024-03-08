@@ -1,8 +1,17 @@
 require 'simon.core.options'
 require 'simon.plugins-setup'
+
+--          ╭─────────────────────────────────────────────────────────╮
+--          │                    IMPORTING KEYMAPS                    │
+--          ╰─────────────────────────────────────────────────────────╯
 require 'simon.core.keymaps'
 require 'simon.core.telescope-mappings'
+require 'simon.core.neotest-mappings'
+require 'simon.core.lsp-mappings'
+require 'simon.core.git-mappings'
 
+require 'simon.core.nvim-ufo-mapping'
+require 'simon.core.nvim-ufo-mapping'
 
 -- local current_dir = vim.fn.getcwd()
 -- vim.api.nvim_set_current_dir(current_dir)

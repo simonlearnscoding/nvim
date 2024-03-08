@@ -9,12 +9,13 @@ return {
         auto_trigger = true,
         enabled = true,
         keymap = {
+
           accept = '<C-s>',
           accept_word = false,
           accept_line = false,
           next = '<C-.>',
           prev = '<C-,>',
-          dismiss = '<C/>',
+          -- dismiss = '<C/>',
           --dismiss = false,
         },
       },
