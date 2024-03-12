@@ -1,15 +1,15 @@
-require 'simon.core.options'
-require 'simon.plugins-setup'
-
+--
 --          ╭─────────────────────────────────────────────────────────╮
 --          │                    IMPORTING KEYMAPS                    │
 --          ╰─────────────────────────────────────────────────────────╯
+--
+require 'simon.core.options'
+require 'simon.plugins-setup'
 require 'simon.core.keymaps'
 require 'simon.core.telescope-mappings'
 require 'simon.core.neotest-mappings'
 require 'simon.core.lsp-mappings'
 require 'simon.core.git-mappings'
-
 require 'simon.core.nvim-ufo-mapping'
 require 'simon.core.nvim-ufo-mapping'
 
@@ -87,6 +87,18 @@ vim.api.nvim_create_autocmd(
   }
 )
 
+-- DAP BREAKPOINTS
+vim.cmd('highlight DapBreakpoint ctermbg=0 guifg=#993939 guibg=#31353f')
+vim.cmd('highlight DapLogPoint ctermbg=0 guifg=#61afef guibg=#31353f')
+vim.cmd('highlight DapStopped ctermbg=0 guifg=#98c379 guibg=#31353f')
+vim.fn.sign_define('DapBreakpoint',
+  { text = "", texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointCondition',
+  { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointRejected',
+  { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapLogPoint', linehl = 'DapLogPoint', numhl = 'DapLogPoint' })
+vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' })
 
 -- LSP inlay hints // not working yet
 -- vim.api.nvim_create_autocmd({ 'InsertEnter' }, {

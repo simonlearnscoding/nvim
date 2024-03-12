@@ -11,19 +11,17 @@ end
 
 local options = {
   opt = {
-    showtabline = 2,     -- always display tabline
-    expandtab = true,    -- use space instead of tabs
-
-    swapfile = false,    -- disable swapfile
-    foldenable = true,   -- enable fold for nvim-ufo
-    foldlevel = 99,      -- set high foldlevel for nvim-ufo
-    foldlevelstart = 99, -- start with all code unfolded
-
-    -- foldcolumn = vim.fn.has 'nvim-0.9' == 1 and '1' or nil, -- show foldcolumn in nvim 0.9
+    showtabline = 2,                                        -- always display tabline
+    expandtab = true,                                       -- use space instead of tabs
+    swapfile = false,                                       -- disable swapfile
+    foldenable = true,                                      -- enable fold for nvim-ufo
+    foldlevel = 99,                                         -- set high foldlevel for nvim-ufo
+    foldlevelstart = 99,                                    -- start with all code unfolded
+    foldcolumn = vim.fn.has 'nvim-0.9' == 1 and '1' or nil, -- show foldcolumn in nvim 0.9
     -- foldcolumn = '1',
-    history = 100,                           -- Number of commands to remember in a history table
+    history = 100,                                          -- Number of commands to remember in a history table
     number = true,
-    completeopt = { 'menuone', 'noselect' }, -- Options for insert mode completion
+    completeopt = { 'menuone', 'noselect' },                -- Options for insert mode completion
     relativenumber = true,
     wrap = false,
     ignorecase = true,
@@ -61,7 +59,7 @@ local options = {
     vimtex_main_file = 'main.tex',
     -- consider disabling this and setting a mapping instead
     ui_notifications_enabled = true, -- disable notifications when toggling UI elements
-    diagnostics_mode = 1,            -- set the visibility of diagnostics in the UI (0=off, 1=only show in status line, 2=virtual text off, 3=all on)
+    diagnostics_mode = 3,            -- set the visibility of diagnostics in the UI (0=off, 1=only show in status line, 2=virtual text off, 3=all on)
     icons_enabled = true,            -- disable icons in the UI (disable if no nerd font is available)
     codelens_enabled = true,         -- eature provided by some language servers that provides additional information about your code right in your editor    autoformat_enabled = true, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
     highlighturl_enabled = true,     -- highlight URLs by default
