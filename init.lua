@@ -13,8 +13,7 @@ require 'simon.core.git-mappings'
 require 'simon.core.nvim-ufo-mapping'
 require 'simon.core.nvim-ufo-mapping'
 
--- local current_dir = vim.fn.getcwd()
--- vim.api.nvim_set_current_dir(current_dir)
+
 -- vim.cmd 'colorscheme sonokai'
 vim.cmd 'colorscheme kanagawa'
 -- vim.cmd 'colorscheme rose-pine'
@@ -26,10 +25,12 @@ vim.cmd 'colorscheme kanagawa'
 -- vim.cmd 'colorscheme tokyonight'
 -- vim.cmd 'colorscheme everforest'
 
-
 -- I have to set this last because something else sets
 -- it too and I dont know what it is
-vim.keymap.set("n", "<leader>/", ":CommentToggle<CR>")
+-- vim.keymap.set("n", "<leader>/", ":CommentToggle<CR>")
+--
+--
+--
 
 if vim.g.neovide then
   -- vim.g.neovide_transparency = 0.95
@@ -44,18 +45,14 @@ if vim.g.neovide then
   vim.g.light_radius = 8
   vim.api.nvim_set_keymap('i', '<A-l>', '<Right>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', '<leader>Q', '<cmd>wqa<cr>', { noremap = true, silent = true })
-
-
   vim.api.nvim_set_keymap('n', '<M-j>', ':m .+1<CR>==', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', '<M-k>', ':m .-2<CR>==', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('v', '<M-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
   vim.api.nvim_set_keymap('v', '<M-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-
   vim.api.nvim_set_keymap('n', '<M-l>', '>>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', '<M-h>', '<<', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('v', '<M-l>', ">>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap('v', '<M-h>', "<<", { noremap = true, silent = true })
-
   vim.g.neovide_transparency = 0.97
   vim.g.neovide_cursor_vfx_mode = "wireframe"
 end

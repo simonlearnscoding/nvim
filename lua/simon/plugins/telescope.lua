@@ -41,6 +41,25 @@ return {
     require('telescope').load_extension 'harpoon'
     local get_icon = require('simon.utils').get_icon
 
+    local delete_buf = function()
+      local current_picker = action_state.get_current_picker(prompt_bufnr)
+      local multi_selections = current_picker:get_multi_selection()
+
+      if next(multi_selections) == nil then
+        local selection = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+      else
+        actions.close(prompt_bufnr)
+        for _, selection in ipairs(multi_selections) do
+          vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+        end
+      end
+
+      map('i', '<C-x>', delete_buf)
+      return true
+    end
+
     local mappings = {
       i = {
         ["<C-r"] = actions.open_qflist,
@@ -62,6 +81,8 @@ return {
         ['<C-l>'] = actions.file_vsplit,
         ['q'] = actions.close,
         ['<leader>q'] = actions.close,
+
+        ['C-x'] = delete_buf,
       },
     }
 
