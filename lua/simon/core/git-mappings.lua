@@ -27,7 +27,13 @@ maps.n['<leader>gb'] = {
   end,
   desc = 'View Git blame',
 }
-maps.n['<leader>gp'] = {
+
+maps.n['<leader>gP'] = {
+  "<cmd> Git push<CR>",
+  desc = 'Git Push',
+}
+
+maps.n['<leader>gv'] = {
   function()
     require('gitsigns').preview_hunk()
   end,
