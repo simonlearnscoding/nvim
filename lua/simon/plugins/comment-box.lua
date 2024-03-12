@@ -1,7 +1,8 @@
 vim.keymap.set({ "n", "v" }, "<leader>Cb", "<Cmd>CBccbox<CR>", { desc = "Comment box" })
 vim.keymap.set({ "n", "v" }, "<leader>Cl", "<Cmd>CBllline<CR>", { desc = "Comment box" })
-return { "LudoPinelli/comment-box.nvim",
-  function()
+return {
+  "LudoPinelli/comment-box.nvim",
+  config = function()
     require("comment-box").setup({
       comment_box_chars = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     })
