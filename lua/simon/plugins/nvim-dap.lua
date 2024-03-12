@@ -1,6 +1,10 @@
 return {
   'mfussenegger/nvim-dap',
+  dependencies = {
+    'Weissle/persistent-breakpoints.nvim'
+  },
   config = function()
+    vim.keymap.set("n", "<C-b>", "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>")
     local dap = require('dap')
     dap.adapters.python = {
       type = 'executable',

@@ -6,12 +6,7 @@ return {
     config = function()
       -- set up persistent breakpoints
 
-
-      -- Define custom signs for different breakpoint types
-      vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = '', linehl = '', numhl = '' })
-      vim.fn.sign_define('DapBreakpointCondition', { text = '🟠', texthl = '', linehl = '', numhl = '' })
-      vim.fn.sign_define('DapLogPoint', { text = '🔵', texthl = '', linehl = '', numhl = '' })
-      vim.fn.sign_define('DapStopped', { text = '➡️', texthl = '', linehl = 'debugPC', numhl = '' })
+      vim.keymap.set("n", "<C-b>", "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>")
       require('persistent-breakpoints').setup {
         load_breakpoints_event = { "BufReadPost" }
       }
@@ -55,7 +50,7 @@ return {
       local hint = [[
       _<M-j>_: step into   _X_: Clear Breakpoints
       _<M-l>_: step over   _<CR>_: Continue/Start
-      _<M-k>_: step out    _B_: Breakpoint
+      _<M-k>_: step out
         _K_: Eval          _q_: exit
        _c_: to cursor      _C_: console
        _$_: stack _B_: breakpoints
@@ -91,7 +86,6 @@ return {
           { '<M-k>',      dap.step_out,                                                                                                         { silent = true } },
           { 'C',          dap.run_to_cursor,                                                                                                    { silent = true } },
           { '<C-CR>',     dap.continue,                                                                                                         { silent = true } },
-          { 'B',          "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>",                                             { silent = true } },
           { '?',          "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>",                                    { silent = true } },
           { 'X',          "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>",                                         { silent = true } },
           { 'f',          "<cmd>Telescope dap list_breakpoints<cr>",                                                                            { silent = true } },

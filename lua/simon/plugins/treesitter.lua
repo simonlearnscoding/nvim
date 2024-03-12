@@ -44,6 +44,7 @@ return {
           "typescript",
           "yaml",
         },
+
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
         auto_install = false,
         highlight = { enable = true },
@@ -67,7 +68,6 @@ return {
         },
 
 
-
         textobjects = {
           highlight = {
             enable = true,
@@ -75,10 +75,8 @@ return {
           },
           select = {
             enable = true,
-
             -- Automatically jump forward to textobj, similar to targets.vim
             lookahead = true,
-
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
               ["af"] = "@function.outer",
@@ -98,7 +96,7 @@ return {
                 ["]c"] = { query = "@class.outer", desc = "Next class start" },
                 --
                 -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
-                ["]o"] = "@loop.*",
+                ["]l"] = "@loop.*",
                 -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
                 --
                 -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
