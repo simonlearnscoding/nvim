@@ -8,37 +8,38 @@ maps.n[']g'] = {
   end,
   desc = 'Next Git hunk',
 }
+
+
+maps.n['<leader>gc'] = {
+  "<cmd> Git commit<CR>",
+  desc = 'Previous Git hunk',
+}
+
 maps.n['[g'] = {
   function()
     require('gitsigns').prev_hunk()
   end,
   desc = 'Previous Git hunk',
 }
--- maps.n['<leader>gl'] = {
---   function()
---     require('gitsigns').blame_line()
---   end,
---   desc = 'View Git blame',
--- }
--- maps.n['<leader>gL'] = {
---   function()
---     require('gitsigns').blame_line { full = true }
---   end,
---   desc = 'View full Git blame',
--- }
+maps.n['<leader>gb'] = {
+  function()
+    require('gitsigns').blame_line()
+  end,
+  desc = 'View Git blame',
+}
 maps.n['<leader>gp'] = {
   function()
     require('gitsigns').preview_hunk()
   end,
   desc = 'Preview Git hunk',
 }
-maps.n['<leader>gh'] = {
+maps.n['<leader>grh'] = {
   function()
     require('gitsigns').reset_hunk()
   end,
   desc = 'Reset Git hunk',
 }
-maps.n['<leader>gr'] = {
+maps.n['<leader>grb'] = {
   function()
     require('gitsigns').reset_buffer()
   end,
@@ -50,7 +51,7 @@ maps.n['<leader>gs'] = {
   end,
   desc = 'Stage Git hunk',
 }
-maps.n['<leader>gS'] = {
+maps.n['<leader>ga'] = {
   function()
     require('gitsigns').stage_buffer()
   end,
