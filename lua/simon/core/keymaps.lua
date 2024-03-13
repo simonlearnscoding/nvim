@@ -63,19 +63,16 @@ maps.n['<leader>dd'] = { ':Trouble workspace_diagnostics<cr>', desc = 'Workspace
 --          │                       BUFFERS                       │
 --          ╰─────────────────────────────────────────────────────────╯
 maps.n['<leader>b'] = sections.b
-
 maps.n['<leader>bp'] = { '<cmd>:BufferLinePick<cr>', desc = 'pick buffer' }
 maps.n['<leader>bc'] = { '<cmd>:BufferLinePickClose<cr>', desc = 'pick buffer' }
 maps.n['<leader>bl'] = { '<cmd>:BufferLineCloseRight<cr>', desc = 'close every buffer to the right' }
 maps.n['<leader>bh'] = { '<cmd>:BufferLineCloseLeft<cr>', desc = 'close every buffer to the left' }
-
 maps.n['<leader>ba'] = { '<cmd>:BufferLineCloseOthers<cr>', desc = 'close every buffer except for the current one' }
-
 maps.n['<S-h>'] = { '<cmd>bprevious<cr>', desc = 'Previous Buffer' }
 maps.n['<S-l>'] = { '<cmd>bnext<cr>', desc = 'Next Buffer' }
-
 maps.n['[b'] = { '<cmd>bprevious<cr>', desc = 'Previous Buffer' }
 maps.n[']b'] = { '<cmd>bnext<cr>', desc = 'Next Buffer' }
+
 
 -- Navigate tabs
 maps.n['<leader>N'] = { '<cmd>tabnew<cr>', desc = 'New Tab' }

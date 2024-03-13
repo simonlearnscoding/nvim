@@ -21,18 +21,22 @@ require('lazy').setup {
   },
   -- icons for nvim
   'nvim-tree/nvim-web-devicons',
-  'ron89/thesaurus_query.vim',
-
   {
-    'echasnovski/mini.pairs',
-    event = 'VeryLazy',
+    'echasnovski/mini.pairs', event = 'VeryLazy',
     opts = {},
   },
   ---@diagnostic disable-next-line: trailing-space
 
+  -- Detect tabstop and shiftwidth automatically
   'famiu/bufdelete.nvim',
   'tpope/vim-sleuth',
 
+  --
+  --
+  -- Useful plugin to show you pending keybinds.
+
+  -- "gc" to comment visual regions/lines
+  { 'numToStr/Comment.nvim', opts = {} },
   --
   { import = 'simon.plugins' },
 }

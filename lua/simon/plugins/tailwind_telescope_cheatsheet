@@ -1,8 +1,0 @@
-return {
-  "danielvolchek/tailiscope.nvim",
-  config = function()
-    require('telescope').load_extension('tailiscope')
-    vim.keymap.set("n", "<leader>fT", "<cmd>Telescope tailiscope<cr>", { desc = "Tailiscope" })
-  end
-
-}
