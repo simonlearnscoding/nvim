@@ -51,7 +51,7 @@ maps.n['<leader>grb'] = {
   end,
   desc = 'Reset Git buffer',
 }
-maps.n['<leader>gs'] = {
+maps.n['<leader>gh'] = {
   function()
     require('gitsigns').stage_hunk()
   end,
