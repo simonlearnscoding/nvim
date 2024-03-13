@@ -14,14 +14,14 @@ maps.n[prefix .. 'f'] = { desc = '󰍉 Find' }
 maps.n[prefix .. 'n'] = { '<cmd>Telekasten find_notes<cr>', desc = 'Find Notes' }
 maps.n[prefix .. 't'] = { '<cmd>TodoTelescope<CR>', desc = 'TODO' }
 maps.n[prefix .. 'g'] = { desc = 'git...' }
+maps.n[prefix .. 'r'] = { desc = 'reset...' }
 maps.n[prefix .. 'gb'] = { '<cmd>Telescope git_branches<CR>', desc = '...branches' }
 maps.n[prefix .. 'gc'] = { '<cmd>Telescope git_commits<CR>', desc = '...commits' }
 maps.n[prefix .. 'gs'] = { '<cmd>Telescope git_status<CR>', desc = '...status' }
-maps.n[prefix .. 'gf'] = { '<cmd>TodoTelescope<CR>', desc = '...files' }
+maps.n[prefix .. 'gf'] = { '<cmd>Telescope git_files<CR>', desc = '...files' }
 maps.n[prefix .. 'd'] = { "<cmd>lua require('telescope.builtin').diagnostics()<CR>", desc = 'Diagnostics' }
 maps.n[prefix .. 'l'] = { "<cmd>lua require('telescope.builtin').lsp_references()<CR>", desc = 'LSP References' }
 maps.n[prefix .. 'w'] = { "<cmd>lua require('telescope.builtin').live_grep()<CR>", desc = 'find word' }
-maps.n[prefix .. 'gc'] = { "<cmd>lua require('telescope.builtin').live_grep()<CR>", desc = 'find word' }
 maps.n[prefix .. 'r'] = { "<cmd>lua require('telescope.builtin').lsp_references()<CR>", desc = 'LSP References' }
 
 maps.n[prefix .. 'o'] = {
