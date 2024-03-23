@@ -27,10 +27,8 @@ return {
 
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
-
         vim.keymap.set('n', "<C-e>", ":Navbuddy<cr>")
         vim.keymap.set('i', "<C-e>", "<esc><cmd>Navbuddy<cr>")
-
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts) -- this one works pretty good
         vim.keymap.set("n", "<leader>F", function() vim.lsp.buf.format() end,
           { desc = 'format file' })                                        -- this one works pretty good
