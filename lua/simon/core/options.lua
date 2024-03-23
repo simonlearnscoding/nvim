@@ -16,6 +16,7 @@ local options = {
     swapfile = false,                                       -- disable swapfile
     foldenable = true,                                      -- enable fold for nvim-ufo
     foldlevel = 99,                                         -- set high foldlevel for nvim-ufo
+    conceallevel = 2,
     foldlevelstart = 99,                                    -- start with all code unfolded
     foldcolumn = vim.fn.has 'nvim-0.9' == 1 and '1' or nil, -- show foldcolumn in nvim 0.9
     -- foldcolumn = '1',
@@ -37,7 +38,7 @@ local options = {
     smartindent = true,    -- Smarter autoindentation
     tabstop = 4,           -- Number of space in a tab
     termguicolors = true,  -- Enable 24-bit RGB color in the TUI
-    timeoutlen = 0,        -- Shorten key timeout length a little bit for which-key
+    timeoutlen = 10,       -- Shorten key timeout length a little bit for which-key
     updatetime = 1000,     -- Length of time to wait before triggering the plugin
     virtualedit = 'block', -- allow going past end of line in visual block mode
     signcolumn = 'yes',    -- git signs on the side
@@ -64,9 +65,11 @@ local options = {
     codelens_enabled = true,         -- eature provided by some language servers that provides additional information about your code right in your editor    autoformat_enabled = true, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
     highlighturl_enabled = true,     -- highlight URLs by default
     lsp_handlers_enabled = true,     -- enable or disable default vim.lsp.handlers (hover and signatureHelp)
-    cmp_enabled = true,              -- enable completion at start
-    autopairs_enabled = true,        -- enable autopairs at start
-    mapleader = ' ',                 -- set leader key
+
+    conceallevel = 2,
+    cmp_enabled = true,       -- enable completion at start
+    autopairs_enabled = true, -- enable autopairs at start
+    mapleader = ' ',          -- set leader key
     maplocalleader = ' ',
   },
   -- consider commenting if it will cause issues
