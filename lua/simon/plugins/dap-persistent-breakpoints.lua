@@ -1,4 +1,5 @@
 return {
+  event = "VeryLazy",
   'Weissle/persistent-breakpoints.nvim',
   config = function()
     require('persistent-breakpoints').setup {
