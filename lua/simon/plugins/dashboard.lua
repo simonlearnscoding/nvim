@@ -13,7 +13,6 @@
 
 return {
     'nvimdev/dashboard-nvim',
-    event = 'BufWinEnter',
     config = function()
         require('dashboard').setup {
             -- config
@@ -23,31 +22,32 @@ return {
                     enable = true,
                 },
                 shortcut = {
+
                     {
-                        icon_hl = '@variable',
-                        desc = '󱑇 Files',
-                        group = 'Label',
-                        action = 'Telescope find_files',
-                        key = 'f',
+                        desc = ' [s]ession ',
+                        group = 'Number',
+                        action = 'SessionManager load_session',
+                        key = 's',
                     },
                     {
-                        desc = ' Todo',
+                        desc = ' [t]odo ',
                         group = 'DiagnosticHint',
                         action = 'TodoTelescope',
                         key = 't',
                     },
                     {
-                        desc = 'Session',
-                        group = 'Number',
-                        action = 'Sessionmanager load_session',
-                        key = 's',
+                        icon_hl = '@variable',
+                        desc = '󱑇 [f]iles',
+                        group = 'Label',
+                        action = 'Telescope find_files',
+                        key = 'f',
                     },
 
                     {
-                        desc = 'Bibtex',
+                        desc = ' [b]ibtex ',
                         group = 'Number',
                         action = 'Telescope bibtex',
-                        key = 's',
+                        key = 'b',
                     },
                 },
             },
