@@ -1,4 +1,6 @@
 return {
+
+  event = "VeryLazy",
   'rcarriga/nvim-dap-python',
   ft = 'python',
   dependencies = {

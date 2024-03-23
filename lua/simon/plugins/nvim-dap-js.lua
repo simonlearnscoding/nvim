@@ -1,4 +1,5 @@
 return {
+  event = "VeryLazy",
   'microsoft/vscode-js-debug',
   -- build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
   requires = { 'mfussenegger/nvim-dap' },

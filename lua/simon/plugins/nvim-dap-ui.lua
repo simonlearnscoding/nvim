@@ -1,6 +1,9 @@
 return {
 
+
   {
+
+    event = "VeryLazy",
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap", 'folke/neodev.nvim', 'Weissle/persistent-breakpoints.nvim', },
     config = function()
