@@ -25,6 +25,11 @@ vim.api.nvim_set_keymap('v', '<Tab>', '>>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<<', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<S-Tab>', '<<', { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('n', '<leader>x', ':bdelete<cr>', { noremap = true, silent = true, desc = 'Close buffer' })
+
+vim.api.nvim_set_keymap('n', 'cw', 'ciw', { noremap = true, silent = true, desc = 'change inside word' })
+vim.api.nvim_set_keymap('n', 'dw', 'diw', { noremap = true, silent = true, desc = 'change inside word' })
+
 
 --          ╭─────────────────────────────────────────────────────────╮
 --          │              Disable space in normal mode               │
