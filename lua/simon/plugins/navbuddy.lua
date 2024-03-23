@@ -8,6 +8,8 @@ return {
         "MunifTanjim/nui.nvim"
       },
       opts = {
+        position = { row = "0%", col = "50%" }, -- Position Navbuddy on the top right
+        size = "60%",                           -- Adjust the size as needed
         lsp = {
           auto_attach = true,
         }
