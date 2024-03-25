@@ -114,8 +114,8 @@ maps.v['<A-k>'] = { ":m '<-2<cr>gv=gv", desc = 'Move up' }
 maps.n['<leader>.'] = { '<cmd>cd %:p:h<cr>', desc = 'Set CWD' }
 
 -- [[ SNIPS ]]
-maps.n['<leader><leader>s'] = {
-  '<cmd>source ~/.config/nvim/lua/simon/snippets<cr>',
-  desc = 'reload snippets',
-}
+-- maps.n['<leader><leader>s'] = {
+--   '<cmd>source ~/.config/nvim/lua/simon/snippets<cr>',
+--   desc = 'reload snippets',
+-- }
 utils.set_mappings(maps)

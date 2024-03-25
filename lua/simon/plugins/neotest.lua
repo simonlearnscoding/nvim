@@ -1,10 +1,12 @@
 return {
   "nvim-neotest/neotest",
+  event = "BufReadPost",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "marilari88/neotest-vitest",
+    'nvim-neotest/nvim-nio',
+    "nvim-neotest/neotest-jest"
   },
 
   config = function()
@@ -19,30 +21,16 @@ return {
         enabled = false,
       },
       adapters = {
-        require('neotest-vitest')({
-          vitestCommand = 'npm run test'
-          
-          --   filter_dir = function(name, rel_path, root)
-          --   return name ~= "node_modules"
-          -- end,
+        require('neotest-jest')({
+          jestCommand = "npm test  ",
+          jestConfigFile = "custom.jest.config.ts",
+          env = { CI = true },
+          cwd = function(path)
+            return vim.fn.getcwd()
+          end,
         }),
       }
     }
-
-        -- Set up key mappings for running tests with Neotest
-    vim.api.nvim_set_keymap(
-      "n", 
-      "<leader>twr", 
-      "<cmd>lua require('neotest').run.run()<cr>", 
-      { desc = "Run Watch" }
-    )
-
-    vim.api.nvim_set_keymap(
-      "n",
-      "<leader>twf",
-      "<cmd>lua require('neotest').run.run({ vim.fn.expand('%'), vitestCommand = 'vitest --watch' })<cr>",
-      { desc = "Run Watch File" }
-    )
   end
 
 }

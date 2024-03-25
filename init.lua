@@ -6,6 +6,7 @@
 require 'simon.core.options'
 require 'simon.plugins-setup'
 require 'simon.core.keymaps'
+require 'simon.core.window-management-mapping'
 require 'simon.core.telescope-mappings'
 require 'simon.core.neotest-mappings'
 require 'simon.core.lsp-mappings'
@@ -97,6 +98,9 @@ vim.fn.sign_define('DapBreakpointRejected',
 vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapLogPoint', linehl = 'DapLogPoint', numhl = 'DapLogPoint' })
 vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' })
 
+vim.g.dashboard_default_executive = 'telescope'
+-- vim.cmd("Dashboard")
+
 -- LSP inlay hints // not working yet
 -- vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
 --   callback = function() vim.lsp.buf.inlay_hint(0, true) end,
@@ -104,3 +108,4 @@ vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStopped', linehl =
 -- vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
 --   callback = function() vim.lsp.buf.inlay_hint(0, false) end,
 -- })
+--

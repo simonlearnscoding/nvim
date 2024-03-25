@@ -1,11 +1,10 @@
 return {
   "tools-life/taskwiki",
-  event = "VeryLazy",
+  -- event = "VeryLazy",
   config = function()
-    -- require("taskwiki").setup({
-    --
-    -- })
-    -- vim.g.taskwiki_suppress_mappings = 'yes'
+    require("taskwiki").setup({
+
+    })
   end
 
 }

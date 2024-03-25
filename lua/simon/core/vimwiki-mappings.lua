@@ -1,5 +1,0 @@
--- maps.n['<leader>wa'] = { '<cmd>Telekasten insert_link<cr>', desc = 'Insert note' }
--- maps.v['<C-n>'] = { '<cmd>Telekasten insert_link<cr>', desc = 'Insert note' }
---
---
--- maps.n['<leader>wf'] = { '<cmd>Telekasten find_notes<cr>', desc = 'Find Notes' }

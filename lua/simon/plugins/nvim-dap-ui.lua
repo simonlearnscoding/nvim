@@ -5,7 +5,7 @@ return {
 
     event = "VeryLazy",
     "rcarriga/nvim-dap-ui",
-    dependencies = { "mfussenegger/nvim-dap", 'folke/neodev.nvim', 'Weissle/persistent-breakpoints.nvim', },
+    dependencies = { "mfussenegger/nvim-dap", 'folke/neodev.nvim', 'nvim-neotest/nvim-nio', 'Weissle/persistent-breakpoints.nvim', },
     config = function()
       -- set up persistent breakpoints
 
