@@ -21,6 +21,7 @@ return {
         { source = "diagnostics", display_name = get_icon "Diagnostic" .. " Diagnostic" },
       },
     },
+    default_view = "git_status", -- Set Git view as default
     default_component_configs = {
       indent = { padding = 0, indent_size = 1 },
       icon = {

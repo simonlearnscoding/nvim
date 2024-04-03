@@ -69,51 +69,38 @@ return {
 
     -- Key mappings should be inside the config function
     -- vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>")
-    vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianOpen<CR>")
-    vim.keymap.set("n", "<leader>oi", ":e ~/projects/pages/index.md<CR>")
-    vim.keymap.set("n", "<leader>oy", "<cmd>ObsidianDailies<CR>")
-    vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>")
-    vim.keymap.set("n", "<leader>oe", "<cmd>ObsidianExtractNote<CR>")
-    vim.keymap.set("n", "<leader>of", "<cmd>ObsidianQuickSwitch<CR>")
-    vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTags<CR>")
-    vim.keymap.set("n", "<leader>og", "<cmd>ObsidianPasteImg<CR>")
-    vim.keymap.set("n", "<leader>or", "<cmd>ObsidianRename<CR>")
-    vim.keymap.set("n", "<leader>ow", "<cmd>ObsidianSearch<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "<leader>ol", "<cmd>ObsidianLinks<CR>")
-    vim.keymap.set("n", "<leader><leader>", "<cmd>ObsidianLinks<CR>")
-    vim.keymap.set("n", "<leader>od", "<cmd>ObsidianToday<CR>")
-    vim.keymap.set("n", "<leader>om", "<cmd>ObsidianTomorrow<CR>")
-    vim.keymap.set("n", "<CR>", "<cmd>ObsidianFollowLink<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "<BS>", "<cmd>ObsidianBacklinks<CR>", { noremap = true, silent = true })
+    -- local utils = require 'simon.utils'
+    -- local maps = { i = {}, n = {}, v = {}, t = {} }
+    --
+    -- local prefix = '<leader>o'
+
+    -- vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianOpen<CR>")
+    -- vim.keymap.set("n", "<leader>oi", ":e ~/projects/pages/index.md<CR>")
+    -- vim.keymap.set("n", "<leader>oy", "<cmd>ObsidianDailies<CR>")
+    -- vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>")
+    -- vim.keymap.set("n", "<leader>oe", "<cmd>ObsidianExtractNote<CR>")
+    -- vim.keymap.set("n", "<leader>of", "<cmd>ObsidianQuickSwitch<CR>")
+    -- vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTags<CR>")
+    -- vim.keymap.set("n", "<leader>og", "<cmd>ObsidianPasteImg<CR>")
+    -- vim.keymap.set("n", "<leader>or", "<cmd>ObsidianRename<CR>")
+    -- vim.keymap.set("n", "<leader>ow", "<cmd>ObsidianSearch<CR>", { noremap = true, silent = true })
+    -- vim.keymap.set("n", "<leader>ol", "<cmd>ObsidianLinks<CR>")
+    -- -- vim.keymap.set("n", "<leader><leader>", "<cmd>ObsidianLinks<CR>")
+    -- vim.keymap.set("n", "<leader>od", "<cmd>ObsidianToday<CR>")
+    -- vim.keymap.set("n", "<leader>om", "<cmd>ObsidianTomorrow<CR>")
+    -- vim.keymap.set("n", "<CR>", "<cmd>ObsidianFollowLink<CR>", { noremap = true, silent = true })
+    -- vim.keymap.set("n", "<BS>", "<cmd>ObsidianBacklinks<CR>", { noremap = true, silent = true })
 
 
 
-    -- Function to set keymaps for Markdown files
-    local function set_markdown_keymaps()
-      local opts = { noremap = true, silent = true }
-      vim.keymap.set("n", "<BS>", "<cmd>ObsidianBacklinks<CR>", { noremap = true, silent = true })
-    end
+    -- local function set_markdown_keymaps()
+    --   local opts = { noremap = true, silent = true }
+    --   vim.keymap.set("n", "<BS>", "<cmd>ObsidianBacklinks<CR>", { noremap = true, silent = true })
+    -- end
 
-    -- Function to remove/disable keymaps for Markdown files
-    local function remove_markdown_keymaps()
-      local opts = { noremap = true, silent = true }
-    end
-
-    -- Autocommand to set Markdown keymaps when entering a Markdown file
-    -- vim.api.nvim_create_autocmd("BufEnter", {
-    --   pattern = "*.md",
-    --   callback = function()
-    --     set_markdown_keymaps()
-    --   end
-    -- })
-
-    -- Autocommand to remove/disable Markdown keymaps when leaving a Markdown buffer
-    -- vim.api.nvim_create_autocmd("BufLeave", {
-    --   pattern = "*.md",
-    --   callback = function()
-    --     remove_markdown_keymaps()
-    --   end
-    -- })
+    -- local function remove_markdown_keymaps()
+    --   local opts = { noremap = true, silent = true }
+    -- end
   end,
   ft = "markdown",
   dependencies = {
