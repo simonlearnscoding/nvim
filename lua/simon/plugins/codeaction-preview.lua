@@ -5,17 +5,15 @@ return {
     vim.keymap.set({ 'v', 'n' }, '<leader>ca', require('actions-preview').code_actions)
     vim.keymap.set({ 'v', 'n' }, '<leader>ci', ':TSToolsAddMissingImports<CR>')
 
-    require("actions-preview").setup {
+    require('actions-preview').setup {
       -- options for vim.diff(): https://neovim.io/doc/user/lua.html#vim.diff()
-      backend = { "telescope", "nui" },
-
-
+      backend = { 'telescope', 'nui' },
 
       -- options related to telescope.nvim
       telescope = vim.tbl_extend(
-        "force",
+        'force',
         -- telescope theme: https://github.com/nvim-telescope/telescope.nvim#themes
-        require("telescope.themes").get_dropdown(),
+        require('telescope.themes').get_dropdown(),
         -- a table for customizing content
         {
           -- a function to make a table containing the values to be displayed.
@@ -28,14 +26,13 @@ return {
           make_make_display = nil,
         }
       ),
-
     }
-
-    vim.cmd [[
-augroup AutoImport
-  autocmd!
-  autocmd BufWritePre *.js,*.ts,*.jsx,*.tsx TSToolsAddMissingImports
-augroup END
-]]
+    --
+    --     vim.cmd [[
+    -- augroup AutoImport
+    --   autocmd!
+    --   autocmd BufWritePre *.js,*.ts,*.jsx,*.tsx TSToolsAddMissingImports
+    -- augroup END
+    -- ]]
   end,
 }
