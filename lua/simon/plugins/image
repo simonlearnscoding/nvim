@@ -1,0 +1,11 @@
+return {
+  "3rd/image.nvim",
+  config = function()
+    require("image").setup {
+      -- Enable the image previewer
+      preview = {
+        enable = true,
+      },
+    }
+  end,
+}

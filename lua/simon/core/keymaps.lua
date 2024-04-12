@@ -5,7 +5,7 @@ local keymap = vim.keymap
 local maps = { i = {}, n = {}, v = {}, t = {} }
 local sections = {
   -- f = { desc = '󰍉 Find' },
-  u = { desc = ' UI' },
+  u = { desc = ' [u]I' },
   b = { desc = '󰓩 Buffers' },
   bs = { desc = '󰒺 Sort Buffers' },
   d = { desc = ' Debugger' },
@@ -13,8 +13,6 @@ local sections = {
   S = { desc = '󱂬 Session' },
   t = { desc = ' Terminal' },
 }
-
-
 
 --          ╭─────────────────────────────────────────────────────────╮
 --          │            Tabbing back and forth in indents            │
@@ -29,7 +27,6 @@ vim.api.nvim_set_keymap('n', '<leader>x', ':bdelete<cr>', { noremap = true, sile
 
 vim.api.nvim_set_keymap('n', 'cw', 'ciw', { noremap = true, silent = true, desc = 'change inside word' })
 vim.api.nvim_set_keymap('n', 'dw', 'diw', { noremap = true, silent = true, desc = 'change inside word' })
-
 
 --          ╭─────────────────────────────────────────────────────────╮
 --          │              Disable space in normal mode               │
@@ -51,25 +48,23 @@ end
 maps.n['j'] = { "v:count == 0 ? 'gj' : 'j'", expr = true, desc = 'Move cursor down' }
 maps.n['k'] = { "v:count == 0 ? 'gk' : 'k'", expr = true, desc = 'Move cursor up' }
 
-
 -- [[ WRITE AND SAVE ]]
 maps.n['<leader>q'] = { '<cmd>update<cr><cmd>q<cr>', desc = 'Save and Quit if possible, else just Quit' }
 
 -- maps.n['<leader>c'] = { '<cmd> Bdelete<cr>', desc = 'Try to save and force delete buffer' }
 -- maps.n['<leader>C'] = { '<cmd>w | Bdelete<cr>', desc = 'Save and delete buffer' }
-maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
-
+-- maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 
 --          ╭─────────────────────────────────────────────────────────╮
 --          │                       Diagnostics                       │
 --          ╰─────────────────────────────────────────────────────────╯
-maps.n['<leader>dd'] = { ':Trouble workspace_diagnostics<cr>', desc = 'Workspace diagnostic' }
+maps.n['<leader>dd'] = { ':Trouble workspace_diagnostics<cr>', desc = ' [d]iagnostic' }
 --          ╭─────────────────────────────────────────────────────────╮
 --          │                       BUFFERS                       │
 --          ╰─────────────────────────────────────────────────────────╯
 maps.n['<leader>b'] = sections.b
-maps.n['<leader>bp'] = { '<cmd>:BufferLinePick<cr>', desc = 'pick buffer' }
-maps.n['<leader>bc'] = { '<cmd>:BufferLinePickClose<cr>', desc = 'pick buffer' }
+maps.n['<leader>bp'] = { '<cmd>:BufferLinePick<cr>', desc = '[p]ick ' }
+maps.n['<leader>bc'] = { '<cmd>:BufferLinePickClose<cr>', desc = '[c]lose' }
 maps.n['<leader>bl'] = { '<cmd>:BufferLineCloseRight<cr>', desc = 'close every buffer to the right' }
 maps.n['<leader>bh'] = { '<cmd>:BufferLineCloseLeft<cr>', desc = 'close every buffer to the left' }
 maps.n['<leader>ba'] = { '<cmd>:BufferLineCloseOthers<cr>', desc = 'close every buffer except for the current one' }
@@ -78,9 +73,8 @@ maps.n['<S-l>'] = { '<cmd>bnext<cr>', desc = 'Next Buffer' }
 maps.n['[b'] = { '<cmd>bprevious<cr>', desc = 'Previous Buffer' }
 maps.n[']b'] = { '<cmd>bnext<cr>', desc = 'Next Buffer' }
 
-
 -- Navigate tabs
-maps.n['<leader>N'] = { '<cmd>tabnew<cr>', desc = 'New Tab' }
+maps.n['<leader>N'] = { '<cmd>tabnew<cr>', desc = '[N]ew Tab' }
 maps.n[']t'] = {
   function()
     vim.cmd.tabnext()
@@ -110,8 +104,7 @@ maps.v['<A-k>'] = { ":m '<-2<cr>gv=gv", desc = 'Move up' }
 -- maps.n['<C-c>'] = { '"+y', desc = 'Copy' }
 -- maps.v['<C-x>'] = { '"+x', desc = 'Cut' }
 
-
-maps.n['<leader>.'] = { '<cmd>cd %:p:h<cr>', desc = 'Set CWD' }
+maps.n['<leader>.'] = { '<cmd>cd %:p:h<cr>', desc = 'set cwd' }
 
 -- [[ SNIPS ]]
 -- maps.n['<leader><leader>s'] = {

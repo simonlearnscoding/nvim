@@ -20,35 +20,40 @@ return {
       { 'williamboman/mason-lspconfig.nvim' },
     },
     config = function()
-      local lsp = require("lsp-zero")
+      local lsp = require 'lsp-zero'
       lsp.extend_lspconfig()
-      lsp.set_sign_icons({ error = ' ', warn = ' ', hint = '', info = '' })
-
+      lsp.set_sign_icons { error = ' ', warn = ' ', hint = '', info = '' }
 
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
-        vim.keymap.set('n', "<C-e>", ":Navbuddy<cr>")
-        vim.keymap.set('i', "<C-e>", "<esc><cmd>Navbuddy<cr>")
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts) -- this one works pretty good
-        vim.keymap.set("n", "<leader>F", function() vim.lsp.buf.format() end,
-          { desc = 'format file' })                                        -- this one works pretty good
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end,
-          { desc = 'next error message' })
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end,
-          { desc = 'previous error message' })
+        -- vim.keymap.set('n', '<C-e>', ':Navbuddy<cr>')
+        -- vim.keymap.set('i', '<C-e>', '<esc><cmd>Navbuddy<cr>')
+        vim.keymap.set('n', 'K', function()
+          vim.lsp.buf.hover()
+        end, opts) -- this one works pretty good
+        vim.keymap.set('n', '<leader>F', function()
+          vim.lsp.buf.format()
+        end, { desc = 'format file' }) -- this one works pretty good
+        -- vim.keymap.set('n', '[d', function()
+        --   vim.diagnostic.goto_next()
+        -- end, { desc = 'next error message' })
+        -- vim.keymap.set('n', ']d', function()
+        --   vim.diagnostic.goto_prev()
+        -- end, { desc = 'previous error message' })
 
-
-        vim.keymap.set("n", "<leader>fr",
-          function() require('telescope.builtin').lsp_references() end, opts)
-        vim.keymap.set("n", "<leader>lwl", ":LspZeroWorkspaceList<CR>", opts)
-        vim.keymap.set("n", "<leader>lwr", ":LspZeroWorkspaceRemove<CR>", opts)
-        vim.keymap.set("n", "<leader>lwa", ":LspZeroWorkspaceAdd<CR>", opts)
-        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-
+        vim.keymap.set('n', '<leader>fr', function()
+          require('telescope.builtin').lsp_references()
+        end, opts)
+        vim.keymap.set('n', '<leader>lwl', ':LspZeroWorkspaceList<CR>', opts)
+        vim.keymap.set('n', '<leader>lwr', ':LspZeroWorkspaceRemove<CR>', opts)
+        vim.keymap.set('n', '<leader>lwa', ':LspZeroWorkspaceAdd<CR>', opts)
+        vim.keymap.set('n', 'gd', function()
+          vim.lsp.buf.definition()
+        end, opts)
 
         local function goto_definition_split()
           -- Split the window horizontally and then jump to the definition
-          vim.cmd('vsplit')
+          vim.cmd 'vsplit'
           vim.lsp.buf.definition()
         end
         vim.keymap.set('n', 'gs', goto_definition_split, { silent = true })
@@ -70,19 +75,24 @@ return {
       --     ['typescript-tools'] = { 'typescriptreact' }
       --   }
       -- })
-      require('mason').setup({
+      require('mason').setup {
         -- ensure_installed = { 'debugpy' },
-      })
+      }
       --TODO: I wasnt able to add debugpy to the ensure installed list
-      require("mason-lspconfig").setup({
-        ensure_installed = { 'lua_ls', 'graphql', 'emmet_ls', 'tailwindcss', 'texlab', 'pylsp', 'pyright' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
+      require('mason-lspconfig').setup {
+        ensure_installed = { 'lua_ls', 'prettierd', 'graphql', 'emmet_ls', 'tailwindcss-language-server', 'typescript-language-server', 'texlab', 'tsserver' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
         handlers = {
-          lsp.default_setup
-        }
+          lsp.default_setup,
+        },
+      }
 
-      })
-
-      require('lspconfig').pylsp.setup({
+      require('lspconfig').tsserver.setup {
+        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+        root_dir = function(...)
+          return require('lspconfig.util').root_pattern '.git'(...)
+        end,
+      }
+      require('lspconfig').pylsp.setup {
         settings = {
 
           pylsp = {
@@ -100,8 +110,8 @@ return {
               pyflakes = { enabled = false },
               pycodestyle = {
                 enabled = true,
-                ignore = { "E501" }, -- Option 1: Ignore E501
-                maxLineLength = 120  -- Option 2: Set a longer maximum line length
+                ignore = { 'E501' }, -- Option 1: Ignore E501
+                maxLineLength = 120, -- Option 2: Set a longer maximum line length
               },
               -- -- type checker
               -- pylsp_mypy = { enabled = true },
@@ -109,12 +119,10 @@ return {
               jedi_completion = { fuzzy = true },
               -- -- import sorting
               pyls_isort = { enabled = true },
-            }
+            },
           },
-        }
-      })
-
-
+        },
+      }
 
       -- require('lspconfig').mypy.setup({
       -- 	filetypes = { 'python' },
@@ -123,9 +131,12 @@ return {
       -- 	update_insert_text = false
       -- filetypes = { 'lua', 'python' }
       -- })
-      require('lspconfig').tailwindcss.setup({
+      require('lspconfig').tailwindcss.setup {
         -- root_dir = {}
-      })
+      }
+      -- require('lspconfig').eslint.setup {
+      --   -- root_dir = {}
+      -- }
 
       -- require('lspconfig').pylyzer.setup({
       -- 	-- root_dir = function() vim.fn.getcwd() end,
@@ -136,15 +147,14 @@ return {
       -- 	}
       -- 	filetypes = { 'python' },
       -- })
-      require('lspconfig').texlab.setup({
+      require('lspconfig').texlab.setup {
 
         -- filetypes = {}
-
-      })
+      }
 
       -- require('lspconfig').emmet_ls.setup({
       --
       -- })
     end,
-  }
+  },
 }

@@ -30,6 +30,14 @@ return {
         {
           type = 'pwa-node',
           request = 'launch',
+          name = 'Launch with npm run dev',
+          program = '${workspaceFolder}/node_modules/.bin/npm',
+          args = { 'run', 'dev' },
+          cwd = '${workspaceFolder}',
+        },
+        {
+          type = 'pwa-node',
+          request = 'launch',
           name = 'Launch file',
           program = '${file}',
           cwd = '${workspaceFolder}',
@@ -45,7 +53,7 @@ return {
           type = 'pwa-chrome',
           request = 'launch',
           name = 'Start Chrome with "localhost"',
-          url = 'http://localhost:3000',
+          url = 'http://localhost:8081',
           webRoot = '${workspaceFolder}',
           userDataDir = '${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir',
         },

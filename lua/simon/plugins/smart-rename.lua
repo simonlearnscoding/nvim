@@ -18,7 +18,8 @@ return {
   {
     'smjonas/inc-rename.nvim',
     config = function()
-      vim.keymap.set("n", "<leader>r", ":IncRename ")
+      vim.keymap.set("n", "<leader>rn", ":IncRename ")
+      vim.keymap.set("n", "<leader>lr", ":IncRename ", { desc = "Rename the current word under the cursor" })
       require('inc_rename').setup({
         input_buffer_type = "dressing",
       })

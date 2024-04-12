@@ -30,7 +30,7 @@ return {
                         key = 's',
                     },
                     {
-                        desc = ' [t]odo ',
+                        desc = '󰄸 [t]odo ',
                         group = 'DiagnosticHint',
                         action = 'TodoTelescope',
                         key = 't',
