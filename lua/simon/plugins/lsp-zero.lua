@@ -80,7 +80,7 @@ return {
       }
       --TODO: I wasnt able to add debugpy to the ensure installed list
       require('mason-lspconfig').setup {
-        ensure_installed = { 'lua_ls', 'prettierd', 'graphql', 'emmet_ls', 'tailwindcss-language-server', 'typescript-language-server', 'texlab', 'tsserver' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
+        ensure_installed = { 'lua_ls', 'graphql', 'emmet_ls', 'texlab', 'tsserver' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
         handlers = {
           lsp.default_setup,
         },
