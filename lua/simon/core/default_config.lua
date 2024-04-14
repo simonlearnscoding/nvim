@@ -1,7 +1,8 @@
 local M = {}
+-- hi
 
 M.options = {
-  nvchad_branch = "v2.0",
+  nvchad_branch = 'v2.0',
 }
 
 M.ui = {
@@ -10,9 +11,6 @@ M.ui = {
   hl_add = {},
   hl_override = {},
   changed_themes = {},
-  theme_toggle = { "onedark", "one_light" },
-  theme = "onedark",           -- default theme
-  transparency = false,
   lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
 
   -- https://github.com/NvChad/base46/tree/v2.0/lua/base46/extended_integrations
@@ -22,19 +20,19 @@ M.ui = {
   cmp = {
     icons = true,
     lspkind_text = true,
-    style = "default",            -- default/flat_light/flat_dark/atom/atom_colored
-    border_color = "grey_fg",     -- only applicable for "default" style, use color names from base30 variables
-    selected_item_bg = "colored", -- colored / simple
+    style = 'default', -- default/flat_light/flat_dark/atom/atom_colored
+    border_color = 'grey_fg', -- only applicable for "default" style, use color names from base30 variables
+    selected_item_bg = 'colored', -- colored / simple
   },
 
-  telescope = { style = "bordered" }, -- borderless / bordered
+  telescope = { style = 'bordered' }, -- borderless / bordered
 
   ------------------------------- nvchad_ui modules -----------------------------
   statusline = {
-    theme = "default", -- default/vscode/vscode_colored/minimal
+    theme = 'default', -- default/vscode/vscode_colored/minimal
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
-    separator_style = "default",
+    separator_style = 'default',
     overriden_modules = nil,
   },
 
@@ -51,28 +49,28 @@ M.ui = {
     load_on_startup = true,
 
     header = {
-      "           ▄ ▄                   ",
-      "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
-      "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
-      "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
-      "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ",
-      "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄",
-      "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █",
-      "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █",
-      "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
+      '           ▄ ▄                   ',
+      '       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ',
+      '       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ',
+      '    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ',
+      '  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ',
+      '  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄',
+      '▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █',
+      '█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █',
+      '    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ',
     },
 
     buttons = {
-      { "  Find File", "Spc f f", "Telescope find_files" },
-      { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
-      { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
-      { "  Bookmarks", "Spc m a", "Telescope marks" },
-      { "  Themes", "Spc t h", "Telescope themes" },
-      { "  Mappings", "Spc c h", "NvCheatsheet" },
+      { '  Find File', 'Spc f f', 'Telescope find_files' },
+      { '󰈚  Recent Files', 'Spc f o', 'Telescope oldfiles' },
+      { '󰈭  Find Word', 'Spc f w', 'Telescope live_grep' },
+      { '  Bookmarks', 'Spc m a', 'Telescope marks' },
+      { '  Themes', 'Spc t h', 'Telescope themes' },
+      { '  Mappings', 'Spc c h', 'NvCheatsheet' },
     },
   },
 
-  cheatsheet = { theme = "grid" }, -- simple/grid
+  cheatsheet = { theme = 'grid' }, -- simple/grid
 
   lsp = {
     -- show function signatures i.e args as you type
