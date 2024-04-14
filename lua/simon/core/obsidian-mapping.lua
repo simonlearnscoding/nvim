@@ -36,7 +36,7 @@ function ObsidianAction()
   local col = vim.api.nvim_win_get_cursor(0)[2] + 1 -- Lua is 1-indexed
   -- Use a pattern to capture the word under the cursor
   -- This pattern looks for [[, any characters, and ]]
-  local pattern = '%[%[(.-)%]%]'
+  local pattern = '%[(.-)%]'
   local word_start, word_end, captured = string.find(line, pattern, 1)
 
   -- Check if the cursor is within the bounds of a word that matches the pattern
@@ -66,9 +66,9 @@ local function handle_markdown_enter()
   wk.register(markdownMappings, { mode = 'n', buffer = vim.api.nvim_get_current_buf() })
 
   -- Go to next Markdown link
-  vim.api.nvim_set_keymap('n', '<Tab>', '/\\[\\[.*\\]\\]<CR>zz', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<Tab>', '/\\[.*\\]<CR>zz', { noremap = true, silent = true })
   -- Go to previous Markdown link
-  vim.api.nvim_set_keymap('n', '<S-Tab>', '?\\[\\[.*\\]\\]<CR>zz', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<S-Tab>', '?\\[.*\\]<CR>zz', { noremap = true, silent = true })
 end
 
 -- Set up an autocommand that calls set_markdown_keymaps for Markdown files

@@ -1,18 +1,20 @@
 return {
 
-  event = "BufEnter", -- optional, see below
-  "epwalsh/obsidian.nvim",
-  version = "*",      -- recommended, use latest release instead of latest commit
+  event = 'BufEnter', -- optional, see below
+  'epwalsh/obsidian.nvim',
+  version = '*', -- recommended, use latest release instead of latest commit
   config = function()
-    require("obsidian").setup {
+    require('obsidian').setup {
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
       --
+      -- Either 'wiki' or 'markdown'.
+      preferred_link_style = 'markdown',
       workspaces = {
         {
-          name = "personal",
-          path = "~/projects/pages",
+          name = 'personal',
+          path = '~/projects/pages',
         },
       },
 
@@ -23,22 +25,22 @@ return {
         -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
         -- In this case a note with the title 'My new note' will be given an ID that looks
         -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
-        local suffix = ""
+        local suffix = ''
         if title ~= nil then
           -- If title is given, transform it into valid file name.
-          suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+          suffix = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
         else
           -- If title is nil, just add 4 random uppercase letters to the suffix.
           for _ = 1, 4 do
             suffix = suffix .. string.char(math.random(65, 90))
           end
         end
-        return tostring(os.time()) .. "-" .. suffix
+        return tostring(os.time()) .. '-' .. suffix
       end,
       ---@param url string
       follow_url_func = function(url)
         -- Open the URL in the default web browser.
-        vim.fn.jobstart({ "open", url }) -- Mac OS
+        vim.fn.jobstart { 'open', url } -- Mac OS
         -- vim.fn.jobstart({"xdg-open", url})  -- linux
       end,
       -- ui = {
@@ -91,8 +93,6 @@ return {
     -- vim.keymap.set("n", "<CR>", "<cmd>ObsidianFollowLink<CR>", { noremap = true, silent = true })
     -- vim.keymap.set("n", "<BS>", "<cmd>ObsidianBacklinks<CR>", { noremap = true, silent = true })
 
-
-
     -- local function set_markdown_keymaps()
     --   local opts = { noremap = true, silent = true }
     --   vim.keymap.set("n", "<BS>", "<cmd>ObsidianBacklinks<CR>", { noremap = true, silent = true })
@@ -102,10 +102,10 @@ return {
     --   local opts = { noremap = true, silent = true }
     -- end
   end,
-  ft = "markdown",
+  ft = 'markdown',
   dependencies = {
     -- Required.
-    "nvim-lua/plenary.nvim",
+    'nvim-lua/plenary.nvim',
 
     --:
     -- see below for full list of optional dependencies 👇
