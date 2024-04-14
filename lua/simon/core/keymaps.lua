@@ -68,8 +68,8 @@ maps.n['<leader>bc'] = { '<cmd>:BufferLinePickClose<cr>', desc = '[c]lose' }
 maps.n['<leader>bl'] = { '<cmd>:BufferLineCloseRight<cr>', desc = 'close every buffer to the right' }
 maps.n['<leader>bh'] = { '<cmd>:BufferLineCloseLeft<cr>', desc = 'close every buffer to the left' }
 maps.n['<leader>ba'] = { '<cmd>:BufferLineCloseOthers<cr>', desc = 'close every buffer except for the current one' }
-maps.n['<S-h>'] = { '<cmd>bprevious<cr>', desc = 'Previous Buffer' }
-maps.n['<S-l>'] = { '<cmd>bnext<cr>', desc = 'Next Buffer' }
+maps.n['<S-l>'] = { '<cmd>BufferLineCycleNext<cr>', desc = 'Previous Buffer' }
+maps.n['<S-h>'] = { '<cmd>BufferLineCyclePrev<cr>', desc = 'Next Buffer' }
 maps.n['[b'] = { '<cmd>bprevious<cr>', desc = 'Previous Buffer' }
 maps.n[']b'] = { '<cmd>bnext<cr>', desc = 'Next Buffer' }
 
