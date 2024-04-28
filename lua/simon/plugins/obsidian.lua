@@ -1,10 +1,67 @@
+local function week_of_year(timestamp)
+  local start_of_year = os.time { year = os.date('%Y', timestamp), month = 1, day = 1 }
+  local week_number = math.floor((timestamp - start_of_year) / (7 * 24 * 60 * 60)) + 1
+  return week_number
+end
+
+local function month_of_year(timestamp)
+  return os.date('%B', timestamp)
+end
+
+local function this_week()
+  local now = os.time()
+  return 'week-' .. week_of_year(now)
+end
+
+local function last_week()
+  local now = os.time()
+  local last_week_timestamp = now - (7 * 24 * 60 * 60)
+  return 'week-' .. week_of_year(last_week_timestamp)
+end
+
+local function next_week()
+  local now = os.time()
+  local next_week_timestamp = now + (7 * 24 * 60 * 60)
+  return 'week-' .. week_of_year(next_week_timestamp)
+end
+
+local function this_month()
+  local now = os.time()
+  return month_of_year(now)
+end
 return {
 
-  event = 'BufEnter', -- optional, see below
+  event = 'VeryLazy', -- optional, see below
   'epwalsh/obsidian.nvim',
   version = '*', -- recommended, use latest release instead of latest commit
+
   config = function()
     require('obsidian').setup {
+
+      -- other fields ...
+      templates = {
+        subdir = 'templates',
+        substitutions = {
+          yesterday = function()
+            return os.date('%Y-%m-%d', os.time() - 86400)
+          end,
+
+          two_days_ago = function()
+            return os.date('%Y-%m-%d', os.time() - 180000)
+          end,
+          tomorrow = function()
+            return os.date('%Y-%m-%d', os.time() + 86400)
+          end,
+
+          in_two_days = function()
+            return os.date('%Y-%m-%d', os.time() + 18000)
+          end,
+          this_week = this_week,
+          next_week = next_week,
+          last_week = last_week,
+          this_month = this_month,
+        },
+      },
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
@@ -22,15 +79,10 @@ return {
       ---@param title string|?
       ---@return string
       note_id_func = function(title)
-        -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
-        -- In this case a note with the title 'My new note' will be given an ID that looks
-        -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
         local suffix = ''
         if title ~= nil then
-          -- If title is given, transform it into valid file name.
           suffix = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
         else
-          -- If title is nil, just add 4 random uppercase letters to the suffix.
           for _ = 1, 4 do
             suffix = suffix .. string.char(math.random(65, 90))
           end
@@ -41,73 +93,12 @@ return {
       follow_url_func = function(url)
         -- Open the URL in the default web browser.
         vim.fn.jobstart { 'open', url } -- Mac OS
-        -- vim.fn.jobstart({"xdg-open", url})  -- linux
       end,
-      -- ui = {
-      --   enable = true, -- set to false to disable all additional syntax features
-      --
-      --   hl_groups = {
-      --     -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
-      --     ObsidianTodo = { fg = "#f78c6c" },
-      --     ObsidianDone = { bold = true, fg = "#89ddff" },
-      --     ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
-      --     ObsidianTilde = { bold = true, fg = "#ff5370" },
-      --     ObsidianBullet = { bold = true, fg = "#89ddff" },
-      --     ObsidianRefText = { underline = true, fg = "#c792ea" },
-      --     ObsidianExtLinkIcon = { fg = "#c792ea" },
-      --     ObsidianTag = { italic = true, fg = "#89ddff" },
-      --     ObsidianBlockID = { italic = true, fg = "#89ddff" },
-      --     ObsidianHighlightText = { bg = "#75662e" },
-      --   },
-      --   -- checkboxes = {
-      --   --   -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-      --   --   [" "] = { char = "☐", hl_group = "ObsidianTodo" },
-      --   --   ["x"] = { char = "", hl_group = "ObsidianDone" },
-      --   --   [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-      --   --   ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-      --   -- }
-      -- }
     }
-
-    -- Key mappings should be inside the config function
-    -- vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>")
-    -- local utils = require 'simon.utils'
-    -- local maps = { i = {}, n = {}, v = {}, t = {} }
-    --
-    -- local prefix = '<leader>o'
-
-    -- vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianOpen<CR>")
-    -- vim.keymap.set("n", "<leader>oi", ":e ~/projects/pages/index.md<CR>")
-    -- vim.keymap.set("n", "<leader>oy", "<cmd>ObsidianDailies<CR>")
-    -- vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>")
-    -- vim.keymap.set("n", "<leader>oe", "<cmd>ObsidianExtractNote<CR>")
-    -- vim.keymap.set("n", "<leader>of", "<cmd>ObsidianQuickSwitch<CR>")
-    -- vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTags<CR>")
-    -- vim.keymap.set("n", "<leader>og", "<cmd>ObsidianPasteImg<CR>")
-    -- vim.keymap.set("n", "<leader>or", "<cmd>ObsidianRename<CR>")
-    -- vim.keymap.set("n", "<leader>ow", "<cmd>ObsidianSearch<CR>", { noremap = true, silent = true })
-    -- vim.keymap.set("n", "<leader>ol", "<cmd>ObsidianLinks<CR>")
-    -- -- vim.keymap.set("n", "<leader><leader>", "<cmd>ObsidianLinks<CR>")
-    -- vim.keymap.set("n", "<leader>od", "<cmd>ObsidianToday<CR>")
-    -- vim.keymap.set("n", "<leader>om", "<cmd>ObsidianTomorrow<CR>")
-    -- vim.keymap.set("n", "<CR>", "<cmd>ObsidianFollowLink<CR>", { noremap = true, silent = true })
-    -- vim.keymap.set("n", "<BS>", "<cmd>ObsidianBacklinks<CR>", { noremap = true, silent = true })
-
-    -- local function set_markdown_keymaps()
-    --   local opts = { noremap = true, silent = true }
-    --   vim.keymap.set("n", "<BS>", "<cmd>ObsidianBacklinks<CR>", { noremap = true, silent = true })
-    -- end
-
-    -- local function remove_markdown_keymaps()
-    --   local opts = { noremap = true, silent = true }
-    -- end
   end,
   ft = 'markdown',
   dependencies = {
     -- Required.
     'nvim-lua/plenary.nvim',
-
-    --:
-    -- see below for full list of optional dependencies 👇
   },
 }

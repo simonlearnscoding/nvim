@@ -4,12 +4,13 @@ package.path = package.path .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share
 --          ╭─────────────────────────────────────────────────────────╮
 --          │                    IMPORTING KEYMAPS                    │
 --          ╰─────────────────────────────────────────────────────────╯
+-- Set the EDITOR environment variable to 'nvim'
+vim.env.EDITOR = 'nvim'
 
 require 'simon.core.options'
 require 'simon.plugins-setup'
 
--- TODO: clean up this file
--- TODO: replace this with a better way to do this
+-- REFACTOR: clean up this file
 require 'simon.core.keymaps'
 require 'simon.core.window-management-mapping'
 require 'simon.core.telescope-mappings'
@@ -22,7 +23,7 @@ require 'simon.core.obsidian-mapping'
 require 'simon.core.todo-mapping'
 -- require 'simon.core.todokanban'
 
-vim.cmd [[highlight CustomCmpItemSel guibg=#5686f5 guifg=#ffffff]]
+-- vim.cmd [[highlight CustomCmpItemSel guibg=#5686f5 guifg=#ffffff]]
 
 -- vim.cmd 'colorscheme sonokai'
 -- vim.cmd 'colorscheme kanagawa'
@@ -31,7 +32,7 @@ vim.cmd [[highlight CustomCmpItemSel guibg=#5686f5 guifg=#ffffff]]
 -- vim.cmd 'colorscheme catppuccin'
 -- vim.cmd 'colorscheme miramare'
 -- TODO: fix this
-vim.cmd 'colorscheme nightfox'
+-- vim.cmd 'colorscheme nightfox'
 -- vim.cmd 'colorscheme gruvbox-material'
 -- vim.cmd 'colorscheme tokyonight'
 -- vim.cmd 'colorscheme everforest'
@@ -46,7 +47,7 @@ vim.cmd 'colorscheme nightfox'
 if vim.g.neovide then
   -- vim.g.neovide_transparency = 0.95
   vim.g.neovide_input_macos_alt_is_meta = true
-  vim.o.guifont = 'JetBrains Mono:h11'
+  vim.o.guifont = 'JetBrains Mono:h12'
   -- vim.cmd [[set guifont=MonoLisa:10,Symbols\ Nerd\ Font:h10]]
 
   -- Insert mode mappings for Alt + H and Alt + K
@@ -84,7 +85,7 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHo
   pattern = '*',
   command = 'checktime',
 })
-
+-- LATER: what does this one do?
 vim.opt.confirm = true
 vim.api.nvim_create_autocmd('FileChangedShellPost', {
   group = auto_read_group,
@@ -98,8 +99,8 @@ vim.api.nvim_create_autocmd('FileChangedShellPost', {
 vim.cmd 'highlight DapBreakpoint ctermbg=0 guifg=#993939 guibg=#31353f'
 vim.cmd 'highlight DapLogPoint ctermbg=0 guifg=#61afef guibg=#31353f'
 vim.cmd 'highlight DapStopped ctermbg=0 guifg=#98c379 guibg=#31353f'
-vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
-vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapLogPoint', linehl = 'DapLogPoint', numhl = 'DapLogPoint' })
 vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' })

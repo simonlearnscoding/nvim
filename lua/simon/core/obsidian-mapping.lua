@@ -14,6 +14,7 @@ local mappings = {
     n = { '<cmd>ObsidianNew<CR>', ' [n]ew note' },
     e = { '<cmd>ObsidianExtractNote<CR>', ' [e]xtract note' },
     f = { '<cmd>ObsidianQuickSwitch<CR>', '󰍉 [f]ind' },
+    T = { '<cmd>ObsidianTemplate<CR>', '󱁉 [T]emplates' },
     t = { '<cmd>ObsidianTags<CR>', '󰓹 [t]ags' },
     g = { '<cmd>ObsidianPasteImg<CR>', ' [p]aste image' },
     r = { '<cmd>ObsidianRename<CR>', '󱁉 [r]ename' },

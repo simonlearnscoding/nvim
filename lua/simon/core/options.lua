@@ -74,7 +74,7 @@ local options = {
     maplocalleader = ' ',
   },
   -- consider commenting if it will cause issues
-  t = vim.t.bufs and vim.t.bufs or { bufs = vim.api.nvim_list_bufs() }, -- initialize buffers for the current tab
+  -- t = vim.t.bufs and vim.t.bufs or { bufs = vim.api.nvim_list_bufs() }, -- initialize buffers for the current tab
 }
 
 -- [[ Highlight on yank ]]

@@ -1,20 +1,19 @@
 return {
   'stevearc/oil.nvim',
   opts = {},
+  tag = 'v2.8.0',
   -- Optional dependencies
-  dependencies = { "nvim-tree/nvim-web-devicons",
-    's1n7ax/nvim-window-picker',
-  },
+  dependencies = { 'nvim-tree/nvim-web-devicons', 's1n7ax/nvim-window-picker' },
 
   config = function()
     local function goToWindow()
       -- Call the window-picker function and get the window ID
-      local win_id = require("window-picker").pick_window({ hint = 'floating-big-letter' })
+      local win_id = require('window-picker').pick_window { hint = 'floating-big-letter' }
 
       -- Check if a valid window ID was returned
       if win_id and vim.api.nvim_win_is_valid(win_id) then
         -- Get the current line number
-        local current_line = vim.fn.line('.')
+        local current_line = vim.fn.line '.'
 
         -- Set the current window to the one selected
         vim.api.nvim_set_current_win(win_id)
@@ -31,13 +30,12 @@ return {
         -- Open the file by pressing <CR>
         require('oil').select()
       else
-        print("Invalid window ID")
+        print 'Invalid window ID'
       end
     end
 
-
     -- Bind the function to a key combination of your choice
-    require("oil").setup({
+    require('oil').setup {
       delete_to_trash = true,
       skip_confirm_for_simple_edits = true,
       show_hidden = true,
@@ -50,16 +48,16 @@ return {
         autosave_changes = true,
       },
       preview = {
-        max_width = 0.4
+        max_width = 0.4,
       },
       float = {
         max_width = 40,
 
         max_height = 40,
-        border = "rounded",
+        border = 'rounded',
         -- padding = 10,
         win_options = {
-          winblend = 30
+          winblend = 30,
         },
 
         override = function(conf)
@@ -70,16 +68,16 @@ return {
         end,
       },
       keymaps = {
-        ["<C-c>"] = "actions.close",
-        ["q"] = "actions.close",
-        ["w"] = goToWindow,
-        ["<BS>"] = "actions.parent",
-        ["|"] = "actions.select_vsplit",
-        ["s"] = "actions.select_vsplit",
-        ["\\"] = "actions.select_split",
-      }
-    })
+        ['<C-c>'] = 'actions.close',
+        ['q'] = 'actions.close',
+        ['w'] = goToWindow,
+        ['<BS>'] = 'actions.parent',
+        ['|'] = 'actions.select_vsplit',
+        ['s'] = 'actions.select_vsplit',
+        ['\\'] = 'actions.select_split',
+      },
+    }
     -- vim.keymap.set("n", "<leader>to", require('oil').toggle_float)
-    vim.keymap.set("n", "<leader>e", require('oil').toggle_float)
-  end
+    vim.keymap.set('n', '<leader>e', require('oil').toggle_float)
+  end,
 }
