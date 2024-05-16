@@ -1,5 +1,6 @@
 return {
   'akinsho/bufferline.nvim',
+  event = 'BufWinEnter',
   config = function()
     local bufferline = require 'bufferline'
 
@@ -21,7 +22,7 @@ return {
         end,
         separator_style = 'thin',
         always_show_bufferline = true,
-
+        mode = 'buffers',
         indicator_icon = '▎',
         -- buffer_close_icon = '',
         -- close_icon = '',
