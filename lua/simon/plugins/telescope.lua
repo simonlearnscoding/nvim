@@ -34,6 +34,7 @@ return {
     -- telescope.load_extension 'luasnip'
     -- telescope.load_extension 'session-lens'
     telescope.load_extension 'bibtex'
+    -- telescope.load_extension("git_file_history")
 
     telescope.load_extension 'ui-select'
     telescope.load_extension 'zoxide'

@@ -1,4 +1,6 @@
+-- TODO: see if I have to change this
 return {
+  event = 'VeryLazy',
   'windwp/nvim-ts-autotag',
   dependendencies = {
     'nvim-treesitter/nvim-treesitter'
@@ -6,7 +8,6 @@ return {
   config = function()
     require('nvim-ts-autotag').setup({
       enable_close_on_slash = false,
-
     })
 
     vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
@@ -20,13 +21,15 @@ return {
         update_in_insert = true,
       }
     )
-    require('nvim-treesitter.configs').setup({
-      autotag = {
-        enable = true,
-        enamle_rename = true,
-        enable_close = true,
-        enable_close_all = false,
-      }
-    })
+
+    -- require('nvim-treesitter.configs').setup({
+    --   autotag = {
+    --     enable = true,
+    --     enamle_rename = true,
+    --     filetypes = { 'html', 'javascript', 'vue' },
+    --     enable_close = true,
+    --     enable_close_all = false,
+    --   }
+    -- })
   end,
 }

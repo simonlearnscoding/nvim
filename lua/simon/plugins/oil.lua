@@ -1,5 +1,6 @@
 return {
   'stevearc/oil.nvim',
+  event = 'BufRead',
   opts = {},
   tag = 'v2.8.0',
   -- Optional dependencies

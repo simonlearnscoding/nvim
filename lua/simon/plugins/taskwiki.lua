@@ -1,7 +1,7 @@
 return {
   'tools-life/taskwiki',
   -- name = 'taskwikiwarrior',
-  -- event = 'VeryLazy',
+  event = 'BufRead',
   dependencies = {
     'powerman/vim-plugin-AnsiEsc',
     -- 'taskwiki/vim-taskwiki',

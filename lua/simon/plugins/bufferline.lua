@@ -1,62 +1,46 @@
 return {
   'akinsho/bufferline.nvim',
-  event = 'BufWinEnter',
+  event = 'VeryLazy',
   config = function()
-    local bufferline = require 'bufferline'
-
-    bufferline.setup {
+    require('bufferline').setup {
       options = {
-        groups = {
-          items = {
-            require('bufferline.groups').builtin.pinned:with { icon = '' },
-          },
-        },
-        diagnostics_indicator = function(count, level, diagnostics_dict, context)
-          if context.buffer:current() then
-            return ''
-          end
-          if level ~= 'error' then
-            return ''
-          end
-          return ''
-        end,
-        separator_style = 'thin',
-        always_show_bufferline = true,
-        mode = 'buffers',
+        numbers = 'none',
+        number_style = 'superscript',
+        mappings = true,
+        close_command = 'bdelete! %d',
+        right_mouse_command = 'bdelete! %d',
+        left_mouse_command = 'buffer %d',
+        middle_mouse_command = nil,
         indicator_icon = '▎',
-        -- buffer_close_icon = '',
-        -- close_icon = '',
-        left_trunc_marker = '',
-        right_trunc_marker = '',
-        show_buffer_icons = true,
-        show_buffer_close_icons = false,
-        show_close_icon = true,
-        enforce_regular_tabs = true,
-        color_icons = true,
-
-        -- tab_size = 10,
-        modified_icon = '',
-        -- max_name_length = 12,
-        --
-        persist_buffer_sort = true,
-        -- themable = true,
+        buffer_close_icon = '',
+        modified_icon = '●',
+        close_icon = '',
+        left_trunc_marker = '',
+        right_trunc_marker = '',
+        max_name_length = 18,
+        max_prefix_length = 15,
+        tab_size = 18,
         diagnostics = 'nvim_lsp',
-        hover = {
-          enabled = true,
-          delay = 100,
-          reveal = { 'close' },
+        diagnostics_indicator = function(count, level, diagnostics_dict, context)
+          return "(" .. count .. ")"
+        end,
+        offsets = {
+          {
+            filetype = "NvimTree",
+            text = "File Explorer",
+            text_align = "center"
+          }
         },
-      },
+        show_buffer_icons = true,
+        show_buffer_close_icons = true,
+        show_close_icon = true,
+        show_tab_indicators = true,
+        persist_buffer_sort = true,
+        separator_style = "thin",
+        enforce_regular_tabs = false,
+        always_show_bufferline = true,
+        sort_by = 'id'
+      }
     }
-    vim.keymap.set('n', '<leader>bt', ':BufferLineTogglePin<CR>', { desc = 'Toggle Pinned' })
-
-    -- Map a key to toggle sorting order
-    -- vim.keymap.set(
-    --   'n',
-    --   '<leader>bs',
-    --   "<cmd>lua require'bufferline'.sort_by(function (buf_a, buf_b) return buf_a.modified < buf_b.modified end)<CR>",
-    --   { desc = 'Sort Buffers by last edit' }
-    -- )
-    vim.keymap.set('n', '<leader>bs', "<cmd>lua require'bufferline'.sort_by(directory)<CR>", { desc = 'Sort Buffers by last edit' })
-  end,
+  end
 }

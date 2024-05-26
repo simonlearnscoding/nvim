@@ -1,8 +1,9 @@
 return {
   'nvimdev/lspsaga.nvim',
+  event = "VeryLazy",
   dependencies = {
     'nvim-treesitter/nvim-treesitter', -- optional
-    'nvim-tree/nvim-web-devicons', -- optional
+    'nvim-tree/nvim-web-devicons',     -- optional
   },
   config = function()
     require('lspsaga').setup {
@@ -33,8 +34,10 @@ return {
     }
 
     -- Set up key bindings
-    vim.keymap.set('n', '<leader>h', ':Lspsaga peek_definition<CR>', { noremap = true, silent = true, desc = 'Preview Definition' })
-    vim.keymap.set('n', '<leader>lt', ':Lspsaga goto_type_definition<CR>', { noremap = true, silent = true, desc = 'Preview Definition' })
+    vim.keymap.set('n', '<leader>h', ':Lspsaga peek_definition<CR>',
+      { noremap = true, silent = true, desc = 'Preview Definition' })
+    vim.keymap.set('n', '<leader>lt', ':Lspsaga goto_type_definition<CR>',
+      { noremap = true, silent = true, desc = 'Preview Definition' })
     vim.keymap.set('n', '<C-e>', ':Lspsaga outline<CR>', { noremap = true, silent = true, desc = 'Preview Definition' })
 
     vim.keymap.set('n', '[d', ':Lspsaga diagnostic_jump_prev<CR>', { desc = 'next error message' })

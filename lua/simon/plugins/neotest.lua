@@ -2,6 +2,7 @@ return {
   "nvim-neotest/neotest",
   event = "BufReadPost",
   dependencies = {
+    "thenbe/neotest-playwright",
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
@@ -20,7 +21,18 @@ return {
       discovery = {
         enabled = false,
       },
+      consumers = {
+        playwright = require("neotest-playwright").consumers,
+      },
+
       adapters = {
+
+        require("neotest-playwright").adapter({
+          options = {
+            persist_project_selection = true,
+            enable_dynamic_test_discovery = true,
+          }
+        }),
         require('neotest-jest')({
           jestCommand = "npm test  ",
           jestConfigFile = "custom.jest.config.ts",

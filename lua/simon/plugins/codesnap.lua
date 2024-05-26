@@ -1,1 +1,5 @@
-return { 'mistricky/codesnap.nvim', build = 'make' }
+return {
+  'mistricky/codesnap.nvim',
+  event = 'BufWritePost',
+  build = 'make'
+}

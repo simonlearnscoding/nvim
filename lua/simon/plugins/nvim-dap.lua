@@ -53,13 +53,30 @@ return {
           },
 
           {
-            name = 'Next.js: debug client-side',
+            name = 'Next.js: debug client port 3000',
+            type = 'pwa-chrome',
+            request = 'launch',
+            url = 'http://localhost:3000',
+            webRoot = '${workspaceFolder}',
+            sourceMaps = true,
+            skipFiles = {
+              '<node_internals>/**',
+              'webpack:///external-source/**',
+              '**/node_modules/**'
+            },
+          },
+          {
+            name = 'Next.js: debug client port 8081',
             type = 'pwa-chrome',
             request = 'launch',
             url = 'http://localhost:8081',
             webRoot = '${workspaceFolder}',
             sourceMaps = true,
-            skipFiles = { '<node_internals>/**', 'webpack:///external-source/**' }, -- Skip node internals and other external sources
+            skipFiles = {
+              '<node_internals>/**',
+              'webpack:///external-source/**',
+              '**/node_modules/**'
+            },
           },
           {
             type = 'pwa-node',
@@ -79,7 +96,7 @@ return {
             cwd = vim.fn.getcwd(),
             sourceMaps = true,
             -- Ensure that the port matches the port your application runs on if needed
-            port = 8081, -- Adjust this to the port your npm script uses, if applicable
+            port = 8081,                           -- Adjust this to the port your npm script uses, if applicable
             skipFiles = { '<node_internals>/**' }, -- Optional: Skip internal Node.js files while debugging
           },
           -- Debug nodejs processes (make sure to add --inspect when you run the process)

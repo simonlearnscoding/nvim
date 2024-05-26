@@ -15,12 +15,8 @@ return {
           accept_line = false,
           next = '<C-.>',
           prev = '<C-,>',
-          -- dismiss = '<C/>',
-          --dismiss = false,
         },
       },
     }
   end,
 }
-
--- Path: .config/nvim/lua/simon/plugins/cmp.lua
