@@ -1,2 +1,0 @@
-$GPT_API_KEY =   "sk-proj-lxseaZ4DZJGo5qcu8WLJT3BlbkFJdIXq7J4SS4Ly14hERu1k"
-
