@@ -1,6 +1,0 @@
-return {
-  'rolfworld/ankifly.nvim',
-  config = function()
-  end
-
-}

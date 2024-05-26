@@ -1,14 +1,11 @@
 return {
   'mfussenegger/nvim-dap',
+  event = 'VeryLazy',
   dependencies = {
     'rcarriga/nvim-dap-ui',
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
     'mfussenegger/nvim-dap-python',
-    -- {
-    --   'microsoft/vscode-js-debug',
-    --   build = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out',
-    -- },
     {
       'mxsdev/nvim-dap-vscode-js',
       run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out',
@@ -16,9 +13,6 @@ return {
     'leoluz/nvim-dap-go',
   },
   config = function()
-    local dap = require 'dap'
-    local dapui = require 'dapui'
-
     require('dap-vscode-js').setup {
       debugger_path = vim.fn.stdpath 'data' .. '/lazy/vscode-js-debug', -- Path to vscode-js-debug installation.
       adapters = { 'chrome', 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost', 'node',

@@ -1,6 +1,7 @@
 return
 {
   "chrisgrieser/nvim-scissors",
+  event = "BufRead",
   dependencies = "nvim-telescope/telescope.nvim", -- optional
   opts = {
     snippetDir = "~/.config/nvim/snippets",

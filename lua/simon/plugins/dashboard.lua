@@ -1,16 +1,3 @@
--- return {
---     'goolord/alpha-nvim',
---     event = 'BufWinEnter',
---     dependencies = {
---         'nvim-tree/nvim-web-devicons',
---         'nvim-lua/plenary.nvim'
---     },
---     config = function()
---         require 'alpha'.setup(require 'alpha.themes.theta'.config)
---     end
---
--- };
-
 return {
     'nvimdev/dashboard-nvim',
     config = function()
@@ -28,12 +15,6 @@ return {
                         group = 'Number',
                         action = 'SessionManager load_session',
                         key = 's',
-                    },
-                    {
-                        desc = '󰄸 [t]odo ',
-                        group = 'DiagnosticHint',
-                        action = 'TodoTelescope',
-                        key = 't',
                     },
                     {
                         icon_hl = '@variable',
@@ -54,19 +35,5 @@ return {
 
         }
     end,
-
     dependencies = { { 'nvim-tree/nvim-web-devicons' } }
 }
-
-
--- ALPHA
--- return {
---     'goolord/alpha-nvim',
---     dependencies = {
---         'nvim-tree/nvim-web-devicons',
---         'nvim-lua/plenary.nvim'
---     },
---     config = function()
---         require 'alpha'.setup(require 'alpha.themes.theta'.config)
---     end
--- };

@@ -1,5 +1,6 @@
 return {
   'aznhe21/actions-preview.nvim',
+  event = 'VeryLazy',
   config = function()
     vim.keymap.set({ 'v', 'n' }, '<leader>ca', require('actions-preview').code_actions, { desc = 'Code Actions' })
     -- vim.keymap.set({ 'v', 'n' }, '<leader>ci', ':TSToolsAddMissingImports<CR>')

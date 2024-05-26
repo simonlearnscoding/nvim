@@ -2,6 +2,7 @@ return
 {
   {
     'folke/zen-mode.nvim',
+    event = "VeryLazy",
     opts = {
       window = {
         width = 0.8, -- width will be 85% of the editor width
@@ -26,6 +27,7 @@ return
   -- Lua
   {
     'folke/twilight.nvim',
+    event = "VeryLazy",
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },

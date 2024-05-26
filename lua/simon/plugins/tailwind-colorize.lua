@@ -1,5 +1,6 @@
 return {
   'hrsh7th/nvim-cmp',
+  event = "VeryLazy",
   dependencies = {
     'roobert/tailwindcss-colorizer-cmp.nvim',
     config = true,

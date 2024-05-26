@@ -4,9 +4,7 @@ package.path = package.path .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share
 --          ╭─────────────────────────────────────────────────────────╮
 --          │                    IMPORTING KEYMAPS                    │
 --          ╰─────────────────────────────────────────────────────────╯
--- Set the EDITOR environment variable to 'nvim'
-vim.env.EDITOR = 'nvim'
-
+require 'simon.core.env'
 require 'simon.core.options'
 require 'simon.plugins-setup'
 
@@ -139,7 +137,26 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
+--
+vim.diagnostic.config({
+  virtual_text = false,
+})
+
 vim.cmd [[
 hi Normal guibg=NONE ctermbg=NONE
 hi NormalNC guibg=NONE ctermbg=NONE
 ]]
+
+-- init.lua
+vim.cmd([[
+augroup suppress_md_errors
+    autocmd!
+    autocmd BufWritePre *.md silent! execute "silent! call v:lua.SuppressErrors()"
+    autocmd BufWritePost *.md silent! execute "silent! call v:lua.SuppressErrors()"
+augroup END
+]])
+
+-- Function to suppress errors
+function _G.SuppressErrors()
+  -- You can leave this function empty or add specific error handling logic if needed
+end

@@ -1,7 +1,7 @@
 -- TODO: what is this?
 return {
   'drgo/lookernvim',
-  event = 'BufRead',
+  event = 'VeryLazy',
   ft = { 'markdown' },
   opts = {
     bib = {
