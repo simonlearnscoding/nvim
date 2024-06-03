@@ -77,12 +77,20 @@ return {
         ensure_installed = { 'lua_ls', 'graphql', 'emmet_ls', 'texlab', 'tsserver' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
         handlers = {
           lsp.default_setup,
-        },
-      }
+        } }
+      -- require 'lspconfig'.eslint.setup({
+      --   settings = {
+      --     packageManager = 'yarn'
+      --   },
+      --   on_attach = function(client, bufnr)
+      --     vim.api.nvim_create_autocmd("BufWritePre", {
+      --       buffer = bufnr,
+      --       command = "EslintFixAll",
+      --     })
+      --   end,
+      -- }) }
 
       require('lspconfig').tsserver.setup {
-
-
         handlers = {
           ["textDocument/publishDiagnostics"] = function(
             _,
@@ -117,6 +125,11 @@ return {
               ctx,
               config
             )
+          end,
+          root_dir = function(fname)
+            return require 'lspconfig'.util.root_pattern('tsconfig.json')(fname) or
+                require 'lspconfig'.util.find_git_ancestor(fname) or
+                require 'lspconfig'.util.path.dirname(fname)
           end,
         },
 

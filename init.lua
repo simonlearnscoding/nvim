@@ -11,7 +11,6 @@ require 'simon.plugins-setup'
 -- REFACTOR: clean up this file
 require 'simon.core.keymaps'
 require 'simon.core.window-management-mapping'
-require 'simon.core.telescope-mappings'
 require 'simon.core.neotest-mappings'
 require 'simon.core.lsp-mappings'
 require 'simon.core.git-mappings'
@@ -20,6 +19,7 @@ require 'simon.core.nvim-ufo-mapping'
 require 'simon.core.obsidian-mapping'
 require 'simon.core.todo-mapping'
 -- require 'simon.core.todokanban'
+require 'simon.core.telescope-mappings'
 
 -- vim.cmd [[highlight CustomCmpItemSel guibg=#5686f5 guifg=#ffffff]]
 

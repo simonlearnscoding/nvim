@@ -61,7 +61,7 @@ local mappings = {
 
 
 
-
+vim.keymap.set("n", "<leader><Tab>", "<cmd>Telescope buffers<cr>", { noremap = true, silent = true })
 wk.register(mappings, { prefix = "<leader>" })
 -- maps.n[prefix] = { desc = '󰍉 Find..' }
 
