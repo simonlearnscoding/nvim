@@ -10,7 +10,7 @@ return {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
       vim.keymap.set("n", "<leader>df", "<cmd>TroubleToggle document_diagnostics<cr>"),
-      -- vim.keymap.set("n", "<leader>dl", "<cmd>vim.lsp.diagnostics.show_line_diagnostics<cr>"),
+      vim.keymap.set("n", ':Trouble diagnostics<cr>', { desc = ' [d]iagnostic' }),
     }
   end
 }
