@@ -24,10 +24,44 @@ return {
       lsp.extend_lspconfig()
       lsp.set_sign_icons { error = ' ', warn = ' ', hint = '', info = '' }
 
+
+      -- Ensure no node modules are in the list
+      local function filter(arr, fn)
+        if type(arr) ~= "table" then
+          return arr
+        end
+
+        local filtered = {}
+        for k, v in pairs(arr) do
+          if fn(v, k, arr) then
+            table.insert(filtered, v)
+          end
+        end
+
+        return filtered
+      end
+
+      local function filterReactDTS(value)
+        return string.match(value.filename, 'react/index.d.ts') == nil
+      end
+
+      local function on_list(options)
+        local items = options.items
+        if #items > 1 then
+          items = filter(items, filterReactDTS)
+        end
+
+
+        vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
+        vim.api.nvim_command('cfirst') -- or maybe you want 'copen' instead of 'cfirst'
+      end
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
-        -- vim.keymap.set('n', '<C-e>', ':Navbuddy<cr>')
-        -- vim.keymap.set('i', '<C-e>', '<esc><cmd>Navbuddy<cr>')
+
+
+        vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition { on_list = on_list } end, opts)
+        vim.keymap.set('n', '<leader>gi', function() vim.lsp.buf.incoming_calls { on_list = on_list } end, opts)
+        vim.keymap.set('n', '<leader>go', function() vim.lsp.buf.incoming_calls { on_list = on_list } end, opts)
         vim.keymap.set('n', 'K', function()
           vim.lsp.buf.hover()
         end, opts) -- this one works pretty good
@@ -37,12 +71,6 @@ return {
 
         vim.keymap.set('n', '<leader>fr', function()
           require('telescope.builtin').lsp_references()
-        end, opts)
-        vim.keymap.set('n', '<leader>lwl', ':LspZeroWorkspaceList<CR>', opts)
-        vim.keymap.set('n', '<leader>lwr', ':LspZeroWorkspaceRemove<CR>', opts)
-        vim.keymap.set('n', '<leader>lwa', ':LspZeroWorkspaceAdd<CR>', opts)
-        vim.keymap.set('n', 'gd', function()
-          vim.lsp.buf.definition()
         end, opts)
 
         local function goto_definition_split()
@@ -54,41 +82,17 @@ return {
         vim.keymap.set('n', '<leader>gs', goto_definition_split, { silent = true })
       end)
 
-      -- local diagnostics_visible = true
-      -- function ToggleDiagnostics()
-      -- 	diagnostics_visible = not diagnostics_visible
-      -- 	vim.diagnostic.config({
-      -- 		virtual_text = diagnostics_visible,
-      -- 	})
-      -- end
-
-      -- vim.keymap.set("n", "<leader>td", "lua ToggleDiagnostics()<CR>")
-      -- lsp.format_on_save({
-      --   servers = {
-      --     ['lua_ls'] = { 'lua' },
-      --     ['typescript-tools'] = { 'typescriptreact' }
-      --   }
-      -- })
       require('mason').setup {
         -- ensure_installed = { 'debugpy' },
-      }
-      --TODO: I wasnt able to add debugpy to the ensure installed list
+      } --TODO: I wasnt able to add debugpy to the ensure installed list
+
+
+      -- ──────────────────────────────────────────────────────────────────────
       require('mason-lspconfig').setup {
         ensure_installed = { 'lua_ls', 'graphql', 'emmet_ls', 'texlab', 'tsserver' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
         handlers = {
           lsp.default_setup,
         } }
-      -- require 'lspconfig'.eslint.setup({
-      --   settings = {
-      --     packageManager = 'yarn'
-      --   },
-      --   on_attach = function(client, bufnr)
-      --     vim.api.nvim_create_autocmd("BufWritePre", {
-      --       buffer = bufnr,
-      --       command = "EslintFixAll",
-      --     })
-      --   end,
-      -- }) }
 
       require('lspconfig').tsserver.setup {
         handlers = {
