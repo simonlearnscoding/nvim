@@ -1,5 +1,6 @@
 -- SESSION MANAGER SETUP
 return {
+  commit = 'b552ee8', -- Pinning to the specific commit
   'Shatur/neovim-session-manager',
   config = function()
     require('session_manager').setup {
