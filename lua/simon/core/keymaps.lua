@@ -23,7 +23,8 @@ vim.api.nvim_set_keymap('v', '<Tab>', '>>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<<', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<S-Tab>', '<<', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '<leader>x', ':bdelete<cr>', { noremap = true, silent = true, desc = 'Close buffer' })
+vim.api.nvim_set_keymap('n', '<leader>x', ':bprevious | bdelete #<CR>',
+  { noremap = true, silent = true, desc = 'Close buffer and keep window' })
 
 vim.api.nvim_set_keymap('n', 'cw', 'ciw', { noremap = true, silent = true, desc = 'change inside word' })
 vim.api.nvim_set_keymap('n', 'dw', 'diw', { noremap = true, silent = true, desc = 'change inside word' })
@@ -55,10 +56,6 @@ maps.n['<leader>q'] = { '<cmd>update<cr><cmd>q<cr>', desc = 'Save and Quit if po
 -- maps.n['<leader>C'] = { '<cmd>w | Bdelete<cr>', desc = 'Save and delete buffer' }
 -- maps.n['<C-s>'] = { '<cmd>w!<cr>', desc = 'Force write' }
 
---          ╭─────────────────────────────────────────────────────────╮
---          │                       Diagnostics                       │
---          ╰─────────────────────────────────────────────────────────╯
-maps.n['<leader>dd'] = { ':Trouble workspace_diagnostics<cr>', desc = ' [d]iagnostic' }
 --          ╭─────────────────────────────────────────────────────────╮
 --          │                       BUFFERS                       │
 --          ╰─────────────────────────────────────────────────────────╯
