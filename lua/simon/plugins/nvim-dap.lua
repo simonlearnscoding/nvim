@@ -19,8 +19,7 @@ return {
 
       dap.adapters.python = {
         type = 'executable',
-
-        command = '/usr/bin/python3',
+        command = '/home/simone/code/discord/habit_tracker/venv/bin/python',
         args = { '-m', 'debugpy.adapter' },
       }
       dap.configurations.python = {
@@ -29,6 +28,10 @@ return {
           request = 'launch',
           name = 'launch main.py',
           program = '${workspaceFolder}/main.py',
+
+          pythonPath = function()
+            return '/home/simone/code/discord/habit_tracker/venv/bin/python'
+          end,
         },
 
         {

@@ -197,6 +197,10 @@ return {
       -- 	}
       -- 	filetypes = { 'python' },
       -- })
+      --
+      require 'lspconfig'.pyright.setup {
+        pythonPath = '~/code/discord/habit_tracker/venv/bin/python',
+      }
       require('lspconfig').texlab.setup {
 
         -- filetypes = {}
