@@ -3,7 +3,7 @@ local wk = require 'which-key'
 local prefix = '<leader>o'
 
 -- Register the Obsidian mappings under the <leader> prefix
-wk.register(obsidianMappings, { prefix = '<leader>' })
+-- wk.register(obsidianMappings, { prefix = '<leader>' })
 
 local mappings = {
   o = {
