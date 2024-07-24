@@ -42,11 +42,10 @@ require 'simon.core.telescope-mappings'
 --
 --
 
-
 if vim.g.neovide then
-  vim.g.neovide_transparency = 0.87
+  vim.g.neovide_transparency = 0.99
   vim.g.neovide_input_macos_alt_is_meta = true
-  vim.opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
+  -- vim.opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
   -- vim.cmd [[set guifont=MonoLisa:10,Symbols\ Nerd\ Font:h10]]
 
   -- Insert mode mappings for Alt + H and Alt + K
@@ -100,12 +99,9 @@ vim.api.nvim_create_autocmd('FileChangedShellPost', {
 vim.cmd 'highlight DapBreakpoint ctermbg=0 guifg=#993939 guibg=#31353f'
 vim.cmd 'highlight DapLogPoint ctermbg=0 guifg=#61afef guibg=#31353f'
 vim.cmd 'highlight DapStopped ctermbg=0 guifg=#98c379 guibg=#31353f'
-vim.fn.sign_define('DapBreakpoint',
-  { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
-vim.fn.sign_define('DapBreakpointCondition',
-  { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
-vim.fn.sign_define('DapBreakpointRejected',
-  { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapLogPoint', linehl = 'DapLogPoint', numhl = 'DapLogPoint' })
 vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' })
 
@@ -138,9 +134,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 --
-vim.diagnostic.config({
+vim.diagnostic.config {
   virtual_text = false,
-})
+}
 
 vim.cmd [[
 hi Normal guibg=NONE ctermbg=NONE
@@ -148,15 +144,28 @@ hi NormalNC guibg=NONE ctermbg=NONE
 ]]
 
 -- init.lua
-vim.cmd([[
+vim.cmd [[
 augroup suppress_md_errors
     autocmd!
     autocmd BufWritePre *.md silent! execute "silent! call v:lua.SuppressErrors()"
     autocmd BufWritePost *.md silent! execute "silent! call v:lua.SuppressErrors()"
 augroup END
-]])
+]]
 
 -- Function to suppress errors
 function _G.SuppressErrors()
   -- You can leave this function empty or add specific error handling logic if needed
 end
+
+local cmp = require 'cmp'
+
+function AcceptFirstCmdlineCompletion()
+  if vim.fn.pumvisible() == 1 then
+    cmp.confirm { select = true }
+    return ''
+  else
+    return '<C-f>'
+  end
+end
+
+vim.api.nvim_set_keymap('c', '<C-f>', 'v:lua.AcceptFirstCmdlineCompletion()', { expr = true, noremap = true })
