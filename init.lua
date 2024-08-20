@@ -9,17 +9,17 @@ require 'simon.core.options'
 require 'simon.plugins-setup'
 
 -- REFACTOR: clean up this file
-require 'simon.core.keymaps'
-require 'simon.core.window-management-mapping'
-require 'simon.core.neotest-mappings'
-require 'simon.core.lsp-mappings'
-require 'simon.core.git-mappings'
-require 'simon.core.nvim-ufo-mapping'
-require 'simon.core.nvim-ufo-mapping'
-require 'simon.core.obsidian-mapping'
-require 'simon.core.todo-mapping'
+require 'simon.mappings.telescope-mappings'
+require 'lua.simon.mappings.git-mappings'
+require 'lua.simon.mappings.keymaps'
+require 'lua.simon.mappings.window-management-mapping'
+require 'lua.simon.mappings.neotest-mappings'
+require 'lua.simon.mappings.lsp-mappings'
+require 'lua.simon.mappings.nvim-ufo-mapping'
+require 'lua.simon.mappings.nvim-ufo-mapping'
+require 'lua.simon.mappings.obsidian-mapping'
+require 'lua.simon.mappings.todo-mapping'
 -- require 'simon.core.todokanban'
-require 'simon.core.telescope-mappings'
 
 -- vim.cmd [[highlight CustomCmpItemSel guibg=#5686f5 guifg=#ffffff]]
 

@@ -1,32 +1,18 @@
-return
-
-{
-  'folke/which-key.nvim',
+return {
+  "folke/which-key.nvim",
   event = "VeryLazy",
-  config = function()
-    vim.o.timeoutlen = 500
-    local wk = require("which-key")
-    wk.register({
-      ['<leader>'] =
-      {
-        d = {
-          name = 'diagnostics'
-        },
-
-        C = {
-          name = "Color Schemes", -- Group name
-          g = "Gruvbox",
-          k = "Kanagawa",
-          r = "Rose Pine",
-          c = "Catppuccin",
-          m = "Miramare",
-          n = "Nightfox",
-          G = "Gruvbox Material",
-          s = "Sonokai",
-          t = "Tokyonight",
-          e = "Everforest",
-        },
-      }
-    })
-  end
+  opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  },
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Local Keymaps (which-key)",
+    },
+  },
 }
