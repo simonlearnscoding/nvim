@@ -10,38 +10,20 @@ require 'simon.plugins-setup'
 
 -- REFACTOR: clean up this file
 require 'simon.mappings.telescope-mappings'
-require 'lua.simon.mappings.git-mappings'
-require 'lua.simon.mappings.keymaps'
-require 'lua.simon.mappings.window-management-mapping'
-require 'lua.simon.mappings.neotest-mappings'
-require 'lua.simon.mappings.lsp-mappings'
-require 'lua.simon.mappings.nvim-ufo-mapping'
-require 'lua.simon.mappings.nvim-ufo-mapping'
-require 'lua.simon.mappings.obsidian-mapping'
-require 'lua.simon.mappings.todo-mapping'
+require 'simon.mappings.git-mappings'
+require 'simon.mappings.keymaps'
+require 'simon.mappings.window-management-mapping'
+require 'simon.mappings.neotest-mappings'
+require 'simon.mappings.lsp-mappings'
+require 'simon.mappings.nvim-ufo-mapping'
+require 'simon.mappings.nvim-ufo-mapping'
+require 'simon.mappings.obsidian-mapping'
+require 'simon.mappings.todo-mapping'
 -- require 'simon.core.todokanban'
 
--- vim.cmd [[highlight CustomCmpItemSel guibg=#5686f5 guifg=#ffffff]]
-
--- vim.cmd 'colorscheme sonokai'
--- vim.cmd 'colorscheme kanagawa'
--- vim.cmd 'colorscheme rose-pine'
--- vim.cmd 'colorscheme gruvbox'
--- vim.cmd 'colorscheme catppuccin'
--- vim.cmd 'colorscheme miramare'
--- TODO: fix this
--- vim.cmd 'colorscheme nightfox'
--- vim.cmd 'colorscheme gruvbox-material'
--- vim.cmd 'colorscheme tokyonight'
--- vim.cmd 'colorscheme everforest'
-
--- I have to set this last because something else sets
--- it too and I dont know what it is
--- vim.keymap.set("n", "<leader>/", ":CommentToggle<CR>")
---
---
---
-
+-- Import the buffer management logic
+-- local buffer_management = require 'simon.core.buffer-management'
+-- buffer_management.setup_autocommands()
 
 if vim.g.neovide then
   vim.g.neovide_transparency = 0.87
