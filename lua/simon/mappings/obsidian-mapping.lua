@@ -52,6 +52,7 @@ local function ObsidianAction()
 end
 
 local function handle_markdown_enter()
+
   local markdownMappings = {
     { '<BS>', '<cmd>ObsidianBacklinks<CR>', desc = 'Backlinks', noremap = true, silent = true },
     { '<CR>', ':lua ObsidianAction()<CR>', desc = 'Follow Link', noremap = true, silent = true },
@@ -59,7 +60,7 @@ local function handle_markdown_enter()
   }
 
   -- Register Markdown-specific mappings
-  wk.register(markdownMappings, { mode = 'n', buffer = vim.api.nvim_get_current_buf() })
+wk.add(markdownMappings, { mode = 'n', buffer = vim.api.nvim_get_current_buf() })
 
   -- Go to next Markdown link
   vim.api.nvim_set_keymap('n', '<Tab>', '/\\[.*\\]<CR>zz', { noremap = true, silent = true })

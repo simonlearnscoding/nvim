@@ -15,10 +15,11 @@ wk.add({
   { "<leader>gh", function() require('gitsigns').stage_hunk() end, desc = "󰊢 [h]unk stage" },
   { "<leader>ga", function() require('gitsigns').stage_buffer() end, desc = "󰊢 stage buffer" },
   { "<leader>gu", function() require('gitsigns').undo_stage_hunk() end, desc = "󰊢 [u]nstage hunk" },
-  { "<leader>gd", function() require('gitsigns').diffthis() end, desc = "󰊢 [d]iff" },
+  -- { "<leader>gd", function() require('gitsigns').diffthis() end, desc = "󰊢 [d]iff" },
+  { "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "󰊢 [d]iffview open" },
 
   -- Git hunk navigation mappings
-  { "]g", function() require('gitsigns').next_hunk() end, desc = "Next Git hunk" },
-  { "[g", function() require('gitsigns').prev_hunk() end, desc = "Previous Git hunk" },
+  { "]g", function() require('gitsigns').next_hunk(); require('gitsigns').preview_hunk() end, desc = "Next Git hunk" },
+  { "[g", function() require('gitsigns').prev_hunk(); require('gitsigns').preview_hunk() end, desc = "Previous Git hunk" },
 })
 

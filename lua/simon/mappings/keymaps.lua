@@ -1,46 +1,48 @@
 local wk = require("which-key")
 
--- Define the sections for key mappings
-local sections = {
-  u = { desc = ' [u]I' },
-  b = { desc = '󰓩 Buffers' },
-  bs = { desc = '󰒺 Sort Buffers' },
-  d = { desc = ' Debugger' },
-  w = { desc = '󰍉  vimwiki' },
-  S = { desc = '󱂬 Session' },
-  t = { desc = ' Terminal' },
-}
-
--- Set up key mappings using which-key
+-- Buffers management group
 wk.add({
-  ['<leader>'] = {
-    -- Buffers management
-    b = {
-      name = sections.b.desc,
-      p = { '<cmd>:BufferLinePick<cr>', '[p]ick' },
-      c = { '<cmd>:BufferLinePickClose<cr>', '[c]lose' },
-      l = { '<cmd>:BufferLineCloseRight<cr>', 'Close Right' },
-      h = { '<cmd>:BufferLineCloseLeft<cr>', 'Close Left' },
-      a = { '<cmd>:BufferLineCloseOthers<cr>', 'Close Others' },
-    },
+  { "<leader>b", group = "󰓩 Buffers" },
 
-    -- Other key mappings
-    N = { '<cmd>tabnew<cr>', '[N]ew Tab' },
-    M = { '<cmd>ZenMode<cr>', 'Zen Mode' },
-    x = { ':bprevious | bdelete #<CR>', '󰅖 Close Buffer' },
-    ['.'] = { '<cmd>cd %:p:h<cr>', 'Set cwd' },
-    q = { '<cmd>update<cr><cmd>q<cr>', 'Save and Quit' },
-  },
-  -- Debugger
-  d = sections.d,
-  -- Vimwiki
-  w = sections.w,
-  -- UI
-  u = sections.u,
-  -- Sessions
-  S = sections.S,
-  -- Terminal
-  t = sections.t,
+  { "<leader>bp", "<cmd>:BufferLinePick<cr>", desc = "[p]ick" },
+  { "<leader>bc", "<cmd>:BufferLinePickClose<cr>", desc = "[c]lose" },
+  { "<leader>bl", "<cmd>:BufferLineCloseRight<cr>", desc = "Close Right" },
+  { "<leader>bh", "<cmd>:BufferLineCloseLeft<cr>", desc = "Close Left" },
+  { "<leader>ba", "<cmd>:BufferLineCloseOthers<cr>", desc = "Close Others" },
+})
+
+-- Other key mappings group
+wk.add({
+  { "<leader>N", "<cmd>tabnew<cr>", desc = "[N]ew Tab" },
+  { "<leader>M", "<cmd>ZenMode<cr>", desc = "Zen Mode" },
+  { "<leader>x", ":bprevious | bdelete #<CR>", desc = "󰅖 Close Buffer" },
+  { "<leader>.", "<cmd>cd %:p:h<cr>", desc = "Set cwd" },
+  { "<leader>q", "<cmd>update<cr><cmd>q<cr>", desc = "Save and Quit" },
+})
+
+-- Debugger group
+wk.add({
+  { "<leader>d", group = " Debugger" },
+})
+
+-- Vimwiki group
+wk.add({
+  { "<leader>w", group = "󰍉  vimwiki" },
+})
+
+-- UI group
+wk.add({
+  { "<leader>u", group = " [u]I" },
+})
+
+-- Sessions group
+wk.add({
+  { "<leader>S", group = "󱂬 Session" },
+})
+
+-- Terminal group
+wk.add({
+  { "<leader>t", group = " Terminal" },
 })
 
 -- General key mappings outside of which-key
