@@ -46,20 +46,20 @@ return {
     end
 
     -- Function to handle cursor movement
-    local function on_cursor_moved()
-      if cursor_moved_timer then
-        cursor_moved_timer:stop() -- Stop the existing timer
-      end
-
-      -- Start a new timer
-      cursor_moved_timer = vim.defer_fn(function()
-        trigger_hover()
-      end, delay_ms)
-    end
-
-    -- Set up autocommands for cursor movement
-    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-      callback = on_cursor_moved,
-    })
+    -- local function on_cursor_moved()
+    --   if cursor_moved_timer then
+    --     cursor_moved_timer:stop() -- Stop the existing timer
+    --   end
+    --
+    --   -- Start a new timer
+    --   cursor_moved_timer = vim.defer_fn(function()
+    --     trigger_hover()
+    --   end, delay_ms)
+    -- end
+    --
+    -- -- Set up autocommands for cursor movement
+    -- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    --   callback = on_cursor_moved,
+    -- })
   end,
 }
