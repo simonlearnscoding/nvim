@@ -58,7 +58,6 @@ return {
           end,
           on_exit = function()
             require('dapui').toggle()
-            require('dap').close()
           end,
           color = 'pink',
           -- offset = 20,
