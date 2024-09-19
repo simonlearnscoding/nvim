@@ -56,7 +56,7 @@ local function handle_markdown_enter()
   local markdownMappings = {
     { '<BS>', '<cmd>ObsidianBacklinks<CR>', desc = 'Backlinks', noremap = true, silent = true },
     { '<CR>', ':lua ObsidianAction()<CR>', desc = 'Follow Link', noremap = true, silent = true },
-    { '<leader><leader>', '<cmd>ObsidianLinks<CR>', desc = '󱁉 links', noremap = true, silent = true },
+    -- { '<leader><leader>', '<cmd>ObsidianLinks<CR>', desc = '󱁉 links', noremap = true, silent = true },
   }
 
   -- Register Markdown-specific mappings
