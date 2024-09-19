@@ -24,10 +24,9 @@ return {
       lsp.extend_lspconfig()
       lsp.set_sign_icons { error = ' ', warn = ' ', hint = '', info = '' }
 
-
       -- Ensure no node modules are in the list
       local function filter(arr, fn)
-        if type(arr) ~= "table" then
+        if type(arr) ~= 'table' then
           return arr
         end
 
@@ -51,17 +50,21 @@ return {
           items = filter(items, filterReactDTS)
         end
 
-
         vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
-        vim.api.nvim_command('cfirst') -- or maybe you want 'copen' instead of 'cfirst'
+        vim.api.nvim_command 'cfirst' -- or maybe you want 'copen' instead of 'cfirst'
       end
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
 
-
-        vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition { on_list = on_list } end, opts)
-        vim.keymap.set('n', '<leader>gi', function() vim.lsp.buf.incoming_calls { on_list = on_list } end, opts)
-        vim.keymap.set('n', '<leader>go', function() vim.lsp.buf.incoming_calls { on_list = on_list } end, opts)
+        vim.keymap.set('n', 'gd', function()
+          vim.lsp.buf.definition { on_list = on_list }
+        end, opts)
+        vim.keymap.set('n', '<leader>gi', function()
+          vim.lsp.buf.incoming_calls { on_list = on_list }
+        end, opts)
+        vim.keymap.set('n', '<leader>go', function()
+          vim.lsp.buf.incoming_calls { on_list = on_list }
+        end, opts)
         vim.keymap.set('n', 'K', function()
           vim.lsp.buf.hover()
         end, opts) -- this one works pretty good
@@ -86,22 +89,17 @@ return {
         -- ensure_installed = { 'debugpy' },
       } --TODO: I wasnt able to add debugpy to the ensure installed list
 
-
       -- ──────────────────────────────────────────────────────────────────────
       require('mason-lspconfig').setup {
-        ensure_installed = { 'lua_ls', 'graphql', 'emmet_ls', 'texlab', 'tsserver' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
+        ensure_installed = { 'lua_ls', 'graphql', 'emmet_ls', 'texlab' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
         handlers = {
           lsp.default_setup,
-        } }
+        },
+      }
 
       require('lspconfig').tsserver.setup {
         handlers = {
-          ["textDocument/publishDiagnostics"] = function(
-            _,
-            result,
-            ctx,
-            config
-          )
+          ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
             if result.diagnostics == nil then
               return
             end
@@ -123,23 +121,18 @@ return {
               end
             end
 
-            vim.lsp.diagnostic.on_publish_diagnostics(
-              _,
-              result,
-              ctx,
-              config
-            )
+            vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
           end,
           root_dir = function(fname)
-            return require 'lspconfig'.util.root_pattern('tsconfig.json')(fname) or
-                require 'lspconfig'.util.find_git_ancestor(fname) or
-                require 'lspconfig'.util.path.dirname(fname)
+            return require('lspconfig').util.root_pattern 'tsconfig.json'(fname)
+              or require('lspconfig').util.find_git_ancestor(fname)
+              or require('lspconfig').util.path.dirname(fname)
           end,
         },
 
         filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
         root_dir = function(...)
-          return require('lspconfig.util').root_pattern '.git' (...)
+          return require('lspconfig.util').root_pattern '.git'(...)
         end,
       }
       require('lspconfig').pylsp.setup {
@@ -198,7 +191,7 @@ return {
       -- 	filetypes = { 'python' },
       -- })
       --
-      require 'lspconfig'.pyright.setup {
+      require('lspconfig').pyright.setup {
         pythonPath = '~/code/discord/habit_tracker/venv/bin/python',
       }
       require('lspconfig').texlab.setup {

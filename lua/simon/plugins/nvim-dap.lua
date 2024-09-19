@@ -19,7 +19,7 @@ return {
 
       dap.adapters.python = {
         type = 'executable',
-        command = '/home/simone/code/discord/habit_tracker/venv/bin/python',
+        command = '/usr/bin/python3',
         args = { '-m', 'debugpy.adapter' },
       }
       dap.configurations.python = {
@@ -30,7 +30,7 @@ return {
           program = '${workspaceFolder}/main.py',
 
           pythonPath = function()
-            return '/home/simone/code/discord/habit_tracker/venv/bin/python'
+            return '/usr/bin/python3'
           end,
         },
 
@@ -65,7 +65,7 @@ return {
             skipFiles = {
               '<node_internals>/**',
               'webpack:///external-source/**',
-              '**/node_modules/**'
+              '**/node_modules/**',
             },
           },
           {
@@ -78,7 +78,7 @@ return {
             skipFiles = {
               '<node_internals>/**',
               'webpack:///external-source/**',
-              '**/node_modules/**'
+              '**/node_modules/**',
             },
           },
           {
@@ -99,7 +99,7 @@ return {
             cwd = vim.fn.getcwd(),
             sourceMaps = true,
             -- Ensure that the port matches the port your application runs on if needed
-            port = 8081,                           -- Adjust this to the port your npm script uses, if applicable
+            port = 8081, -- Adjust this to the port your npm script uses, if applicable
             skipFiles = { '<node_internals>/**' }, -- Optional: Skip internal Node.js files while debugging
           },
           -- Debug nodejs processes (make sure to add --inspect when you run the process)

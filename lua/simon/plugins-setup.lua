@@ -21,7 +21,8 @@ require('lazy').setup {
 
   'nvim-tree/nvim-web-devicons',
   {
-    'echasnovski/mini.pairs', event = 'VeryLazy',
+    'echasnovski/mini.pairs',
+    event = 'VeryLazy',
     opts = {},
   },
   -- Detect tabstop and shiftwidth automatically
