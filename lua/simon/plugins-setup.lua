@@ -13,11 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
   'mrjones2014/smart-splits.nvim',
-  -- {
-  -- makes it easy to extend the functionality of a keymap (appearently??)
-  -- 'anuvyklack/keymap-amend.nvim',
-  -- },
-  -- icons for nvim
 
   'nvim-tree/nvim-web-devicons',
   {
