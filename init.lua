@@ -8,6 +8,7 @@ require 'simon.core.env'
 require 'simon.core.options'
 require 'simon.plugins-setup'
 
+vim.cmd 'cnoreabbrev w silent w'
 -- REFACTOR: clean up this file
 require 'simon.core.keymaps'
 require 'simon.core.window-management-mapping'
@@ -43,7 +44,7 @@ require 'simon.core.telescope-mappings'
 --
 
 if vim.g.neovide then
-  vim.g.neovide_transparency = 0.99
+  vim.g.neovide_transparency = 0.95
   vim.g.neovide_input_macos_alt_is_meta = true
   -- vim.opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
   -- vim.cmd [[set guifont=MonoLisa:10,Symbols\ Nerd\ Font:h10]]
@@ -152,6 +153,19 @@ augroup suppress_md_errors
 augroup END
 ]]
 
+-- Flutter wrapper for hot-reloading
+-- Put this in your plugin directory (Default is $HOME/.config/nvim/lua/plugin/flutter.lua)
+--
+--
+-- local function flutter_hot_reload()
+--   vim.fn.system 'kill -s USR1 "$(pgrep -f flutter_tools.snapshot\\ run)" &> /dev/null'
+-- end
+--
+-- -- Autocommand for hot-reloading on save
+-- vim.api.nvim_create_autocmd('BufWritePost', {
+--   pattern = '*/lib/*.dart',
+--   callback = flutter_hot_reload,
+-- })
 -- Function to suppress errors
 function _G.SuppressErrors()
   -- You can leave this function empty or add specific error handling logic if needed
