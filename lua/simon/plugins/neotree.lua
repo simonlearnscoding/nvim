@@ -1,6 +1,6 @@
 local get_icon = require('simon.utils').get_icon
 return {
-  event = "VeryLazy", -- "VeryLazy
+  event = 'VeryLazy', -- "VeryLazy
   'nvim-neo-tree/neo-tree.nvim',
   dependencies = { 'MunifTanjim/nui.nvim' },
   cmd = 'Neotree',
@@ -13,14 +13,15 @@ return {
   opts = {
     auto_clean_after_session_restore = true,
     close_if_last_window = true,
-    sources = { 'filesystem', 'buffers', 'git_status' },
+    -- sources = { 'filesystem', 'buffers', 'git_status' },
+    sources = { 'git_status' },
     source_selector = {
       winbar = true,
       content_layout = 'center',
       sources = {
-        { source = 'filesystem',  display_name = get_icon 'FolderClosed' .. ' File' },
-        { source = 'buffers',     display_name = get_icon 'DefaultFile' .. ' Bufs' },
-        { source = 'git_status',  display_name = get_icon 'Git' .. ' Git' },
+        { source = 'filesystem', display_name = get_icon 'FolderClosed' .. ' File' },
+        { source = 'buffers', display_name = get_icon 'DefaultFile' .. ' Bufs' },
+        { source = 'git_status', display_name = get_icon 'Git' .. ' Git' },
         { source = 'diagnostics', display_name = get_icon 'Diagnostic' .. ' Diagnostic' },
       },
     },
@@ -84,7 +85,7 @@ return {
         if node.type == 'directory' or node:has_children() then
           if not node:is_expanded() then -- if unexpanded, expand
             state.commands.toggle_node(state)
-          else                           -- if expanded and has children, seleect the next child
+          else -- if expanded and has children, seleect the next child
             require('neo-tree.ui.renderer').focus_node(state, node:get_child_ids()[1])
           end
         else -- if not a directory just open it
@@ -112,9 +113,9 @@ return {
         for i, result in pairs(results) do
           if result.val and result.val ~= '' then
             vim.list_extend(messages, {
-              { ('%s.'):format(i),           'Identifier' },
+              { ('%s.'):format(i), 'Identifier' },
               { (' %s: '):format(result.msg) },
-              { result.val,                  'String' },
+              { result.val, 'String' },
               { '\n' },
             })
           end
