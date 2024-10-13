@@ -6,63 +6,46 @@ local maps = { i = {}, n = {}, v = {}, t = {} }
 --          │                        TELESCOPE                        │
 --          ╰─────────────────────────────────────────────────────────╯
 
-local prefix = '<leader>f'
+local wk = require 'which-key'
 
-local wk = require("which-key")
-
-local mappings = {
-  f = {
-    name = "󰍉 [f]ind..", -- Group name
-
-    n = { '<cmd>Telekasten find_notes<cr>', ' [n]otes' },
-    t = { '<cmd>TodoTelescope<CR>', '󰱑 [t]asks' },
-    g = { desc = ' [g]it..' },
-    gr = { desc = ' [r]eset..' },
-    gb = { '<cmd>Telescope git_branches<CR>', ' [b]ranches' },
-    gc = { '<cmd>Telescope git_commits<CR>', ' [c]ommits' },
-    gs = { '<cmd>Telescope git_status<CR>', ' [s]tatus' },
-    gf = { '<cmd>Telescope git_files<CR>', ' [f]iles' },
-    d = { "<cmd>lua require('telescope.builtin').diagnostics()<CR>", ' [d]iagnostics' },
-    l = { "<cmd>lua require('telescope.builtin').lsp_references()<CR>", ' [l]sp' },
-    w = { "<cmd>lua require('telescope.builtin').live_grep()<CR>", ' [w]ord' },
-    o = { function() require('telescope.builtin').oldfiles() end, ' [o]ld files' },
-    f = { function() require('telescope.builtin').find_files() end, ' [f]iles', },
-    -- r = { function()
-    --   a = { function()
-    --     local cwd = vim.fn.expand '~' -- use the home directory as the working directory
-    --     require('telescope.builtin').find_files {
-    --       cwd = cwd,
-    --       hidden = true,
-    --       no_ignore = true,
-    --     }
-    --   end,
-    --     ' [a]ll files',
-    --   },
-    --   local cwd = vim.fn.expand '~/react-components' -- use the home directory as the working directory
-    --   require('telescope.builtin').find_files {
-    --     cwd = cwd,
-    --     hidden = true,
-    --     no_ignore = true,
-    --   }
-    -- end,
-    --   ' [r]eact',
-    -- },
-    z = { '<cmd>Telescope zoxide list<cr>', ' [z]oxide' },
-    b = { '<cmd>Telescope bibtex<cr>', ' [b]ibliography' },
-    p = {
-      function()
-        require('telescope').extensions.projects.projects {}
-      end,
-      ' [p]rojects',
-    }
-  }
-
+-- Replace the keybindings with wk.add
+wk.add { '<leader>fn', '<cmd>Telekasten find_notes<cr>', group = '󰍉 [f]ind..', desc = ' [n]otes' }
+wk.add { '<leader>ft', '<cmd>TodoTelescope<CR>', group = '󰍉 [f]ind..', desc = '󰱑 [t]asks' }
+wk.add { '<leader>fg', nil, group = '󰍉 [f]ind..', desc = ' [g]it..' }
+wk.add { '<leader>fgr', nil, group = '󰍉 [f]ind..', desc = ' [r]eset..' }
+wk.add { '<leader>fgb', '<cmd>Telescope git_branches<CR>', group = '󰍉 [f]ind..', desc = ' [b]ranches' }
+wk.add { '<leader>fgc', '<cmd>Telescope git_commits<CR>', group = '󰍉 [f]ind..', desc = ' [c]ommits' }
+wk.add { '<leader>fgs', '<cmd>Telescope git_status<CR>', group = '󰍉 [f]ind..', desc = ' [s]tatus' }
+wk.add { '<leader>fgf', '<cmd>Telescope git_files<CR>', group = '󰍉 [f]ind..', desc = ' [f]iles' }
+wk.add { '<leader>fd', "<cmd>lua require('telescope.builtin').diagnostics()<CR>", group = '󰍉 [f]ind..', desc = ' [d]iagnostics' }
+wk.add { '<leader>fl', "<cmd>lua require('telescope.builtin').lsp_references()<CR>", group = '󰍉 [f]ind..', desc = ' [l]sp' }
+wk.add { '<leader>fw', "<cmd>lua require('telescope.builtin').live_grep()<CR>", group = '󰍉 [f]ind..', desc = ' [w]ord' }
+wk.add {
+  '<leader>fo',
+  function()
+    require('telescope.builtin').oldfiles()
+  end,
+  group = '󰍉 [f]ind..',
+  desc = ' [o]ld files',
+}
+wk.add {
+  '<leader>ff',
+  function()
+    require('telescope.builtin').find_files()
+  end,
+  group = '󰍉 [f]ind..',
+  desc = ' [f]iles',
+}
+wk.add { '<leader>fz', '<cmd>Telescope zoxide list<cr>', group = '󰍉 [f]ind..', desc = ' [z]oxide' }
+wk.add { '<leader>fb', '<cmd>Telescope bibtex<cr>', group = '󰍉 [f]ind..', desc = ' [b]ibliography' }
+wk.add {
+  '<leader>fp',
+  function()
+    require('telescope').extensions.projects.projects {}
+  end,
+  group = '󰍉 [f]ind..',
+  desc = ' [p]rojects',
 }
 
-
-
-vim.keymap.set("n", "<leader><Tab>", "<cmd>Telescope buffers<cr>", { noremap = true, silent = true })
-wk.register(mappings, { prefix = "<leader>" })
--- maps.n[prefix] = { desc = '󰍉 Find..' }
-
--- utils.set_mappings(maps)
+-- Bind <leader><Tab> for Telescope buffers
+wk.add { '<leader><Tab>', '<cmd>Telescope buffers<cr>', group = '󰍉 [f]ind..', desc = 'Buffers', noremap = true, silent = true }

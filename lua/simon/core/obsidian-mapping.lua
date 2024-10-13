@@ -2,28 +2,21 @@ local wk = require 'which-key'
 
 local prefix = '<leader>o'
 
--- Register the Obsidian mappings under the <leader> prefix
--- wk.register(obsidianMappings, { prefix = '<leader>' })
-
-local mappings = {
-  o = {
-    name = '󱁉 [o]bsidian..',
-    o = { '<cmd>ObsidianOpen<CR>', '󱁉 [o]pen vault' },
-    i = { ':e ~/projects/pages/index.md <CR>', ' [i]ndex note' },
-    y = { '<cmd>ObsidianDailies 0 -30 <CR>', '󰃮 [d]ailies' },
-    n = { '<cmd>ObsidianNew<CR>', ' [n]ew note' },
-    e = { '<cmd>ObsidianExtractNote<CR>', ' [e]xtract note' },
-    f = { '<cmd>ObsidianQuickSwitch<CR>', '󰍉 [f]ind' },
-    T = { '<cmd>ObsidianTemplate<CR>', '󱁉 [T]emplates' },
-    t = { '<cmd>ObsidianTags<CR>', '󰓹 [t]ags' },
-    g = { '<cmd>ObsidianPasteImg<CR>', ' [p]aste image' },
-    r = { '<cmd>ObsidianRename<CR>', '󱁉 [r]ename' },
-    w = { '<cmd>ObsidianSearch<CR>', ' [w]ord', noremap = true, silent = true },
-    l = { '<cmd>ObsidianLinks<CR>', '󱁉 [l]inks' },
-    d = { '<cmd>ObsidianToday<CR>', '󰃮 to[d]ay' },
-    m = { '<cmd>ObsidianTomorrow<CR>', '󰃮 to[m]orrow' },
-  },
-}
+wk.add { '<leader>oo', '<cmd>ObsidianOpen<CR>', group = '󱁉 [o]bsidian..', desc = '󱁉 [o]pen vault' }
+wk.add { '<leader>o', group = '󱁉 [o]bsidian..' }
+wk.add { '<leader>oi', ':e ~/projects/pages/index.md <CR>', group = '󱁉 [o]bsidian..' }
+wk.add { '<leader>oy', '<cmd>ObsidianDailies 0 -30 <CR>', group = '󱁉 [o]bsidian..', desc = '󰃮 [d]ailies' }
+wk.add { '<leader>on', '<cmd>ObsidianNew<CR>', group = '󱁉 [o]bsidian..', desc = ' [n]ew note' }
+wk.add { '<leader>oe', '<cmd>ObsidianExtractNote<CR>', group = '󱁉 [o]bsidian..', desc = ' [e]xtract note' }
+wk.add { '<leader>of', '<cmd>ObsidianQuickSwitch<CR>', group = '󱁉 [o]bsidian..', desc = '󰍉 [f]ind' }
+wk.add { '<leader>oT', '<cmd>ObsidianTemplate<CR>', group = '󱁉 [o]bsidian..', desc = '󱁉 [T]emplates' }
+wk.add { '<leader>ot', '<cmd>ObsidianTags<CR>', group = '󱁉 [o]bsidian..', desc = '󰓹 [t]ags' }
+wk.add { '<leader>og', '<cmd>ObsidianPasteImg<CR>', group = '󱁉 [o]bsidian..', desc = ' [p]aste image' }
+wk.add { '<leader>or', '<cmd>ObsidianRename<CR>', group = '󱁉 [o]bsidian..', desc = '󱁉 [r]ename' }
+wk.add { '<leader>ow', '<cmd>ObsidianSearch<CR>', group = '󱁉 [o]bsidian..', desc = ' [w]ord', noremap = true, silent = true }
+wk.add { '<leader>ol', '<cmd>ObsidianLinks<CR>', group = '󱁉 [o]bsidian..', desc = '󱁉 [l]inks' }
+wk.add { '<leader>od', '<cmd>ObsidianToday<CR>', group = '󱁉 [o]bsidian..', desc = '󰃮 to[d]ay' }
+wk.add { '<leader>om', '<cmd>ObsidianTomorrow<CR>', group = '󱁉 [o]bsidian..', desc = '󰃮 to[m]orrow' }
 -- Function to set keymaps specifically for Markdown files
 -- TODO: wrap word with brackets function.
 function WrapWordWithBrackets()
@@ -57,25 +50,22 @@ function ObsidianAction()
 end
 
 local function handle_markdown_enter()
-  local markdownMappings = {
-    ['<BS>'] = { '<cmd>ObsidianBacklinks<CR>', 'Backlinks', noremap = true, silent = true },
-    -- ["<CR>"] = { "<cmd>ObsidianFollowLink<CR>", "Follow Link", noremap = true, silent = true },
-    ['<CR>'] = { ':lua ObsidianAction()<CR>', 'Follow Link', noremap = true, silent = true },
-    ['<leader><leader>'] = { '<cmd>ObsidianLinks<CR>', '󱁉 links', noremap = true, silent = true },
-  }
-  -- Register Markdown-specific mappings without a prefix, or with a specific one if needed
-  wk.register(markdownMappings, { mode = 'n', buffer = vim.api.nvim_get_current_buf() })
+  -- Register Markdown-specific mappings using wk.add
+  wk.add { '<BS>', '<cmd>ObsidianBacklinks<CR>', group = '󱁉 [Markdown]', desc = 'Backlinks', noremap = true, silent = true }
+  wk.add { '<CR>', ':lua ObsidianAction()<CR>', group = '󱁉 [Markdown]', desc = 'Follow Link', noremap = true, silent = true }
+  wk.add { '<leader><leader>', '<cmd>ObsidianLinks<CR>', group = '󱁉 [Markdown]', desc = '󱁉 Links', noremap = true, silent = true }
 
   -- Go to next Markdown link
-  vim.api.nvim_set_keymap('n', '<Tab>', '/\\[.*\\]<CR>zz', { noremap = true, silent = true })
+  wk.add { '<Tab>', '/\\[.*\\]<CR>zz', group = '󱁉 [Markdown]', desc = 'Next Markdown Link', noremap = true, silent = true }
+
   -- Go to previous Markdown link
-  vim.api.nvim_set_keymap('n', '<S-Tab>', '?\\[.*\\]<CR>zz', { noremap = true, silent = true })
+  wk.add { '<S-Tab>', '?\\[.*\\]<CR>zz', group = '󱁉 [Markdown]', desc = 'Previous Markdown Link', noremap = true, silent = true }
 end
+
+-- Set up an autocommand that calls handle_markdown_enter for Markdown files
 
 -- Set up an autocommand that calls set_markdown_keymaps for Markdown files
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
   callback = handle_markdown_enter,
 })
-
-wk.register(mappings, { prefix = '<leader>' })

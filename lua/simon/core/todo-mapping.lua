@@ -1,28 +1,10 @@
 local utils = require 'simon.utils'
-local maps = { i = {}, n = {}, v = {}, t = {} }
+local wk = require 'which-key'
 
-maps.n[']T'] = {
-  '<cmd>lua require("todo-comments").jump_next()<cr>',
-  desc = 'Next todo comment',
-}
-maps.n['[T'] = {
-  '<cmd>lua require("todo-comments").jump_prev()<cr>',
-  desc = 'Previous todo comment',
-}
+-- Using wk.add to define the key mappings
+wk.add { ']T', '<cmd>lua require("todo-comments").jump_next()<cr>', group = 'Todo Comments', desc = 'Next todo comment' }
+wk.add { '[T', '<cmd>lua require("todo-comments").jump_prev()<cr>', group = 'Todo Comments', desc = 'Previous todo comment' }
 
-maps.n['<leader>tb'] = {
-  '<cmd>TodoTelescope keywords=FIX<cr>',
-  desc = 'Todo Marked Bugs',
-}
-
-maps.n['<leader>tt'] = {
-  '<cmd>TodoTelescope keywords=NOW,TODO,LATER<cr>',
-  desc = 'NOW | TODO | LATER',
-}
-
-maps.n['<leader>tr'] = {
-  '<cmd>TodoTelescope keywords=REFACTOR<cr>',
-  desc = 'Todo Refactors',
-}
-
-utils.set_mappings(maps)
+wk.add { '<leader>tb', '<cmd>TodoTelescope keywords=FIX<cr>', group = 'Todo Comments', desc = 'Todo Marked Bugs' }
+wk.add { '<leader>tt', '<cmd>TodoTelescope keywords=NOW,TODO,LATER<cr>', group = 'Todo Comments', desc = 'NOW | TODO | LATER' }
+wk.add { '<leader>tr', '<cmd>TodoTelescope keywords=REFACTOR<cr>', group = 'Todo Comments', desc = 'Todo Refactors' }
