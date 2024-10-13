@@ -1,6 +1,7 @@
 return {
   'aaronhallaert/advanced-git-search.nvim',
   cmd = { 'AdvancedGitSearch' },
+  event = 'VeryLazy',
   config = function()
     -- optional: setup telescope before loading the extension
     require('telescope').setup {
