@@ -9,7 +9,6 @@ require 'simon.core.options'
 require 'simon.plugins-setup'
 
 vim.cmd 'cnoreabbrev w silent w'
--- REFACTOR: clean up this file
 require 'simon.core.keymaps'
 require 'simon.core.window-management-mapping'
 require 'simon.core.neotest-mappings'
@@ -22,27 +21,6 @@ require 'simon.core.todo-mapping'
 -- require 'simon.core.todokanban'
 require 'simon.core.telescope-mappings'
 
--- vim.cmd [[highlight CustomCmpItemSel guibg=#5686f5 guifg=#ffffff]]
-
--- vim.cmd 'colorscheme sonokai'
--- vim.cmd 'colorscheme kanagawa'
--- vim.cmd 'colorscheme rose-pine'
--- vim.cmd 'colorscheme gruvbox'
--- vim.cmd 'colorscheme catppuccin'
--- vim.cmd 'colorscheme miramare'
--- TODO: fix this
--- vim.cmd 'colorscheme nightfox'
--- vim.cmd 'colorscheme gruvbox-material'
--- vim.cmd 'colorscheme tokyonight'
--- vim.cmd 'colorscheme everforest'
-
--- I have to set this last because something else sets
--- it too and I dont know what it is
--- vim.keymap.set("n", "<leader>/", ":CommentToggle<CR>")
---
---
---
-
 if vim.g.neovide then
   vim.g.neovide_transparency = 0.95
   vim.g.neovide_input_macos_alt_is_meta = true
@@ -52,15 +30,8 @@ if vim.g.neovide then
   -- Insert mode mappings for Alt + H and Alt + K
   vim.api.nvim_set_keymap('i', '<A-h>', '<Left>', { noremap = true, silent = true })
   vim.g.neovide_floating_shadow = true
-
-  -- vim.g.neovide_padding_top = 16
-  -- vim.g.neovide_padding_bottom = 8
-  -- vim.g.neovide_padding_right = 24
-  vim.g.neovide_padding_left = 8
-
   vim.g.neovide_cursor_smooth_blink = true
-
-  vim.g.neovide_floating_z_height = 20
+  vim.g.neovide_floating_z_height = 8
   vim.g.light_radius = 6
   vim.api.nvim_set_keymap('i', '<A-l>', '<Right>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', '<leader>Q', '<cmd>wqa<cr>', { noremap = true, silent = true })
