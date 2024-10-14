@@ -22,7 +22,7 @@ require 'simon.core.todo-mapping'
 require 'simon.core.telescope-mappings'
 
 if vim.g.neovide then
-  vim.g.neovide_transparency = 0.95
+  vim.g.neovide_transparency = 0.96
   vim.g.neovide_input_macos_alt_is_meta = true
   -- vim.opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
   -- vim.cmd [[set guifont=MonoLisa:10,Symbols\ Nerd\ Font:h10]]
