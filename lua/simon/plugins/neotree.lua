@@ -19,10 +19,7 @@ return {
       winbar = true,
       content_layout = 'center',
       sources = {
-        { source = 'filesystem', display_name = get_icon 'FolderClosed' .. ' File' },
-        { source = 'buffers', display_name = get_icon 'DefaultFile' .. ' Bufs' },
         { source = 'git_status', display_name = get_icon 'Git' .. ' Git' },
-        { source = 'diagnostics', display_name = get_icon 'Diagnostic' .. ' Diagnostic' },
       },
     },
     default_view = 'git_status', -- Set Git view as default
