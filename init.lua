@@ -8,24 +8,20 @@ require 'simon.core.env'
 require 'simon.core.options'
 require 'simon.plugins-setup'
 
--- REFACTOR: clean up this file
-require 'simon.mappings.telescope-mappings'
-require 'simon.mappings.git-mappings'
-require 'simon.mappings.keymaps'
-require 'simon.mappings.window-management-mapping'
-require 'simon.mappings.neotest-mappings'
-require 'simon.mappings.nvim-ufo-mapping'
-require 'simon.mappings.nvim-ufo-mapping'
-require 'simon.mappings.obsidian-mapping'
-require 'simon.mappings.todo-mapping'
+vim.cmd 'cnoreabbrev w silent w'
+require 'simon.core.keymaps'
+require 'simon.core.window-management-mapping'
+require 'simon.core.neotest-mappings'
+require 'simon.core.lsp-mappings'
+require 'simon.core.git-mappings'
+require 'simon.core.nvim-ufo-mapping'
+require 'simon.core.nvim-ufo-mapping'
+require 'simon.core.obsidian-mapping'
+require 'simon.core.todo-mapping'
 -- require 'simon.core.todokanban'
 
--- Import the buffer management logic
--- local buffer_management = require 'simon.core.buffer-management'
--- buffer_management.setup_autocommands()
-
 if vim.g.neovide then
-  vim.g.neovide_transparency = 0.99
+  vim.g.neovide_transparency = 0.96
   vim.g.neovide_input_macos_alt_is_meta = true
   -- vim.opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
   -- vim.cmd [[set guifont=MonoLisa:10,Symbols\ Nerd\ Font:h10]]
@@ -33,15 +29,8 @@ if vim.g.neovide then
   -- Insert mode mappings for Alt + H and Alt + K
   vim.api.nvim_set_keymap('i', '<A-h>', '<Left>', { noremap = true, silent = true })
   vim.g.neovide_floating_shadow = true
-
-  -- vim.g.neovide_padding_top = 16
-  -- vim.g.neovide_padding_bottom = 8
-  -- vim.g.neovide_padding_right = 24
-  vim.g.neovide_padding_left = 8
-
   vim.g.neovide_cursor_smooth_blink = true
-
-  vim.g.neovide_floating_z_height = 20
+  vim.g.neovide_floating_z_height = 8
   vim.g.light_radius = 6
   vim.api.nvim_set_keymap('i', '<A-l>', '<Right>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', '<leader>Q', '<cmd>wqa<cr>', { noremap = true, silent = true })
@@ -134,6 +123,19 @@ augroup suppress_md_errors
 augroup END
 ]]
 
+-- Flutter wrapper for hot-reloading
+-- Put this in your plugin directory (Default is $HOME/.config/nvim/lua/plugin/flutter.lua)
+--
+--
+-- local function flutter_hot_reload()
+--   vim.fn.system 'kill -s USR1 "$(pgrep -f flutter_tools.snapshot\\ run)" &> /dev/null'
+-- end
+--
+-- -- Autocommand for hot-reloading on save
+-- vim.api.nvim_create_autocmd('BufWritePost', {
+--   pattern = '*/lib/*.dart',
+--   callback = flutter_hot_reload,
+-- })
 -- Function to suppress errors
 function _G.SuppressErrors()
   -- You can leave this function empty or add specific error handling logic if needed
