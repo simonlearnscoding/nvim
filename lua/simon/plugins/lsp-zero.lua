@@ -91,7 +91,7 @@ return {
 
       -- ──────────────────────────────────────────────────────────────────────
       require('mason-lspconfig').setup {
-        ensure_installed = { 'lua_ls', 'graphql', 'emmet_ls', 'texlab', 'ts_ls' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
+        ensure_installed = { 'lua_ls', 'graphql', 'emmet_ls', 'texlab', 'tsserver' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
         handlers = {
           lsp.default_setup,
         },
@@ -106,44 +106,44 @@ return {
         },
         root_dir = require('lspconfig').util.root_pattern 'pubspec.yaml',
       }
-      -- require('lspconfig').tsserver.setup {
-      --   handlers = {
-      --     ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
-      --       if result.diagnostics == nil then
-      --         return
-      --       end
-      --
-      --       -- ignore some tsserver diagnostics
-      --       local idx = 1
-      --       while idx <= #result.diagnostics do
-      --         local entry = result.diagnostics[idx]
-      --
-      --         local formatter = require('format-ts-errors')[entry.code]
-      --         entry.message = formatter and formatter(entry.message) or entry.message
-      --
-      --         -- codes: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
-      --         if entry.code == 80001 then
-      --           -- { message = "File is a CommonJS module; it may be converted to an ES module.", }
-      --           table.remove(result.diagnostics, idx)
-      --         else
-      --           idx = idx + 1
-      --         end
-      --       end
-      --
-      --       vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
-      --     end,
-      --     root_dir = function(fname)
-      --       return require('lspconfig').util.root_pattern 'tsconfig.json'(fname)
-      --         or require('lspconfig').util.find_git_ancestor(fname)
-      --         or require('lspconfig').util.path.dirname(fname)
-      --     end,
-      --   },
-      --
-      --   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-      --   root_dir = function(...)
-      --     return require('lspconfig.util').root_pattern '.git'(...)
-      --   end,
-      -- }
+      require('lspconfig').tsserver.setup {
+        handlers = {
+          ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
+            if result.diagnostics == nil then
+              return
+            end
+
+            -- ignore some tsserver diagnostics
+            local idx = 1
+            while idx <= #result.diagnostics do
+              local entry = result.diagnostics[idx]
+
+              local formatter = require('format-ts-errors')[entry.code]
+              entry.message = formatter and formatter(entry.message) or entry.message
+
+              -- codes: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
+              if entry.code == 80001 then
+                -- { message = "File is a CommonJS module; it may be converted to an ES module.", }
+                table.remove(result.diagnostics, idx)
+              else
+                idx = idx + 1
+              end
+            end
+
+            vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+          end,
+          root_dir = function(fname)
+            return require('lspconfig').util.root_pattern 'tsconfig.json' (fname)
+                or require('lspconfig').util.find_git_ancestor(fname)
+                or require('lspconfig').util.path.dirname(fname)
+          end,
+        },
+
+        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+        root_dir = function(...)
+          return require('lspconfig.util').root_pattern '.git' (...)
+        end,
+      }
       require('lspconfig').pylsp.setup {
         settings = {
 
