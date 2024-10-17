@@ -91,7 +91,7 @@ return {
 
       -- ──────────────────────────────────────────────────────────────────────
       require('mason-lspconfig').setup {
-        ensure_installed = { 'lua_ls', 'graphql', 'emmet_ls', 'texlab', 'ts_ls' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
+        ensure_installed = { 'lua_ls', 'graphql', 'emmet_ls', 'texlab', 'tsserver' }, --  'pylyzer' 'eslint' 'emmet_ls'  'tsserver'
         handlers = {
           lsp.default_setup,
         },

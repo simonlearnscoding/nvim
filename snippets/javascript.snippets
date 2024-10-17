@@ -15,6 +15,7 @@ snippet tfcp 'typescript functional component with props'
 	
 snippet useFetch 'useFetch snippet'
   const { isLoading, data, error } = useFetch( "$1" )
+
 snippet useState 'useState snippet'
 	const [$1, set$2] = useState($3);
 
@@ -25,7 +26,7 @@ snippet interface
 			$2: $3;
 		}
 snippet tfc 'typescript functional component no props'
-	export function $1()  {
+	export const $1 = () =>  {
 		$2
   	return (
     	<div className="$4">
@@ -53,8 +54,8 @@ snippet div "div with className"
 snippet button "button"
 	<button className="$1" onClick={$2}> $3 </button>
 
-snippet fc 'functional component'
-	export function $1({$2}) {
+snippet rfc 'functional component'
+	export const $1 = ({$2}) => {
 		$3
 			return (
 			<$4>
@@ -63,5 +64,6 @@ snippet fc 'functional component'
 			)
 		}
 		$6
+
 snippet cln 'className'
 		className="$1"$2
