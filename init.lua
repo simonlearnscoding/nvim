@@ -21,13 +21,15 @@ require 'simon.mappings.obsidian-mapping'
 require 'simon.mappings.todo-mapping'
 -- require 'simon.core.todokanban'
 
+vim.opt.guifont = { "JetBrainsMono Nerd Font", ":h11" }
 if vim.g.neovide then
   vim.g.neovide_transparency = 0.96
   vim.g.neovide_input_macos_alt_is_meta = true
-  -- vim.opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
   -- vim.cmd [[set guifont=MonoLisa:10,Symbols\ Nerd\ Font:h10]]
 
   -- Insert mode mappings for Alt + H and Alt + K
+  -- TODO: this should also cound if its not in neovide
+  -- TODO: can I turn off cmp when I am writing a comment?
   vim.api.nvim_set_keymap('i', '<A-h>', '<Left>', { noremap = true, silent = true })
   vim.g.neovide_floating_shadow = true
   vim.g.neovide_cursor_smooth_blink = true
@@ -44,8 +46,8 @@ if vim.g.neovide then
   vim.api.nvim_set_keymap('v', '<M-l>', '>>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('v', '<M-h>', '<<', { noremap = true, silent = true })
   -- vim.g.neovide_transparency = 0.95
-  -- vim.g.neovide_cursor_vfx_mode = "wireframe"
-  vim.g.neovide_cursor_vfx_mode = 'railgun'
+  vim.g.neovide_cursor_vfx_mode = "wireframe"
+  -- vim.g.neovide_cursor_vfx_mode = 'railgun'
   --
 end
 
@@ -71,9 +73,12 @@ vim.api.nvim_create_autocmd('FileChangedShellPost', {
 vim.cmd 'highlight DapBreakpoint ctermbg=0 guifg=#993939 guibg=#31353f'
 vim.cmd 'highlight DapLogPoint ctermbg=0 guifg=#61afef guibg=#31353f'
 vim.cmd 'highlight DapStopped ctermbg=0 guifg=#98c379 guibg=#31353f'
-vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
-vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
-vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpoint',
+  { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointCondition',
+  { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointRejected',
+  { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapLogPoint', linehl = 'DapLogPoint', numhl = 'DapLogPoint' })
 vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' })
 
