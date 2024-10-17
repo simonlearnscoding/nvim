@@ -27,6 +27,15 @@ return {
     telescope.load_extension 'zoxide'
     telescope.load_extension 'fzf'
     require('telescope').load_extension 'harpoon'
+
+    require("telescope").load_extension("persisted")
+    require('telescope').setup({
+      extensions = {
+        persisted = {
+          layout_config = { width = 0.55, height = 0.55 }
+        }
+      }
+    })
     local get_icon = require('simon.utils').get_icon
 
     local delete_buf = function()

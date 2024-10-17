@@ -13,7 +13,7 @@ return {
                     {
                         desc = ' [s]ession ',
                         group = 'Number',
-                        action = 'SessionManager load_session',
+                        action = 'Telescope persisted',
                         key = 's',
                     },
                     {
