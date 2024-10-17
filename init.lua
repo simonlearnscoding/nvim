@@ -22,6 +22,7 @@ require 'simon.mappings.todo-mapping'
 -- require 'simon.core.todokanban'
 
 vim.opt.guifont = { "JetBrainsMono Nerd Font", ":h11" }
+
 if vim.g.neovide then
   vim.g.neovide_transparency = 0.96
   vim.g.neovide_input_macos_alt_is_meta = true
@@ -111,9 +112,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 --
-vim.diagnostic.config {
+vim.diagnostic.config({
   virtual_text = false,
-}
+})
 
 vim.cmd [[
 hi Normal guibg=NONE ctermbg=NONE
