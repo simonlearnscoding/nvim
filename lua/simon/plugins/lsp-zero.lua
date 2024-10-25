@@ -59,12 +59,6 @@ return {
         vim.keymap.set('n', 'gd', function()
           vim.lsp.buf.definition { on_list = on_list }
         end, opts)
-        vim.keymap.set('n', '<leader>gi', function()
-          vim.lsp.buf.incoming_calls { on_list = on_list }
-        end, opts)
-        vim.keymap.set('n', '<leader>go', function()
-          vim.lsp.buf.incoming_calls { on_list = on_list }
-        end, opts)
         vim.keymap.set('n', 'K', function()
           vim.lsp.buf.hover()
         end, opts) -- this one works pretty good
@@ -82,7 +76,6 @@ return {
           vim.lsp.buf.definition()
         end
         vim.keymap.set('n', 'gs', goto_definition_split, { silent = true })
-        vim.keymap.set('n', '<leader>gs', goto_definition_split, { silent = true })
       end)
 
       require('mason').setup {

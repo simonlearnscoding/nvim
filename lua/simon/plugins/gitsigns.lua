@@ -15,13 +15,15 @@ return {
       linehl = false, -- Highlight lines with git changes
     }
 
+    local wk = require 'which-key'
     -- Toggle function to toggle both signcolumn and linehl
-    -- vim.api.nvim_set_keymap(
-    --   'n',
-    --   '<leader>gt',
-    --   ':lua require("gitsigns").toggle_signs()<CR>:lua require("gitsigns").toggle_linehl()<CR>',
-    --   { noremap = true, silent = true }
-    -- )
+    --
+    wk.add {
+      'n',
+      '<leader>gt',
+      ':lua require("gitsigns").toggle_signs()<CR> lua require("gitsigns").toggle_deleted()<CR> :lua require("gitsigns").toggle_linehl()<CR>',
+      desc = ' Toggle git signs',
+    }
     --
     -- -- Toggle individual features (if needed)
     -- vim.api.nvim_set_keymap('n', '<leader>gs', ':lua require("gitsigns").toggle_signs()<CR>', { noremap = true, silent = true })
