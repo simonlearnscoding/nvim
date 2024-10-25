@@ -2,7 +2,10 @@ return {
   'nvim-telescope/telescope.nvim',
   dependencies = {
     {
-      'nvim-telescope/telescope-fzf-native.nvim', enabled = vim.fn.executable 'make' == 1, build = 'make' },
+      'nvim-telescope/telescope-fzf-native.nvim',
+      enabled = vim.fn.executable 'make' == 1,
+      build = 'make',
+    },
     'nvim-telescope/telescope-hop.nvim',
     'ThePrimeagen/harpoon',
     'nvim-telescope/telescope-project.nvim',
@@ -50,11 +53,11 @@ return {
 
     local mappings = {
       i = {
-        ["<C-r"] = actions.open_qflist,
-        ["<C-l>"] = actions.preview_scrolling_down,
-        ["<C-h>"] = actions.preview_scrolling_up,
-        ["<C-d>"] = actions.results_scrolling_down,
-        ["<C-u>"] = actions.results_scrolling_up,
+        ['<C-r'] = actions.open_qflist,
+        ['<C-l>'] = actions.preview_scrolling_down,
+        ['<C-h>'] = actions.preview_scrolling_up,
+        ['<C-d>'] = actions.results_scrolling_down,
+        ['<C-u>'] = actions.results_scrolling_up,
         ['<C-n>'] = actions.cycle_history_next,
         ['<C-p>'] = actions.cycle_history_prev,
         ['<C-j>'] = actions.move_selection_next,
@@ -105,7 +108,4 @@ return {
       },
     }
   end,
-
-
-
 }
