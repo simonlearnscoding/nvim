@@ -110,9 +110,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 --
-vim.diagnostic.config {
-  virtual_text = false,
-}
 
 vim.cmd [[
 hi Normal guibg=NONE ctermbg=NONE

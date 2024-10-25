@@ -3,5 +3,9 @@ return {
   event = "VeryLazy", -- Or `LspAttach`
   config = function()
     require('tiny-inline-diagnostic').setup()
-  end
+
+    vim.diagnostic.config({
+      virtual_text = true,
+    })
+  end,
 }
