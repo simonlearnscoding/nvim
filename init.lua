@@ -15,7 +15,6 @@ require 'simon.mappings.neotest-mappings'
 -- require 'simon.mappings.lsp-mappings'
 require 'simon.mappings.git-mappings'
 require 'simon.mappings.nvim-ufo-mapping'
-require 'simon.mappings.nvim-ufo-mapping'
 require 'simon.mappings.telescope-mappings'
 require 'simon.mappings.obsidian-mapping'
 require 'simon.mappings.todo-mapping'
@@ -32,21 +31,28 @@ if vim.g.neovide then
   -- Insert mode mappings for Alt + H and Alt + K
   -- TODO: this should also cound if its not in neovide
   -- TODO: can I turn off cmp when I am writing a comment?
+  -- Insert mode mappings for Alt + H and Alt + L
   vim.api.nvim_set_keymap('i', '<A-h>', '<Left>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('i', '<A-l>', '<Right>', { noremap = true, silent = true })
+
+  -- Normal mode mappings
+  vim.api.nvim_set_keymap('n', '<leader>Q', '<cmd>wqa<cr>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<M-j>', ':m .+1<CR>==', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<M-k>', ':m .-2<CR>==', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<M-l>', '>>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<M-h>', '<<', { noremap = true, silent = true })
+
+  -- Visual mode mappings
+  vim.api.nvim_set_keymap('v', '<M-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', '<M-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', '<M-l>', '>>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', '<M-h>', '<<', { noremap = true, silent = true })
+
+  -- Neovide specific settings
   vim.g.neovide_floating_shadow = true
   vim.g.neovide_cursor_smooth_blink = true
   vim.g.neovide_floating_z_height = 8
   vim.g.light_radius = 6
-  vim.api.nvim_set_keymap('i', '<A-l>', '<Right>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>Q', '<cmd>wqa<cr>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<M-j>', ':m .+1<CR>==', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<M-k>', ':m .-2<CR>==', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('v', '<M-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('v', '<M-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<M-l>', '>>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<M-h>', '<<', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('v', '<M-l>', '>>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('v', '<M-h>', '<<', { noremap = true, silent = true })
   -- vim.g.neovide_transparency = 0.95
   vim.g.neovide_cursor_vfx_mode = 'wireframe'
   -- vim.g.neovide_cursor_vfx_mode = 'railgun'
@@ -105,7 +111,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
         only = { 'source.addMissingImports.ts' },
       },
     }
-    vim.cmd 'write'
   end,
 })
 
