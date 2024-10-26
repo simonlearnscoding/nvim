@@ -13,6 +13,9 @@ return {
       },
       signcolumn = true, -- Show git status in the sign column
       linehl = false, -- Highlight lines with git changes
+      conflict = {
+        enable = true, -- Enable conflict highlights
+      },
     }
 
     local wk = require 'which-key'
