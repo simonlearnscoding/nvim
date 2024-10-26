@@ -10,6 +10,13 @@ return {
         normal = '<leader>r',
         visual = '<leader>r',
       },
+      surrounds = {
+        ['d'] = {
+          add = function()
+            return { { '<div className="">' }, { '</div>' } }
+          end,
+        },
+      },
     }
   end,
 }
