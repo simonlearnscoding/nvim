@@ -39,9 +39,15 @@ return {
 
     -- Bind the function to a key combination of your choice
     require('oil').setup {
-      delete_to_trash = true,
+      delete_to_trash = false,
       skip_confirm_for_simple_edits = true,
       show_hidden = true,
+
+      -- Custom function to handle buffer closing
+      -- on_file_delete = function()
+      --   local bufnr = vim.api.nvim_get_current_buf()
+      --   vim.api.nvim_buf_delete(bufnr, { force = true })
+      -- end,
 
       lsp_file_methods = {
         -- Time to wait for LSP file operations to complete before skipping
@@ -53,7 +59,7 @@ return {
       preview = {
         max_width = 0.4,
       },
-      cleanup_delay_ms = 3000,
+      -- cleanup_delay_ms = 3000,
       float = {
         max_width = 40,
 
