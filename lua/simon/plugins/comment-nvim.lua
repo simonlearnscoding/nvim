@@ -1,22 +1,24 @@
 -- "gc" to comment visual regions/lines
 return {
   {
-    "terrortylor/nvim-comment",
-    event = "BufReadPost",
-
+    'JoosepAlviste/nvim-ts-context-commentstring',
+  },
+  {
+    'terrortylor/nvim-comment',
+    event = 'BufReadPost',
     config = function()
-      require('nvim_comment').setup()
-      vim.keymap.set("n", "<leader>/", ":CommentToggle<CR>")
-    end
-
+      require('nvim_comment').setup {
+        hook = function()
+          require('ts_context_commentstring').update_commentstring()
+        end,
+      }
+      vim.keymap.set('n', '<leader>/', ':CommentToggle<CR>')
+    end,
   },
   {
     'numToStr/Comment.nvim',
     opts = {
-      -- add any options here
-      --
       lazy = false,
-
-    }
-  }
+    },
+  },
 }

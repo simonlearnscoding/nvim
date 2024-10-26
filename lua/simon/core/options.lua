@@ -4,7 +4,7 @@ vim.opt.shortmess:append { s = true, I = true } -- disable startup message
 
 vim.opt.backspace:append { 'nostop' } -- Don't stop backspace at insert
 if vim.fn.has 'nvim-0.9' == 1 then
-vim.opt.diffopt:append 'linematch:60' -- enable linematch diff algorithm
+  vim.opt.diffopt:append 'linematch:60' -- enable linematch diff algorithm
 end
 -- vim.opt.viewoptions:remove "curdir" -- disable saving current directory with views
 -- local opt = vim.opt
@@ -42,7 +42,7 @@ local options = {
     tabstop = 4, -- Number of space in a tab
     termguicolors = true, -- Enable 24-bit RGB color in the TUI
     timeoutlen = 10, -- Shorten key timeout length a little bit for which-key
-    updatetime = 1000, -- Length of time to wait before triggering the plugin
+    updatetime = 100, -- Length of time to wait before triggering the plugin
     virtualedit = 'block', -- allow going past end of line in visual block mode
     signcolumn = 'yes', -- git signs on the side
     sidescrolloff = 7, -- Number of columns to keep at the sides of the cursor
