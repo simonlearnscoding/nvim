@@ -1,3 +1,5 @@
+-- TODO: this will open oil in a ssh buffer
+-- nvim oil-ssh://[username@]hostname[:port]/[path]
 return {
   'stevearc/oil.nvim',
   event = 'BufRead',
@@ -43,7 +45,7 @@ return {
 
       lsp_file_methods = {
         -- Time to wait for LSP file operations to complete before skipping
-        timeout_ms = 1000,
+        timeout_ms = 2500,
         -- Set to true to autosave buffers that are updated with LSP willRenameFiles
         -- Set to "unmodified" to only save unmodified buffers
         autosave_changes = true,
@@ -51,6 +53,7 @@ return {
       preview = {
         max_width = 0.4,
       },
+      cleanup_delay_ms = 3000,
       float = {
         max_width = 40,
 
@@ -60,7 +63,28 @@ return {
         win_options = {
           winblend = 30,
         },
-
+        progress = {
+          max_width = 0.9,
+          min_width = { 40, 0.4 },
+          width = nil,
+          max_height = { 10, 0.9 },
+          min_height = { 5, 0.1 },
+          height = nil,
+          border = 'rounded',
+          minimized_border = 'none',
+          win_options = {
+            winblend = 0,
+          },
+        },
+        lsp_file_methods = {
+          -- Enable or disable LSP file operations
+          enabled = true,
+          -- Time to wait for LSP file operations to complete before skipping
+          timeout_ms = 2000,
+          -- Set to true to autosave buffers that are updated with LSP willRenameFiles
+          -- Set to "unmodified" to only save unmodified buffers
+          autosave_changes = true,
+        },
         override = function(conf)
           -- Set the position of the floating window
           conf.row = 3 -- Change the row (vertical position)
