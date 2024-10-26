@@ -1,11 +1,16 @@
 return {
   'yetone/avante.nvim',
-  -- event = 'VeryLazy',
-  lazy = false,
+  event = 'VeryLazy',
+  lazy = true,
   version = false, -- set this if you want to always pull the latest change
   opts = {
     -- add any opts here
+    provider = 'openai', -- Recommend using Claude
+    behaviour = {
+      auto_apply_diff_after_generation = true,
+    },
   },
+
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = 'make',
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
@@ -29,8 +34,6 @@ return {
           drag_and_drop = {
             insert_mode = true,
           },
-          -- required for Windows users
-          use_absolute_path = true,
         },
       },
     },
