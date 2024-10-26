@@ -2,6 +2,7 @@ return {
   'huantrinh1802/m_taskwarrior_d.nvim',
   -- 'simonlearnscoding/m_taskwarrior_d.nvim',
   version = '*',
+  event = 'BufWinEnter',
   dependencies = { 'MunifTanjim/nui.nvim' },
   config = function()
     require('m_taskwarrior_d').setup {}
