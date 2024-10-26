@@ -99,10 +99,10 @@ return {
         },
         root_dir = require('lspconfig').util.root_pattern 'pubspec.yaml',
       }
-      -- require('lspconfig').ts_ls.setup {
-      --   filetypes = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
-      --   root_dir = require('lspconfig').util.root_pattern('tsconfig.json', 'package.json', '.git'),
-      -- }
+      require('lspconfig').ts_ls.setup {
+        filetypes = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+        root_dir = require('lspconfig').util.root_pattern('tsconfig.json', 'package.json', '.git'),
+      }
       require('lspconfig').pylsp.setup {
         settings = {
 
@@ -138,12 +138,13 @@ return {
       -- require('lspconfig').mypy.setup({
       -- 	filetypes = { 'python' },
       -- })
-      -- require('lspconfig').tsserver.setup({
-      -- 	update_insert_text = false
-      -- filetypes = { 'lua', 'python' }
-      -- })
+      require('lspconfig').ts_ls.setup {}
       --
       require('lspconfig').tailwindcss.setup {
+        -- root_dir = {}
+      }
+
+      require('lspconfig').lua_ls.setup {
         -- root_dir = {}
       }
       -- require('lspconfig').eslint.setup {
