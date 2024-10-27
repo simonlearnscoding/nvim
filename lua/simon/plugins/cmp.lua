@@ -2,7 +2,6 @@
 -- TODO: remove snippets in markdown
 local cmp_ui = require('simon.core.utils_nvchad').load_config().ui.cmp
 local cmp_style = cmp_ui.style
-
 local function border(hl_name)
   return {
     { '╭', hl_name },

@@ -90,6 +90,7 @@ return {
         },
       }
 
+      -- TODO: pretty sure this won't work
       require('lspconfig').dartls.setup {
         cmd = { '/home/simon/flutter/bin/dart', 'language-server', '--protocol=lsp' },
         filetypes = { 'dart' },
@@ -139,6 +140,7 @@ return {
       -- 	filetypes = { 'python' },
       -- })
       require('lspconfig').ts_ls.setup {}
+      require('lspconfig').alejandra.setup {}
       --
       require('lspconfig').tailwindcss.setup {
         -- root_dir = {}
@@ -164,7 +166,32 @@ return {
       require('lspconfig').pyright.setup {
         pythonPath = '~/code/discord/habit_tracker/venv/bin/python',
       }
-      require('lspconfig').nil_ls.setup {}
+      -- require('lspconfig').nil_ls.setup {}
+
+      require('lspconfig').nixd.setup {
+
+        cmd = { 'nixd' },
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = 'import <nixpkgs> { }',
+            },
+            formatting = {
+              command = { 'alejandra' },
+            },
+            options = {
+              nixos = {
+                expr = '(builtins.getFlake "github:simonlearnscoding/nixos-dotfiles").nixosConfiguration.pc.options',
+              },
+              home_manager = {
+
+                expr = '(builtins.getFlake "github:simonlearnscoding/nixos-dotfiles").homeConfiguration.simon.options',
+              },
+            },
+          },
+        },
+      }
+
       require('lspconfig').texlab.setup {
 
         -- filetypes = {}
