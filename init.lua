@@ -21,10 +21,10 @@ require 'simon.mappings.todo-mapping'
 -- require 'simon.core.todokanban'
 
 vim.g.sqlite_clib_path = '/nix/store/220jcypl4rj05ffv1c074lf244av622g-sqlite-3.46.1/lib/libsqlite3.so'
-vim.opt.guifont = { 'JetBrainsMono Nerd Font', ':h11' }
+vim.opt.guifont = { 'JetBrainsMono Nerd Font', ':h12' }
 
 if vim.g.neovide then
-  vim.g.neovide_transparency = 0.98
+  vim.g.neovide_transparency = 0.97
   vim.g.neovide_input_macos_alt_is_meta = true
   -- vim.cmd [[set guifont=MonoLisa:10,Symbols\ Nerd\ Font:h10]]
 
@@ -103,7 +103,7 @@ vim.g.dashboard_default_executive = 'telescope'
 vim.api.nvim_create_autocmd('BufWritePre', {
   group = vim.api.nvim_create_augroup('TS_add_missing_imports', { clear = true }),
   desc = 'TS_add_missing_imports',
-  pattern = { '*.ts' },
+  pattern = { '*.ts', '*.tsx', '*.jsx', '*.js' },
   callback = function()
     vim.lsp.buf.code_action {
       apply = true,
