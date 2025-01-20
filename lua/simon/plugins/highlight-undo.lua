@@ -1,47 +1,26 @@
 return {
   'tzachar/highlight-undo.nvim',
   event = 'VeryLazy',
-  opts = {
-  },
+  opts = {},
   config = function()
-    require('highlight-undo').setup({
+    require('highlight-undo').setup {
 
-      duration = 300,
+      duration = 200,
       undo = {
         hlgroup = 'HighlightUndo',
         mode = 'n',
         lhs = 'u',
         map = 'undo',
-        opts = {}
+        opts = {},
       },
       redo = {
         hlgroup = 'HighlightUndo',
         mode = 'n',
         lhs = '<C-r>',
         map = 'redo',
-        opts = {}
+        opts = {},
       },
       highlight_for_count = true,
-    })
-  end
-
+    }
+  end,
 }
-
--- require('highlight-undo').setup({
---   duration = 300,
---   undo = {
---     hlgroup = 'HighlightUndo',
---     mode = 'n',
---     lhs = 'u',
---     map = 'undo',
---     opts = {}
---   },
---   redo = {
---     hlgroup = 'HighlightUndo',
---     mode = 'n',
---     lhs = '<C-r>',
---     map = 'redo',
---     opts = {}
---   },
---   highlight_for_count = true,
--- })
