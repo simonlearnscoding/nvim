@@ -8,9 +8,6 @@ return {
     'anuvyklack/hydra.nvim',
   },
 
-
-
-
   {
     'gbprod/yanky.nvim',
     event = 'VeryLazy',
@@ -24,20 +21,17 @@ return {
           on_put = highlight_on_put,
           timer = 100,
         },
-
-
       }
 
-      vim.keymap.set("n", yank_history_keymap, ":YankyRingHistory<CR>", { desc = 'open yank register' })
-
+      vim.keymap.set('n', yank_history_keymap, ':YankyRingHistory<CR>', { desc = 'open yank register' })
 
       local hint = [[
       _p_ = cycle back
       _P_ = cycle forward
       ]]
 
-      local Hydra = require('hydra')
-      local dap_hydra = Hydra({
+      local Hydra = require 'hydra'
+      local dap_hydra = Hydra {
         -- hint = hint,
         config = {
           timeout = Timeout,
@@ -47,19 +41,18 @@ return {
           invoke_on_body = true,
           hint = {
             position = 'middle-right',
-            border = 'rounded'
+            border = 'rounded',
           },
         },
-
 
         name = 'yanky',
         mode = { 'n', 'x' },
         body = 'p',
         heads = {
-          { 'p', '<Plug>(YankyCycleForward)',  { silent = true } },
+          { 'p', '<Plug>(YankyCycleForward)', { silent = true } },
           { 'P', '<Plug>(YankyCycleBackward)', { silent = true } },
-        }
-      })
+        },
+      }
     end,
-  }
+  },
 }
