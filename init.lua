@@ -23,6 +23,9 @@ require 'simon.mappings.todo-mapping'
 vim.g.sqlite_clib_path = '/nix/store/220jcypl4rj05ffv1c074lf244av622g-sqlite-3.46.1/lib/libsqlite3.so'
 vim.opt.guifont = { 'JetBrainsMono Nerd Font', ':h12' }
 
+-- open in webstorm
+
+vim.api.nvim_set_keymap('n', '<leader>ws', ':!webstorm %<CR>', { noremap = true, silent = true })
 if vim.g.neovide then
   vim.g.neovide_transparency = 0.97
   vim.g.neovide_input_macos_alt_is_meta = true
