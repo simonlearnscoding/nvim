@@ -24,7 +24,7 @@ vim.g.sqlite_clib_path = '/nix/store/220jcypl4rj05ffv1c074lf244av622g-sqlite-3.4
 vim.opt.guifont = { 'JetBrainsMono Nerd Font', ':h11' }
 
 if vim.g.neovide then
-  vim.g.neovide_transparency = 0.98
+  vim.g.neovide_transparency = 0.86
   vim.g.neovide_input_macos_alt_is_meta = true
   -- vim.cmd [[set guifont=MonoLisa:10,Symbols\ Nerd\ Font:h10]]
 
