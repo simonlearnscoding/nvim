@@ -100,10 +100,26 @@ return {
         },
         root_dir = require('lspconfig').util.root_pattern 'pubspec.yaml',
       }
+      local util = require 'lspconfig/util'
       require('lspconfig').ts_ls.setup {
+        on_attach = on_attach,
         filetypes = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
-        root_dir = require('lspconfig').util.root_pattern('tsconfig.json', 'package.json', '.git'),
+        root_dir = function(fname)
+          if util.root_pattern('deno.json', 'deno.jsonc')(fname) then
+            print 'Found Deno config; skipping ts_ls.'
+            return nil
+          end
+          local pkg = util.root_pattern 'package.json'(fname)
+          print('Detected Node project root:', pkg)
+          return pkg
+        end,
+        single_file_support = false,
       }
+      require('lspconfig').denols.setup {
+        filetypes = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+        root_dir = require('lspconfig').util.root_pattern 'deno.json',
+      }
+
       require('lspconfig').pylsp.setup {
         settings = {
 
@@ -139,7 +155,7 @@ return {
       -- require('lspconfig').mypy.setup({
       -- 	filetypes = { 'python' },
       -- })
-      require('lspconfig').ts_ls.setup {}
+      -- require('lspconfig').ts_ls.setup {}
       require('lspconfig').alejandra.setup {}
       --
       require('lspconfig').tailwindcss.setup {
