@@ -5,7 +5,14 @@ return {
   version = false, -- set this if you want to always pull the latest change
   opts = {
     -- add any opts here
-    provider = 'openai', -- Recommend using Claude
+    provider = 'deepseek', -- Recommend using Claude
+        deepseek = {
+          __inherited_from = "openai",
+          api_key_name = "DEEPSEEK_API_KEY",
+          endpoint = "https://api.deepseek.com",
+          model = "deepseek-coder",
+        },
+      },
     behaviour = {
       auto_apply_diff_after_generation = true,
     },
