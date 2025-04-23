@@ -28,6 +28,7 @@ return {
           'diff',
           'html',
           'graphql',
+          'java',
           'javascript',
           'jsdoc',
           'json',
@@ -47,7 +48,7 @@ return {
         },
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-        auto_install = false,
+        auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
 
