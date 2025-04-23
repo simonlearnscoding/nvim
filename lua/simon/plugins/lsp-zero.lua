@@ -120,6 +120,19 @@ return {
         root_dir = require('lspconfig').util.root_pattern 'deno.json',
       }
 
+      -- Java LSP setup
+      require('lspconfig').jdtls.setup {
+        cmd = { 'jdtls' },
+        root_dir = require('lspconfig.util').root_pattern('.git', 'mvnw', 'gradlew'),
+        settings = {
+          java = {
+            format = {
+              enabled = true,
+            },
+          },
+        },
+      }
+
       require('lspconfig').pylsp.setup {
         settings = {
 
