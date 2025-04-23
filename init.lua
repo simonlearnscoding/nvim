@@ -27,7 +27,7 @@ vim.opt.guifont = { 'JetBrainsMono Nerd Font', ':h12' }
 
 vim.api.nvim_set_keymap('n', '<leader>ws', ':!webstorm %<CR>', { noremap = true, silent = true })
 if vim.g.neovide then
-  vim.g.neovide_transparency = 0.86
+  vim.g.neovide_transparency = 0.9
   vim.g.neovide_input_macos_alt_is_meta = true
   -- vim.cmd [[set guifont=MonoLisa:10,Symbols\ Nerd\ Font:h10]]
 
