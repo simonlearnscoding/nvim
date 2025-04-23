@@ -35,7 +35,7 @@ return {
           },
         },
         require 'neotest-jest' {
-          jestCommand = 'npm test  ',
+          jestCommand = 'yarn test',
           jestConfigFile = 'custom.jest.config.ts',
           env = { CI = true },
           cwd = function(path)
