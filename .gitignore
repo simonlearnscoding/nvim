@@ -3,5 +3,4 @@ test.sh
 .luarc.json
 nvim
 env.lua
-lazy-lock.json
 session_info.txt
