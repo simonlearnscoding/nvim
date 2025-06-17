@@ -122,7 +122,16 @@ return {
 
       -- Java LSP setup
       require('lspconfig').jdtls.setup {
-        cmd = { 'jdtls' },
+        cmd = {
+          'java',
+          '-javaagent:' .. vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/lombok.jar',
+          '-jar',
+          vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar',
+          '-configuration',
+          vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/config_linux',
+          '-data',
+          vim.fn.expand '~/.cache/jdtls/workspace/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t'),
+        },
         root_dir = require('lspconfig.util').root_pattern('.git', 'mvnw', 'gradlew'),
         settings = {
           java = {

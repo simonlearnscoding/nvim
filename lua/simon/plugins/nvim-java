@@ -1,0 +1,65 @@
+return {
+  'nvim-java/nvim-java',
+
+  config = function()
+    require('java').setup {
+      root_markers = {
+        '.git',
+        'pom.xml',
+        'build.gradle',
+        'build.gradle.kts',
+        'settings.gradle',
+        'settings.gradle.kts',
+        'mvnw',
+        'gradlew',
+      },
+      jdtls = {
+        version = 'v1.43.0',
+        -- Custom launcher for NixOS compatibility
+        cmd = {
+          'java',
+          '-javaagent:' .. vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/lombok.jar',
+          '-jar',
+          vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
+          '-configuration',
+          vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/config_linux',
+          '-data',
+          vim.fn.expand '~/.cache/jdtls/workspace/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t'),
+        },
+      },
+      lombok = {
+        version = 'nightly',
+        path = vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/lombok.jar',
+      },
+      java_test = {
+        enable = true,
+        version = '0.40.1',
+      },
+      java_debug_adapter = {
+        enable = true,
+        version = '0.58.1',
+      },
+      jdk = {
+        auto_install = false, -- Disable since we're using Nix-managed JDK
+        version = '17',
+      },
+      mason = {
+        registries = {
+          'github:nvim-java/mason-registry',
+        },
+      },
+      -- Formatting settings
+      settings = {
+        java = {
+          format = {
+            enabled = false,
+            settings = {
+              url = vim.fn.stdpath 'config' .. '/lang_servers/intellij-java-google-style.xml',
+              profile = 'GoogleStyle',
+            },
+          },
+        },
+      },
+    }
+  end,
+}
