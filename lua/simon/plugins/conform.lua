@@ -8,6 +8,13 @@ return {
     conform.formatters.prettierd = {
       config_file = '~/.config/.prettierrc',
     }
+
+    -- Define google-java-format (if installed)
+    conform.formatters.google_java_format = {
+      command = 'google-java-format', -- or full path to the JAR
+      args = { '--aosp', '-' }, -- AOSP style (or omit for Google default)
+      stdin = true, -- Needs file path, not stdin
+    }
     -- Configuration file for prettierd
     conform.setup {
       formatters_by_ft = {
@@ -23,6 +30,7 @@ return {
         markdown = { 'prettier' },
         graphql = { 'prettier' },
         lua = { 'stylua' },
+        java = { 'google_java_format' }, -- Add Java formatting
         python = { 'isort', 'black' },
       },
 
